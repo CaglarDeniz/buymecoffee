@@ -2,6 +2,7 @@
  * Connect all of your endpoints together here.
  */
 module.exports = function (app) {
-    app.use('/api', require('./api.js'));
-    // app.use('/user', require('./user.js'));
+    app.use('/api/project', require('./project.js'));
+    app.use('/api/developer', require('./developer.js'));
+    app.use('/api/investor', require('./investor.js'));
 };
