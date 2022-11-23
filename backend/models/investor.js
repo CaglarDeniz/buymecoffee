@@ -5,7 +5,8 @@ var mongoose = require('mongoose');
 var InvestorSchema = new mongoose.Schema({
 	name:{type:String,required:true},
 	email:{type:String,required:true},
-	password:{type:String,required:true},
+	passwordHash:{type:String,required:true},
+	username:{type:String,required:true},
 	industry:[String],
 	bio:String,
 	oldStartups:[String],

@@ -3,6 +3,10 @@ const router = express.Router();
 
 const Dev = require('../models/developer.js');
 
+// User auth dependencies
+const bcrypt = require('bcrypt'); // JS hashing library for password auth
+const saltRounds = 10;
+
 var devRoute = router.route('/');
 
 devRoute.get(async function(req, res) {
@@ -27,45 +31,49 @@ devRoute.get(async function(req, res) {
 devRoute.post(async function(req, res) {
 
   const query = {
-    email: req.body.email
+    username: req.body.username
   };
 
   try {
 
-    const data = await Dev.find(query);
+    const data = await Dev.findOne(query);
 
     console.log(data);
 
-    if (data.length !== 0 || Object.keys(data).length !== 0) { // if a dev with the same username exists
+    if (data !== null) { // if a dev with the same username exists
       res.status(500).json({
-        message: "A developer with that email already exists",
+        message: "A developer with that username already exists",
         data: []
       });
       return;
     } else {
 
-      const newDev = new Dev({
-        name: req.body.name,
-        email: req.body.email,
-        password: req.body.password,
-        industry: 'industry' in req.body ? req.body.industry : [],
-        bio: 'bio' in req.body ? req.body.bio : "",
-        projectId: 'projectId' in req.body ? req.body.projectId : [],
-        photoLink: 'photoLink' in req.body ? req.body.photoLink : "",
-      })
-
-      try {
-
-        await newDev.save();
-        res.status(201).json({
-          message: "Added user to database",
-          data: newDev,
+      // hash given plaintext user password
+      bcrypt.hash(req.body.password, saltRounds, async function(err, hash) {
+        const newDev = new Dev({
+          name: req.body.name,
+          email: req.body.email,
+					username: req.body.username,
+          passwordHash: hash,
+          industry: 'industry' in req.body ? req.body.industry : [],
+          bio: 'bio' in req.body ? req.body.bio : "",
+          projectId: 'projectId' in req.body ? req.body.projectId : [],
+          photoLink: 'photoLink' in req.body ? req.body.photoLink : "",
         })
-      } catch (err) {
-        res.status(500).json({
-          message: "Couldn't save developer to database due to error " + err.message
-        });
-      }
+
+        try {
+          await newDev.save();
+          res.status(201).json({
+            message: "Added user to database",
+            data: newDev,
+          })
+        } catch (err) {
+          res.status(500).json({
+            message: "Couldn't save developer to database due to error " + err.message
+          });
+        }
+      });
+
     }
   } catch (err) {
     res.status(500).json({
@@ -113,18 +121,20 @@ devIdRoute.put(async function(req, res) {
     await Dev.updateOne(query, req.body, async function(err, dev) {
       if (!err) {
 
-				let updatedDev ;
+        let updatedDev;
 
-				try{
-					updatedDev = await Dev.findOne(query);
-				}
-				catch(err){
-					res.status(500).json({message:"Couldn't fetch developer after update",data:{}})
-					return;
-				}
+        try {
+          updatedDev = await Dev.findOne(query);
+        } catch (err) {
+          res.status(500).json({
+            message: "Couldn't fetch developer after update",
+            data: {}
+          })
+          return;
+        }
         res.status(200).json({
           message: "Successfully updated developer",
-					data: updatedDev,
+          data: updatedDev,
           stats: dev
         });
         return;
