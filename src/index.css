@@ -11,3 +11,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.userlogin-navbar{
+  background-color:#0077B5;
+  display: flex;
+  justify-content: center;
+  padding: 1% 0;
+}
