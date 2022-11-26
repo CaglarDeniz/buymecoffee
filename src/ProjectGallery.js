@@ -1,10 +1,10 @@
-import ResponsiveAppBar from './components/navbarGallery';
+import Navbar from './components/navbarGallery';
 
 function ProjectGallery(props) {
 
     return (
         <div className="container-wrap">
-            <ResponsiveAppBar/>
+            <Navbar/>
             <h1>hello project</h1>
 
         </div>

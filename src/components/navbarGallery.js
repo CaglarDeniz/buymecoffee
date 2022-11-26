@@ -1,17 +1,76 @@
-import { Link } from 'react-router-dom'
-import UserProfileCircle from './userProfileCircle';
-import './navbar.css';
+import * as React from "react";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import Menu from "@mui/material/Menu";
+import Avatar from "@mui/material/Avatar";
+import Tooltip from "@mui/material/Tooltip";
+import MenuItem from "@mui/material/MenuItem";
+import { Link } from "react-router-dom";
+import "./navbar.css";
 
-function navbarGallery(props) {
+//TODO: change link path to log in page after clicking log out
+const settings = [
+  <Link className="nav-link" to="/:username">
+    Profile
+  </Link>,
+  <Link className="nav-link" to="/login">
+    LogOut
+  </Link>,
+];
 
-    return (
-        <div className="navbar-container">
-          <Link className="nav-link" to="/">PROJECTS</Link>
-          <Link className="nav-link" to="/investors">INVESTORS</Link>
-          <Link className="nav-link" to="/:username"><UserProfileCircle/></Link>
+function ResponsiveAppBar() {
+  const [isInvestor, setIsInvestor] = React.useState(true);
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
 
-        </div>
-    );
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+
+  return (
+    <AppBar  position="static">
+  
+        <Box className = "navbar-link-container" >
+        <img src={require("./img/BuyMeCoffee.png")} alt="BuyMeCoffeeLogo" className="brand-logo"/>
+        {isInvestor ? <div className='link-container'><Link className="nav-link project" to="/">
+          PROJECTS
+        </Link></div> :
+        <div className='link-container'><Link className="nav-link"to="/investors">
+          INVESTORS
+        </Link></div>}
+          <Tooltip title="Open settings">
+            <IconButton className="userprofile-container" onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+              <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+            </IconButton>
+          </Tooltip>
+          <Menu
+            sx={{ mt: "45px" }}
+            id="menu-appbar"
+            anchorEl={anchorElUser}
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            keepMounted
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            open={Boolean(anchorElUser)}
+            onClose={handleCloseUserMenu}
+          >
+            {settings.map((setting) => (
+              <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                <Typography textAlign="center">{setting}</Typography>
+              </MenuItem>
+            ))}
+          </Menu>
+        </Box>
+    </AppBar>
+  );
 }
-
-export default navbarGallery
+export default ResponsiveAppBar;

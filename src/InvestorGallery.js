@@ -6,6 +6,7 @@ function InvestorGallery(props) {
         <div className="container-wrap">
         <ResponsiveAppBar/>
             <h1>hello investor gallery</h1>
+
         </div>
     );
 }
