@@ -7,8 +7,8 @@ import Typography from "@mui/material/Typography";
 import "./galleryView.css";
 import { Link } from "react-router-dom";
 
-function GalleryView() {
-  //TODO:  change projectList to state
+function GalleryView(props) {
+  //TODO:  change projectList to state && use the curIndustry to perform Axios
   const projectList = [
     { name: "Facebook x Tesla", industry: "tech", _id:1 },
     { name: "Interactive Code", industry: "tech", _id:2 },
@@ -25,7 +25,9 @@ function GalleryView() {
     let card = (
       <Grid item xs={6} sm={4} md={3} key={projectId}>
         <Link className="link" to={`/project/${projectId}`}>
-          <Card sx={{ maxWidth: 345 }}>
+          <Card sx={{ maxWidth: 345, ':hover': {
+      boxShadow: 10, 
+    }}}>
             <CardMedia
               component="img"
               height="140"

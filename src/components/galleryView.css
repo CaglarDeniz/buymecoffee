@@ -24,5 +24,17 @@
 }
 
 .grid-container {
-    padding: 4% 7%;
+    padding: 0% 7% 5%;
 }
+
+.filter-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5% auto;
+}
+
+.MuiButton-root {
+    margin: 0 2% !important;
+}
+

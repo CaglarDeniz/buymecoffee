@@ -21,7 +21,7 @@ const settings = [
     ,
   },
   {
-    id: 0,
+    id: 1,
     item: 
       <Link className="nav-link" to="/login">
         LogOut
