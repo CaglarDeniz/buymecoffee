@@ -10,24 +10,26 @@ import { Link } from "react-router-dom";
 function GalleryView(props) {
   //TODO:  change projectList to state && use the curIndustry to perform Axios
   const projectList = [
-    { name: "Facebook x Tesla", industry: "tech", _id:1 },
-    { name: "Interactive Code", industry: "tech", _id:2 },
-    { name: "The new github", industry: "tech", _id:3 },
-    { name: "Realer than be real", industry: "tech", _id:4},
-    { name: "Realer than be real", industry: "tech", _id:5},
-    { name: "Realer than be real", industry: "tech", _id:6},
-    { name: "Realer than be real", industry: "tech", _id:7},
-
-
-    
+    { name: "Facebook x Tesla", industry: "tech", _id: 1 },
+    { name: "Interactive Code", industry: "tech", _id: 2 },
+    { name: "The new github", industry: "tech", _id: 3 },
+    { name: "Realer than be real", industry: "tech", _id: 4 },
+    { name: "Realer than be real", industry: "tech", _id: 5 },
+    { name: "Realer than be real", industry: "tech", _id: 6 },
+    { name: "Realer than be real", industry: "tech", _id: 7 },
   ];
   const returnCard = (projectName, projectId) => {
     let card = (
       <Grid item xs={6} sm={4} md={3} key={projectId}>
         <Link className="link" to={`/project/${projectId}`}>
-          <Card sx={{ maxWidth: 345, ':hover': {
-      boxShadow: 10, 
-    }}}>
+          <Card
+            sx={{
+              maxWidth: 345,
+              ":hover": {
+                boxShadow: 10,
+              },
+            }}
+          >
             <CardMedia
               component="img"
               height="140"

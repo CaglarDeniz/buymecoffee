@@ -31,10 +31,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 5% auto;
+    margin: 4% auto;
 }
 
 .MuiButton-root {
     margin: 0 2% !important;
+    font-size: 1rem !important
 }
 
+.blue-text{
+    color: #9BDAF3  !important;
+}
+
+.sort-text{
+    font-size: 1rem;
+}

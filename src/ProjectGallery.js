@@ -1,11 +1,12 @@
 import GalleryView from "./components/galleryView";
 import Navbar from "./components/navbarGallery";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 
 import "./components/galleryView.css";
 function ProjectGallery(props) {
+    const filters = ['technology','creative','food']
   const theme = createTheme({
     palette: {
       primary: {
@@ -25,14 +26,22 @@ function ProjectGallery(props) {
   });
   const [curIndustry, setCurIndustry] = useState("technology");
   console.log('indust',curIndustry)
+  useEffect(()=> {
+    filters.map((filterName)=> {
+        const element = document.getElementById(filterName)
+    element.classList.remove('blue-text')
+    })
+    const element = document.getElementById(curIndustry)
+    element.classList.add('blue-text')
+  }, [curIndustry])
   return (
     <ThemeProvider theme={theme}>
 
     <div className="container-wrap">
       <Navbar />
       <div className="filter-container">
-        <span>SORT BY INDUSTRY:</span>
-        <Button  
+        <span className="sort-text">SORT BY INDUSTRY:</span>
+        <Button id='technology' className='button'
           onClick={() => {setCurIndustry("technology")}}
           variant="contained"
           sx={{
@@ -44,7 +53,7 @@ function ProjectGallery(props) {
         >
           Technology
         </Button>
-        <Button  onClick={() => {setCurIndustry("food")} }     variant="contained"
+        <Button id='food' className='button' onClick={() => {setCurIndustry("food")} }     variant="contained"
           sx={{
               ':hover': {
                 bgcolor: 'primary.grey', // theme.palette.primary.main
@@ -53,7 +62,7 @@ function ProjectGallery(props) {
             }} >
           FOOD 
         </Button>
-        <Button 
+        <Button id='creative' className='button'
           onClick={() => {setCurIndustry("creative")}}
           variant="contained"
           sx={{
