@@ -25,11 +25,11 @@ devRoute.get(async function(req, res) {
     };
 
     try {
-      const dev = await Investor.findOne(query);
+      const inv = await Investor.findOne(query);
 
-			console.log(dev);
+			// console.log(inv);
 
-      const userHash = dev.passwordHash;
+      const userHash = inv.passwordHash;
 
       const result = await bcrypt.compare(req.body.password, userHash);
       if (result === true) {

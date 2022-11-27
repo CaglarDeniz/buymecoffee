@@ -27,7 +27,7 @@ devRoute.get(async function(req, res) {
     try {
       const dev = await Dev.findOne(query);
 
-			console.log(dev);
+			// console.log(dev);
 
       const userHash = dev.passwordHash;
 
