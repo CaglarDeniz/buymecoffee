@@ -12,12 +12,22 @@ import "./navbar.css";
 
 //TODO: change link path to log in page after clicking log out
 const settings = [
-  <Link className="nav-link" to="/:username">
-    Profile
-  </Link>,
-  <Link className="nav-link" to="/login">
-    LogOut
-  </Link>,
+  {
+    id: 0,
+    item: 
+      <Link className="nav-link" to="/investor/:username">
+        Profile
+      </Link>
+    ,
+  },
+  {
+    id: 0,
+    item: 
+      <Link className="nav-link" to="/login">
+        LogOut
+      </Link>
+    ,
+  },
 ];
 
 function ResponsiveAppBar() {
@@ -32,44 +42,58 @@ function ResponsiveAppBar() {
   };
 
   return (
-    <AppBar  position="static">
-  
-        <Box className = "navbar-link-container" >
-        <img src={require("./img/BuyMeCoffee.png")} alt="BuyMeCoffeeLogo" className="brand-logo"/>
-        {isInvestor ? <div className='link-container'><Link className="nav-link project" to="/">
-          PROJECTS
-        </Link></div> :
-        <div className='link-container'><Link className="nav-link"to="/investors">
-          INVESTORS
-        </Link></div>}
-          <Tooltip title="Open settings">
-            <IconButton className="userprofile-container" onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-              <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-            </IconButton>
-          </Tooltip>
-          <Menu
-            sx={{ mt: "45px" }}
-            id="menu-appbar"
-            anchorEl={anchorElUser}
-            anchorOrigin={{
-              vertical: "top",
-              horizontal: "right",
-            }}
-            keepMounted
-            transformOrigin={{
-              vertical: "top",
-              horizontal: "right",
-            }}
-            open={Boolean(anchorElUser)}
-            onClose={handleCloseUserMenu}
+    <AppBar position="static">
+      <Box className="navbar-link-container">
+        <img
+          src={require("./img/BuyMeCoffee.png")}
+          alt="BuyMeCoffeeLogo"
+          className="brand-logo"
+        />
+        {isInvestor ? (
+          <div className="link-container">
+            <Link className="nav-link project" to="/projects">
+              PROJECTS
+            </Link>
+          </div>
+        ) : (
+          <div className="link-container">
+            <Link className="nav-link" to="/investors">
+              INVESTORS
+            </Link>
+          </div>
+        )}
+        <Tooltip title="Open settings">
+          <IconButton
+            className="userprofile-container"
+            onClick={handleOpenUserMenu}
+            sx={{ p: 0 }}
           >
-            {settings.map((setting) => (
-              <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                <Typography textAlign="center">{setting}</Typography>
-              </MenuItem>
-            ))}
-          </Menu>
-        </Box>
+            <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+          </IconButton>
+        </Tooltip>
+        <Menu
+          sx={{ mt: "45px" }}
+          id="menu-appbar"
+          anchorEl={anchorElUser}
+          anchorOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+          keepMounted
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+          open={Boolean(anchorElUser)}
+          onClose={handleCloseUserMenu}
+        >
+          {settings.map((setting) => {
+            return (<MenuItem key={setting.id} onClick={handleCloseUserMenu}>
+              <Typography key={setting.id} textAlign="center">{setting.item}</Typography>
+            </MenuItem>);
+          })}
+        </Menu>
+      </Box>
     </AppBar>
   );
 }

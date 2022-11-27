@@ -1,11 +1,15 @@
+import GalleryView from './components/galleryView';
 import Navbar from './components/navbarGallery';
-
+import './components/galleryView.css'
 function ProjectGallery(props) {
 
     return (
         <div className="container-wrap">
             <Navbar/>
-            <h1>hello project</h1>
+            <div className='grid-container'>
+
+            <GalleryView/>
+            </div>
 
         </div>
     );

@@ -1,0 +1,28 @@
+.MuiCardContent-root{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0077B5 ;
+    color: white;
+    margin: 3%;
+    border-radius: 12px;
+    padding-bottom: 16px !important;
+}
+
+.MuiTypography-root{
+    font-family: 'Roboto Mono', monospace !important;
+    font-weight: 800 !important;
+}
+
+.MuiCard-root, .MuiPaper-root {
+    background-color: #CACCCE !important;
+    border-radius: 12px !important;
+}
+
+.link{
+    text-decoration: none;
+}
+
+.grid-container {
+    padding: 4% 7%;
+}
