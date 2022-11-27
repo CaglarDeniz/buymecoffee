@@ -11,7 +11,8 @@ function ProjectGallery(props) {
     palette: {
       primary: {
         main: "#313335",
-        grey: "#CACCCE"
+        grey: "#CACCCE",
+        blue: "#0077B5"
       },
       secondary: {
         main: "#FFFFFF",
@@ -46,8 +47,8 @@ function ProjectGallery(props) {
           variant="contained"
           sx={{
               ':hover': {
-                bgcolor: 'primary.grey', // theme.palette.primary.main
-                color: 'primary.main',
+                bgcolor: 'primary.blue', // theme.palette.primary.main
+                color: 'primary.grey',
               },
             }}
         >
@@ -56,8 +57,8 @@ function ProjectGallery(props) {
         <Button id='food' className='button' onClick={() => {setCurIndustry("food")} }     variant="contained"
           sx={{
               ':hover': {
-                bgcolor: 'primary.grey', // theme.palette.primary.main
-                color: 'primary.main',
+                bgcolor: 'primary.blue', // theme.palette.primary.main
+                color: 'primary.grey',
               },
             }} >
           FOOD 
@@ -67,8 +68,8 @@ function ProjectGallery(props) {
           variant="contained"
           sx={{
               ':hover': {
-                bgcolor: 'primary.grey', // theme.palette.primary.main
-                color: 'primary.main',
+                bgcolor: 'primary.blue', // theme.palette.primary.main
+                color: 'primary.grey',
               },
             }}
         >

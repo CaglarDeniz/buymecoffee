@@ -15,7 +15,7 @@ const settings = [
   {
     id: 0,
     item: 
-      <Link className="nav-link" to="/investor/:username">
+      <Link className="nav-link" to="/:username">
         Profile
       </Link>
     ,
@@ -68,7 +68,7 @@ function ResponsiveAppBar() {
             onClick={handleOpenUserMenu}
             sx={{ p: 0 }}
           >
-            <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+            <Avatar alt="Remy Sharp" src="https://i.pinimg.com/736x/af/66/74/af6674a0eff59ecde8edec24b6033b85.jpg" />
           </IconButton>
         </Tooltip>
         <Menu

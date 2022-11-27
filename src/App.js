@@ -4,7 +4,8 @@ import ProjectGallery from './ProjectGallery';
 import InvestorGallery from './InvestorGallery';
 import UserProfile from './UserProfile';
 import ProjectDetailView from "./projectDetailView";
-
+import InvestorDetailView from "./InvestorDetailView";
+import LogIn from "./logIn";
 function App() {
   return (
     <BrowserRouter>
@@ -12,7 +13,9 @@ function App() {
         <Route path="/projects" element={<ProjectGallery />} />
         <Route path="/project/:projectId" element={<ProjectDetailView />} />
         <Route path="/investors" element={<InvestorGallery/>} />
-        <Route path="/investor/:username" element={<UserProfile/>} />
+        <Route path="/investor/:investorId" element={<InvestorDetailView/>} />
+        <Route path="/:username" element={<UserProfile/>} />
+        <Route path="/login" element={<LogIn/>}/>
       </Routes>
     </BrowserRouter>
   );
