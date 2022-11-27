@@ -8,7 +8,7 @@ var express = require('express'),
 var app = express();
 
 // Use environment defined port or 4000
-var port = process.env.PORT || 4000;
+var port = 8080; 
 
 // Connect to a MongoDB --> Uncomment this once you have a connection string!!
  mongoose.connect(secrets.mongo_connection,  { useNewUrlParser: true });

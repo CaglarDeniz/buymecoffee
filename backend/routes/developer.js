@@ -13,9 +13,10 @@ devRoute.get(async function(req, res) {
 
   const qparams = req.query;
   const filter = 'where' in qparams ? JSON.parse(qparams.where) : {};
+	const projection = {passwordHash:0}; // don't return passwordHash
 
   try {
-    const data = await Dev.find(filter);
+    const data = await Dev.find(filter,projection);
     res.json({
       message: "OK",
       data: data
@@ -61,8 +62,12 @@ devRoute.post(async function(req, res) {
           photoLink: 'photoLink' in req.body ? req.body.photoLink : "",
         })
 
+				console.log(newDev);
+
         try {
           await newDev.save();
+					newDev.passwordHash = undefined; // don't return passwordHash
+					console.log(newDev);
           res.status(201).json({
             message: "Added user to database",
             data: newDev,
@@ -83,17 +88,19 @@ devRoute.post(async function(req, res) {
   }
 })
 
-var devIdRoute = router.route('/:id');
+var devIdRoute = router.route('/:username');
 
 devIdRoute.get(async function(req, res) {
 
   const query = {
-    _id: req.params.id
+		username: req.params.username
   };
 
   try {
+		
+		const projection = {passwordHash:0}; // don't return passwordHash
 
-    const dev = await Dev.findOne(query);
+    const dev = await Dev.findOne(query,projection);
 
     if (dev.length !== 0 || Object.keys(dev).length !== 0) { // if not empty object
       res.status(200).json({
@@ -102,7 +109,7 @@ devIdRoute.get(async function(req, res) {
       });
     } else {
       res.status(404).json({
-        message: "No developer found with that id"
+        message: "No developer found with that username"
       });
     }
   } catch (error) {
@@ -115,7 +122,7 @@ devIdRoute.get(async function(req, res) {
 devIdRoute.put(async function(req, res) {
 
   const query = {
-    _id: req.params.id
+		username: req.params.username
   };
   try {
     await Dev.updateOne(query, req.body, async function(err, dev) {
@@ -124,7 +131,8 @@ devIdRoute.put(async function(req, res) {
         let updatedDev;
 
         try {
-          updatedDev = await Dev.findOne(query);
+					const projection = {passwordHash:0}; // don't return passwordHash
+          updatedDev = await Dev.findOne(query,projection);
         } catch (err) {
           res.status(500).json({
             message: "Couldn't fetch developer after update",
