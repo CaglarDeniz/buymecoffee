@@ -5,6 +5,9 @@ import InvestorGallery from './InvestorGallery';
 import UserProfile from './UserProfile';
 import ProjectDetailView from "./projectDetailView";
 import InvestorDetailView from "./InvestorDetailView";
+import EditProject from "./EditProject";
+import EditUserProfile from "./EditUserProfile";
+
 import LogIn from "./logIn";
 function App() {
   return (
@@ -12,9 +15,11 @@ function App() {
       <Routes>
         <Route path="/projects" element={<ProjectGallery />} />
         <Route path="/project/:projectId" element={<ProjectDetailView />} />
+        <Route path="/project/:projectId/edit" element={<EditProject/>} />
         <Route path="/investors" element={<InvestorGallery/>} />
         <Route path="/investor/:investorId" element={<InvestorDetailView/>} />
         <Route path="/:username" element={<UserProfile/>} />
+        <Route path="/:username/edit" element={<EditUserProfile/>} />
         <Route path="/login" element={<LogIn/>}/>
       </Routes>
     </BrowserRouter>

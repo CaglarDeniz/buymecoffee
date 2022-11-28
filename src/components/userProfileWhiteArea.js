@@ -1,7 +1,13 @@
+import MyProjects from "./myProjects";
+import EditIcon from '@mui/icons-material/Edit';
+import { Link } from "react-router-dom";
 import "./userProfile.css";
 function UserProfileWhiteArea(props) {
   return (
     <div className="white-area">
+            <Link className="link" to={`/${props.username}/edit`}>
+            <EditIcon  className = "edit-user"/>
+            </Link>
       <h5 className="box-text">USERNAME</h5>
       <h5>{props.person.username}</h5>
       <h5 className="box-text">EMAIL</h5>
@@ -13,6 +19,7 @@ function UserProfileWhiteArea(props) {
       <h5 className="box-text">BIO</h5>
       <h5>{props.person.bio}</h5>
       <h4 className="box-text">MY PROJECTS</h4>
+      <MyProjects/>
     </div>
   );
 }
