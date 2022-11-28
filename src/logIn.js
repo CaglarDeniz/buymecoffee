@@ -1,26 +1,29 @@
 import "./login.css";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useState } from "react";
-import {Link} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 function LogIn(props) {
     const [username, setName] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
     const handleSubmit = (event) => {
         event.preventDefault();
+       
         alert(`The name you entered was: ${username}`);
+        navigate("/projects");
         
     }
 
     return (
         <div className="container-wrap">
             <div className="logIn-navbar">
-            <Link to="/projects">
+            
                 <img className="bmcf-logo"
                 src={require("./components/img/BuyMeCoffee.png")}
                 alt="BuyMeCoffeeLogo"/>
-            </Link>
+           
             </div>
             <div className="grey-area">
             
@@ -38,7 +41,7 @@ function LogIn(props) {
                     <label>Password
                         <input type="text" value={password} onChange={(e) => setPassword(e.target.value)}/>
                     </label>
-                    <button type="Submit">Login as User</button>
+                   <button type="Submit">Login as User</button>
                 </form>
             </div>
         </div>
