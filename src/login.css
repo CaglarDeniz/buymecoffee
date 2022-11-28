@@ -1,0 +1,14 @@
+.logIn-navbar{
+    position: relative;
+    background-color:#0077B5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1% 1.5%;
+}
+
+.grey-area{
+    height: 500px;
+    
+    background-color: #CACCCE;
+}
