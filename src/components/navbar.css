@@ -16,9 +16,12 @@
 .project{
     color: white
 }
+
 .project:hover{
     color:black;
-
+    background-color: white;
+    border-radius: 60px;
+    padding: 3px;
 }
 .link-container{
     position:relative;
