@@ -10,9 +10,11 @@ function LogIn(props) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-       
-        alert(`The name you entered was: ${username}`);
+        
+        alert(`The name and password you entered was: ${username}, ${password}`);
         navigate("/projects");
+        // need to use the input and authenticate using the endpoint
+        // then pass in as props to userProfile for verification and display
         
     }
 
