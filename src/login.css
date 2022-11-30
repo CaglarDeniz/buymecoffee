@@ -9,6 +9,33 @@
 
 .grey-area{
     height: 500px;
-    
     background-color: #CACCCE;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.login-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.login-input{
+    width: 400px;
+    height: 40px;
+}
+.login-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 40px;
+   
+}
+.login-button{
+    background-color: #0077B5;
+    color: white;
+    border: #0077B5 solid;
+    border-radius: 10px;
+    width: 200px;
 }

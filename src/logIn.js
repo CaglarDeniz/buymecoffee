@@ -33,15 +33,15 @@ function LogIn(props) {
                 top:100,
                 left:300,
                 color: "#0077B5",
-                bgcolor: "#ffffff"}}/>
-                <form onSubmit={handleSubmit}>
-                    <label>Username:
-                        <input type="text" value={username} onChange={(e) => setName(e.target.value)}/>
-                    </label>
-                    <label>Password
-                        <input type="text" value={password} onChange={(e) => setPassword(e.target.value)}/>
-                    </label>
-                   <button type="Submit">Login as User</button>
+                }}/>
+                <form className="login-form" onSubmit={handleSubmit}>
+                    <input className="login-input" type="text" placeholder="Enter Username" value={username} onChange={(e) => setName(e.target.value)}/>
+                    <input className="login-input" type="text" placeholder="Enter password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                    <div className="login-buttons">
+                    <button className="login-button" type="Submit">Login as User</button>
+                    <button className="login-button" type="Submit">Login as Investor</button>
+                    </div>
+                    
                 </form>
             </div>
         </div>
