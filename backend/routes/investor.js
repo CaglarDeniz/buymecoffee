@@ -38,7 +38,7 @@ else{
 investorRoute.post(async function (req, res) {
     // find by username
     try{
-    curInvestor = await Investor.find({ username: req.body.username})
+    const  curInvestor = await Investor.find({ username: req.body.username})
 
     if (curInvestor.length != 0) { // if a dev with the same username exists
         res.status(500).json({
@@ -49,7 +49,7 @@ investorRoute.post(async function (req, res) {
       }
       else{
         bcrypt.hash(req.body.password, saltRounds, async function(err, hash) {
-            const newInvestor = new Investor({
+            Investor.create({ 
               name: req.body.name,
               email: req.body.email,
               username: req.body.username,
@@ -57,27 +57,24 @@ investorRoute.post(async function (req, res) {
               industry: 'industry' in req.body ? req.body.industry : [],
               bio: 'bio' in req.body ? req.body.bio : "",
               oldStartups: 'oldStartups' in req.body ? req.body.oldStartups : [],
-              amount: 'amount' in req.body ? req.body.amount : 0,
+              amount: 'amount' in req.body ? req.body.amount : 0},
+             async function (err, result) {
+              if (err){
+                res.status(500).json({
+                  message: "Couldn't save Investor to database due to error " + err.message
+                });
+                          }
+            else{
+              result.passwordHash = undefined; // don't return passwordHash
+                console.log(result);
+            res.status(201).json({
+              message: "Added Investor to database",
+              data: result,
+                })
+              };
             })
-    
-                    console.log(newInvestor);
-    
-            try {
-              await newInvestor.save();
-              newInvestor.passwordHash = undefined; // don't return passwordHash
-                        console.log(newInvestor);
-              res.status(201).json({
-                message: "Added Investor to database",
-                data: newInvestor,
-              })
-            } catch (err) {
-              res.status(500).json({
-                message: "Couldn't save Investor to database due to error " + err.message
-              });
-            }
-          });
-        }
-
+            })
+          }
       }
       catch (err) {
         res.status(500).json({
