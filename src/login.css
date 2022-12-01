@@ -13,6 +13,11 @@
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 800;
+    font-style: bold;
+    text-align: center;
 }
 
 .login-form{
@@ -38,4 +43,8 @@
     border: #0077B5 solid;
     border-radius: 10px;
     width: 200px;
+    text-align: center;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 800;
+    font-style: bold;
 }
