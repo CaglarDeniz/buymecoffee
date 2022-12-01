@@ -7,6 +7,7 @@
     margin: 3%;
     border-radius: 12px;
     padding-bottom: 16px !important;
+    position: relative;
 }
 
 .MuiTypography-root{
@@ -66,3 +67,10 @@
     background-color: #CACCCE;
 }
 
+.add-icon {
+    padding: 0% 3%;
+    color: #313335;
+    font-size: 4rem !important;
+    border: 2px solid #313335;
+    border-radius: 8px;
+}

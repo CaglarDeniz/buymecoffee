@@ -7,14 +7,16 @@ import Typography from "@mui/material/Typography";
 import "./galleryView.css";
 import { Link } from "react-router-dom";
 import EditIcon from '@mui/icons-material/Edit';
+import AddProjects from "./addProjects";
 
 function MyProjectsEdit(props) {
+    const emptyProject = [1, 2, 3, 4];
+
   //TODO:  change projectList to state && use the curIndustry to perform Axios
   const projectList = [
     { name: "Facebook x Tesla", industry: "tech", _id: 1 },
     { name: "Interactive Code", industry: "tech", _id: 2 },
     { name: "The new github", industry: "tech", _id: 3 },
-    { name: "Realer than be real", industry: "tech", _id: 4 },
   ];
   const returnCard = (projectName, projectId) => {
     let card = (
@@ -58,12 +60,25 @@ function MyProjectsEdit(props) {
     return card;
   };
 
+  const AddProject = (id) => {
+    let card = (
+    <AddProjects id={id} projectList={projectList} key={id}/>
+    );
+    return card;
+  };
+
   return (
     <div className="my-projects-grid-container">
     <Grid container alignItems="stretch" rowSpacing={3} columnSpacing={{ xs: 3, sm: 4, md: 4 }}>
       {projectList.map((project) => {
         return returnCard(project.name, project._id);
       })}
+
+{projectList.length < 4
+          ? emptyProject
+              .slice(0, 4 - projectList.length)
+              .map((id) => AddProject(id))
+          : ""}
     </Grid>
     </div>
   );
