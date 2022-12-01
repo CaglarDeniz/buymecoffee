@@ -1,11 +1,16 @@
 .blue-area {
     background-color: #0077B5;
+    border-radius: 0 0 300px 300px;
+    margin-bottom: 2%;
+    position: relative;
+}
+
+.flex-area {
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-radius: 0 0 300px 300px;
-    margin-bottom: 2%;
 }
+
 
 .bmcf-logo {
     width: 120px;
@@ -17,34 +22,37 @@
     width: 110px;
 }
 
-h3{
+h3 {
     background-color: #D9D9D9;
     padding: 0.75% 1%;
     border-radius: 15px;
 }
-.white-area{
+
+.white-area {
     display: flex;
     flex-direction: column;
     align-items: center;
     position: relative;
 
 }
-h5{
-    margin:8px auto;
+
+h5 {
+    margin: 8px auto;
 }
-.box-text{
+
+.box-text {
     width: 110px;
     text-align: center;
     padding: 0.5% 0.25%;
     border-radius: 15px;
     background-color: #313335;
-    border: 3px #CACCCE solid; 
+    border: 3px #CACCCE solid;
     color: white;
 }
 
-.edit-user{
+.edit-user {
     margin-right: 12.5%;
-    margin-top: 1%;  
+    margin-top: 1%;
     background-color: #CACCCE;
     border: 2px solid #313335;
     border-radius: 8px;
@@ -53,4 +61,17 @@ h5{
     right: 0;
     color: #313335;
     font-size: 2.5rem !important;
+}
+
+.back-icon {
+    position: absolute;
+    padding: 1%;
+    margin-left: 7%;
+    margin-top: 2%;
+    background-color: #CACCCE;
+    border-radius: 8px;
+}
+
+.back-icon:hover{
+    background-color: white;
 }
