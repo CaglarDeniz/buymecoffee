@@ -8,7 +8,7 @@ import "./galleryView.css";
 import { Link } from "react-router-dom";
 import EditIcon from '@mui/icons-material/Edit';
 
-function MyProjects(props) {
+function MyProjectsEdit(props) {
   //TODO:  change projectList to state && use the curIndustry to perform Axios
   const projectList = [
     { name: "Facebook x Tesla", industry: "tech", _id: 1 },
@@ -19,7 +19,6 @@ function MyProjects(props) {
   const returnCard = (projectName, projectId) => {
     let card = (
       <Grid item xs={6} sm={3} md={3} key={projectId}>
-        <Link className="link" to={`/project/${projectId}`}>
           <Card
             sx={{
               maxWidth: 345,
@@ -36,9 +35,9 @@ function MyProjects(props) {
               alt="project cover photo"
             />
 
-          {/* <Link className="link" to={`/project/${projectId}/edit`}>
+          <Link className="link" to={`/project/${projectId}/edit`}>
             <EditIcon className="edit-project"/>
-            </Link> */}
+            </Link>
             <CardContent sx={{
               
               height: 15,
@@ -51,13 +50,9 @@ function MyProjects(props) {
               >
                 {projectName.toUpperCase()}
               </Typography>
-              {/* <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
-        </Typography> */}
+
             </CardContent>
           </Card>
-        </Link>
       </Grid>
     );
     return card;
@@ -74,4 +69,4 @@ function MyProjects(props) {
   );
 }
 
-export default MyProjects;
+export default MyProjectsEdit;

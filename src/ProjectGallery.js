@@ -6,82 +6,92 @@ import Button from "@mui/material/Button";
 
 import "./components/galleryView.css";
 function ProjectGallery(props) {
-    const filters = ['technology','creative','food']
+  const filters = ["technology", "creative", "food"];
   const theme = createTheme({
     palette: {
       primary: {
         main: "#313335",
         grey: "#CACCCE",
-        blue: "#0077B5"
+        blue: "#0077B5",
       },
       secondary: {
         main: "#FFFFFF",
       },
     },
     typography: {
-        fontFamily: [
-          'Roboto Mono',
-          'monospace',
-        ].join(','),
-      }
+      fontFamily: ["Roboto Mono", "monospace"].join(","),
+    },
   });
   const [curIndustry, setCurIndustry] = useState("technology");
-  console.log('indust',curIndustry)
-  useEffect(()=> {
-    filters.map((filterName)=> {
-        const element = document.getElementById(filterName)
-    element.classList.remove('blue-text')
-    })
-    const element = document.getElementById(curIndustry)
-    element.classList.add('blue-text')
-  }, [curIndustry])
+  console.log("indust", curIndustry);
+  useEffect(() => {
+    filters.map((filterName) => {
+      const element = document.getElementById(filterName);
+      element.classList.remove("blue-text");
+    });
+    const element = document.getElementById(curIndustry);
+    element.classList.add("blue-text");
+  }, [curIndustry]);
   return (
     <ThemeProvider theme={theme}>
-
-    <div className="container-wrap">
-      <Navbar />
-      <div className="filter-container">
-        <span className="sort-text">SORT BY INDUSTRY:</span>
-        <Button id='technology' className='button'
-          onClick={() => {setCurIndustry("technology")}}
-          variant="contained"
-          sx={{
-              ':hover': {
-                bgcolor: 'primary.blue', // theme.palette.primary.main
-                color: 'primary.grey',
+      <div className="container-wrap">
+        <Navbar />
+        <div className="filter-container">
+          <span className="sort-text">SORT BY INDUSTRY:</span>
+          <Button
+            id="technology"
+            className="button"
+            onClick={() => {
+              setCurIndustry("technology");
+            }}
+            variant="contained"
+            sx={{
+              ":hover": {
+                bgcolor: "primary.blue", // theme.palette.primary.main
+                color: "primary.grey",
               },
             }}
-        >
-          Technology
-        </Button>
-        <Button id='food' className='button' onClick={() => {setCurIndustry("food")} }     variant="contained"
-          sx={{
-              ':hover': {
-                bgcolor: 'primary.blue', // theme.palette.primary.main
-                color: 'primary.grey',
-              },
-            }} >
-          FOOD 
-        </Button>
-        <Button id='creative' className='button'
-          onClick={() => {setCurIndustry("creative")}}
-          variant="contained"
-          sx={{
-              ':hover': {
-                bgcolor: 'primary.blue', // theme.palette.primary.main
-                color: 'primary.grey',
+          >
+            Technology
+          </Button>
+          <Button
+            id="food"
+            className="button"
+            onClick={() => {
+              setCurIndustry("food");
+            }}
+            variant="contained"
+            sx={{
+              ":hover": {
+                bgcolor: "primary.blue", // theme.palette.primary.main
+                color: "primary.grey",
               },
             }}
-        >
-          CREATIVE
-        </Button>
+          >
+            FOOD
+          </Button>
+          <Button
+            id="creative"
+            className="button"
+            onClick={() => {
+              setCurIndustry("creative");
+            }}
+            variant="contained"
+            sx={{
+              ":hover": {
+                bgcolor: "primary.blue", // theme.palette.primary.main
+                color: "primary.grey",
+              },
+            }}
+          >
+            CREATIVE
+          </Button>
+        </div>
+        <div className="grid-container">
+          <GalleryView curIndustry={curIndustry} />
+        </div>
       </div>
-      <div className="grid-container">
-        <GalleryView curIndustry={curIndustry} />
-      </div>
-    </div>
     </ThemeProvider>
-
   );
 }
 

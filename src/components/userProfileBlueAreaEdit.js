@@ -3,11 +3,12 @@ import { Link } from "react-router-dom";
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import {useNavigate} from 'react-router-dom';
 
-function UserProfileBlueArea(props) {
+function UserProfileBlueAreaEdit(props) {
   const navigate = useNavigate();
 
   const goBack = ()=> {
-    navigate("/projects"); //TODO: change this to the correct param
+    // alert(`You will lose all the unsave changes`);
+    navigate("/:username"); //TODO: change this to the correct param
   }
   return (
     <div className="blue-area">
@@ -31,4 +32,4 @@ function UserProfileBlueArea(props) {
   );
 }
 
-export default UserProfileBlueArea;
+export default UserProfileBlueAreaEdit;
