@@ -1,34 +1,19 @@
 import { useParams } from "react-router";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
+import ProjectDetailHeader from "./components/projectDetailViewHeader";
+import ProjectDetailViewBlueArea from "./components/projectDetailViewBlueArea";
+import './components/projectDetailView.css';
 
 function ProjectDetailView(props) {
     let params = useParams();
     console.log("params", params)
-    const theme = createTheme({
-        palette: {
-          primary: {
-            main: "#313335",
-            grey: "#CACCCE",
-            blue: "#0077B5"
-          },
-          secondary: {
-            main: "#FFFFFF",
-          },
-        },
-        typography: {
-            fontFamily: [
-              'Roboto Mono',
-              'monospace',
-            ].join(','),
-          }
-    });
+    const tempProject = {name:'Facebook x Tesla', description:'FACEBOOK X TESLA is a Project that combines tesla\'s advances in techware with facebook\'s current strategies to be able to enable more technology accessibility to those around.', ownerId:12, photoLink:"", amount:500000 , cookieString:'', cookieExpDate: new Date() }
 
     return (
-        <div className="container-wrap">
-            <div className="userlogin-navbar"></div>
-            <h1>hello  project detail view {params._id}</h1>
+        <div className="projdet-wrap">
+            <ProjectDetailHeader name={tempProject.name}/>
+            <ProjectDetailViewBlueArea id = {params.projectId} project={tempProject}/>
         </div>
     );
 }
 
-export default ProjectDetailView
+export default ProjectDetailView;
