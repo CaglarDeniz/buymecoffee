@@ -12,6 +12,7 @@ import urllib
 import json
 from random import randint
 from random import choice
+from random import sample
 from datetime import date
 from time import mktime
 
@@ -374,6 +375,22 @@ def main(argv):
         "hayes",
     ]
 
+    industryNames = [
+        "healthcare",
+        "automotive",
+        "communication",
+        "entertainment",
+        "retail",
+        "food",
+        "energy",
+        "finance",
+        "construction",
+        "aerospace",
+        "software",
+        "chemical",
+        "real estate",
+    ]
+
     # Server to connect to (1: url, 2: port number)
     conn = http.client.HTTPConnection(baseurl, port)
 
@@ -395,12 +412,15 @@ def main(argv):
         # Pick a random first name and last name
         x = randint(0, 99)
         y = randint(0, 99)
+        industryList = sample(industryNames,3)
+
         params = urllib.parse.urlencode(
             {
                 "name": firstNames[x] + " " + lastNames[y],
                 "email": firstNames[x] + "@" + lastNames[y] + ".com",
                 "username": firstNames[x] + "_" + lastNames[y],
                 "password": "ilovellamas",
+                "industry" : industryList
             }
         )
 
