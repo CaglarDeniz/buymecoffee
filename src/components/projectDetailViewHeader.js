@@ -16,7 +16,7 @@ function ProjectDetailHeader(props) {
             <div className="flex-area">
             <Link to="/projects">
                 <img
-                className="bmcf-logo"
+                className="bmcfblue-logo"
                 src={require("./img/BuyMeCoffeeBlue.png")}
                 alt="BuyMeCoffeeLogo"
                 />
