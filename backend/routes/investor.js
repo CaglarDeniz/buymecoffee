@@ -105,6 +105,23 @@ investorRouteId.get(async function (req, res) {
       });
   })
   
+  investorRouteId.delete(async function (req, res) {
+    if((await Investor.find({_id:req.params.id})).length ==0){
+        res.status(404).json({message:"Could not find User Id", data:{}});
+      }
+      else{
+
+    await Investor.deleteOne({ _id: req.params.id}, async function (err, result) {
+        if (err){
+            res.status(500).json({message:"Internal Server Error", "data":{}});
+        }
+        else{
+            res.status(200).json({message:"OK", "data":{}});
+                    }
+    }
+        );
+}
+});
 
 
 module.exports = router;
