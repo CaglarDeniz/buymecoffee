@@ -75,7 +75,7 @@ h3 {
 }
 
 .back1-icon {
-    position: relative;
+    position: absolute;
     padding: 1%;
     margin-left: -80%;
     margin-top: 2%;
