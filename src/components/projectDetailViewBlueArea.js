@@ -9,7 +9,7 @@ function ProjectDetailViewBlueArea(props) {
             <h5 className='proj-details'>{props.project.description}</h5>
             <h5 className="box_d-text">Money</h5>
             <h5 className='proj-details'>{props.project.amount}</h5>
-            <button className="pitch-coffee" onClick={() => window.location = 'mailto:np.js409@gmail.com'}>Buy Me Coffee</button>
+            <button className="buy-coffee" onClick={() => window.location = 'mailto:np.js409@gmail.com'}>Buy Me Coffee</button>
         </div>
 
     );
