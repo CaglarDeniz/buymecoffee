@@ -6,7 +6,7 @@ var ProjectSchema = new mongoose.Schema({
 	name: {type:String,required:true},
 	industry:String,
 	description:{type:String,required:true},
-	ownerId:String,
+	ownerId:{type:String,required:true},
 	amount:Number,
 	photoLink:String
 });
