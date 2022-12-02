@@ -74,3 +74,16 @@
     border: 2px solid #313335;
     border-radius: 8px;
 }
+
+.filter-container-small{
+    margin: 7% auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.sort-text-small{
+    font-size: 14px;
+    margin:  0 0 3%;
+}
