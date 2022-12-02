@@ -31,7 +31,7 @@ const settings = [
 ];
 
 function ResponsiveAppBar() {
-  const [isInvestor, setIsInvestor] = React.useState(true);
+  // const [isInvestor, setIsInvestor] = React.useState(true);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
@@ -49,7 +49,7 @@ function ResponsiveAppBar() {
           alt="BuyMeCoffeeLogo"
           className="brand-logo"
         />
-        {isInvestor ? (
+        {/* {isInvestor ? (
           <div className="link-container">
             <Link className="nav-link project" to="/projects">
               PROJECTS
@@ -61,7 +61,7 @@ function ResponsiveAppBar() {
               INVESTORS
             </Link>
           </div>
-        )}
+        )} */}
         <Tooltip title="Open settings">
           <IconButton
             className="userprofile-container"
