@@ -18,7 +18,9 @@
 }
 
 .bmcf-logo {
-    width: 120px;
+    width: 180px;
+    height: 80px;
+    padding: 10% 0.5%;
     display: block;
 }
 
@@ -38,21 +40,35 @@ h3 {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
     position: relative;
     color: white;
     margin: 0;
 }
 
+.pitch-coffee{
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 800;
+    font-style: bold;
+    text-align: center;
+    padding: 0.75%  4%;
+    background: #FFFFFF;
+    border: 3px solid #CACCCE;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+}
+
 
 h5 {
     margin: 8px auto;
+    padding: 2% 18%;
 }
 
 .box-text {
-    width: 110px;
+    /* width: 110px; */
     text-align: center;
-    padding: 0.5% 0.25%;
-    border-radius: 15px;
+    padding: 0.5% 0.5%;
+    border-radius: 20px;
     background-color: white;
     border: 3px #CACCCE solid;
     color: #313335;
@@ -68,5 +84,6 @@ h5 {
 }
 
 .back-icon:hover{
-    background-color: white;
+    background-color: #0077b5;
+    color: white
 }
