@@ -84,6 +84,28 @@ investorRoute.post(async function (req, res) {
       }
 });
 
+var investorRouteId = router.route('/:id');
+
+investorRouteId.get(async function (req, res) {
+  // default no where parameters
+  if ((await Investor.find({_id:req.params.id})).length === 0){
+    res.status(404).json({
+      message: "No investor found with this id"
+    });
+    return;
+  }
+  
+  await Investor.find(Investor.find({_id:req.params.id},{passwordHash:0}), async function (err, result) {
+  if (err){
+      res.status(500).json({message:"Couldn't find Investors due to error" + err.message});
+  }
+  else{
+      res.status(200).json({message:"OK", "data":result});
+              }
+      });
+  })
+  
+
 
 module.exports = router;
 
