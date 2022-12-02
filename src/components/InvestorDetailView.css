@@ -6,7 +6,7 @@
     background-color: white; 
 }
 
-.projdet-wrap{
+.investdet-wrap{
     background-color: #0077b5;
     position: relative;
 }
@@ -24,14 +24,15 @@
     display: block;
 }
 
-.project-pic {
+.investor-pic {
     border-radius: 50%;
     width: 110px;
 }
 
-h3 {
-    background-color: #D9D9D9;
-    padding: 0.75% 1%; 
+.investor-name{
+    background-color: #0077b5;
+    color: white;
+    padding: 3% 5%; 
     border-radius: 15px;
     text-align: center;
 }
@@ -46,7 +47,7 @@ h3 {
     margin: 0;
 }
 
-.buy-coffee{
+.pitch-coffee{
     font-family: 'Roboto Mono', monospace;
     font-weight: 800;
     font-style: bold;
@@ -58,27 +59,29 @@ h3 {
     border-radius: 10px;
 }
 
-.buy-coffee:focus, .buy-coffee:hover{
-    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
-}
-
-/* details of the project - text */
-.proj-details {
+/* details of the invest - text */
+.invest-details {
     margin: 8px auto;
     padding: 2% 18%; 
 }
+
 /* details of the project - box text */
-.box_d-text {
+.box_i-text {
     /* width: 110px; */
     text-align: center;
     padding: 0.5% 0.5%;
-    border-radius: 20px;
+    border-radius: 15px;
     background-color: white;
     border: 3px #CACCCE solid;
     color: #313335;
 }
 
-.back1-icon {
+
+.pitch-coffee:focus, .pitch-coffee:hover{
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
+}
+
+.back2-icon {
     position: absolute;
     padding: 1%;
     margin-left: -80%;
@@ -87,7 +90,8 @@ h3 {
     border-radius: 8px;
 }
 
-.back1-icon:hover{
+.back2-icon:hover{
     background-color: #0077b5;
     color: white
 }
+
