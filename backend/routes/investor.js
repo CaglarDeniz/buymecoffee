@@ -100,10 +100,31 @@ investorRouteId.get(async function (req, res) {
       res.status(500).json({message:"Couldn't find Investors due to error" + err.message});
   }
   else{
-      res.status(200).json({message:"OK", "data":result});
+      res.status(200).json({message:"OK", data:result});
               }
       });
   })
+
+  investorRouteId.put(async function(req, res) {
+    if((await Investor.find({_id:req.params.id})).length ==0){
+      return res.status(404).json({message:"Could not find Investor with this Id", data:{}});
+    }
+    await Investor.findByIdAndUpdate(req.params.id, 
+     req.body, {new:true}, async function(err, result){
+        if(err){
+          res.status(500).json({message:"Couldn't get investor to database due to error"+err.message});
+        }
+        else{
+          result.passwordHash = undefined; 
+          res.status(200).json({
+            message: "OK",
+            data: result
+          });
+        }
+     }
+    )
+    })
+
   
   investorRouteId.delete(async function (req, res) {
     if((await Investor.find({_id:req.params.id})).length ==0){
