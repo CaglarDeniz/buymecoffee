@@ -24,8 +24,9 @@
 
 h3 {
     background-color: #D9D9D9;
-    padding: 0.75% 1%;
+    padding: 1% 4%;
     border-radius: 15px;
+    color: #313335
 }
 
 .white-area {
@@ -73,5 +74,6 @@ h5 {
 }
 
 .back-icon:hover{
-    background-color: white;
+    background-color: #313335;
+    color: white;
 }
