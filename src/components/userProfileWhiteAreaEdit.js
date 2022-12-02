@@ -53,7 +53,7 @@ function UserProfileWhiteAreaEdit(props) {
             right: "5%",
           }}
         >
-          DONE
+          SUBMIT
         </Button>
       </ThemeProvider>
       <h5 className="box-text">USERNAME</h5>
