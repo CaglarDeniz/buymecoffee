@@ -13,6 +13,7 @@ var investorRoute = router.route('/');
 // GET / Return all investors  ?where = Investor Schema JSON
 // POST / Put Investor JSON in body to create Return created Investor JSON
 // GET /:id Get Investor by ID
+// GET /:username Get Investor by Username
 // PUT /:id Put new Investor JSON in body to update, only updates fields found in body Return updated Investor JSON
 // DELETE /:id -> potential endpoint
 
@@ -88,14 +89,15 @@ var investorRouteId = router.route('/:id');
 
 investorRouteId.get(async function (req, res) {
   // default no where parameters
-  if ((await Investor.find({_id:req.params.id})).length === 0){
+  if ((await Investor.find({_id:ObjectId(req.params.id)})).length === 0){
     res.status(404).json({
       message: "No investor found with this id"
     });
     return;
   }
+
   
-  await Investor.find(Investor.find({_id:req.params.id},{passwordHash:0}), async function (err, result) {
+  await Investor.find(Investor.find({_id:ObjectId(req.params.id)},{passwordHash:0}), async function (err, result) {
   if (err){
       res.status(500).json({message:"Couldn't find Investors due to error" + err.message});
   }
@@ -104,6 +106,29 @@ investorRouteId.get(async function (req, res) {
               }
       });
   })
+
+  var investorRouteUsername = router.route('/single_investor/:username');
+
+  investorRouteUsername.get(async function (req, res) {
+    console.log(req.params.username)
+    if ((await Investor.find({username:req.params.username})).length == 0){
+      res.status(404).json({
+        message: "No investor found with this username"
+      });
+      return;
+    }
+  
+    
+    await Investor.find(Investor.find({username:req.params.username},{passwordHash:0}), async function (err, result) {
+    if (err){
+        res.status(500).json({message:"Couldn't find Username due to error" + err.message});
+    }
+    else{
+        res.status(200).json({message:"OK", data:result});
+                }
+        });
+    })
+
 
   investorRouteId.put(async function(req, res) {
     if((await Investor.find({_id:req.params.id})).length ==0){
