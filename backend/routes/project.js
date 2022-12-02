@@ -85,6 +85,25 @@ projectRoute.post(async function (req, res) {
             });
         })
 
+    projectRouteId.put(async function(req, res) {
+            if((await Proj.find({_id:req.params.id})).length ==0){
+              return res.status(404).json({message:"Could not find Project with this Id", data:{}});
+            }
+            await Proj.findByIdAndUpdate(req.params.id, 
+             req.body, {new:true}, async function(err, result){
+                if(err){
+                  res.status(500).json({message:"Couldn't get project to database due to error"+err.message});
+                }
+                else{
+                  res.status(200).json({
+                    message: "OK",
+                    data: result
+                  });
+                }
+             }
+            )
+            })
+
      
     projectRouteId.delete(async function (req, res) {
     if((await Proj.find({_id:req.params.id})).length ==0){
