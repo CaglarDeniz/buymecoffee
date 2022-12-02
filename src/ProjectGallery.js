@@ -41,10 +41,10 @@ function ProjectGallery(props) {
       fontFamily: ["Roboto Mono", "monospace"].join(","),
     },
   });
-  const [curIndustry, setCurIndustry] = useState("technology");
+  const [curIndustry, setCurIndustry] = useState("none");
   console.log("indust", curIndustry);
   useEffect(() => {
-    const filters = ["technology", "creative", "food"];
+    const filters = ["none","technology", "creative", "food"];
     filters.map((filterName) => {
       const element = document.getElementById(filterName);
       if(element) {
@@ -61,9 +61,25 @@ function ProjectGallery(props) {
     <ThemeProvider theme={theme}>
       <div className="container-wrap">
         <Navbar />
-        {windowSize.innerWidth > 600 ? (
+        {windowSize.innerWidth > 768 ? (
           <div className="filter-container">
             <span className="sort-text">FILTER BY INDUSTRY:</span>
+            <Button
+              id="none"
+              className="button"
+              onClick={() => {
+                setCurIndustry("none");
+              }}
+              variant="contained"
+              sx={{
+                ":hover": {
+                  bgcolor: "primary.blue", // theme.palette.primary.main
+                  color: "primary.grey",
+                },
+              }}
+            >
+              ALL
+            </Button>
             <Button
               id="technology"
               className="button"

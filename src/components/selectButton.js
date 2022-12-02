@@ -22,7 +22,7 @@ export default function SelectAutoWidth(props) {
           autoWidth
           label="Industry"
         >
-          <MenuItem value="">
+          <MenuItem value="none">
             <p>None</p>
           </MenuItem>
           <MenuItem id='technology' value={'technology'}>Technology</MenuItem>
