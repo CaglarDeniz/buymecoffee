@@ -35,17 +35,6 @@ projectRoute.get(async function (req, res) {
 projectRoute.post(async function (req, res) {
         // find by username
         try{
-        const curProject = await Proj.find({ username: req.body.username})
-    
-        if (curProject.length != 0) { // if a dev with the same username exists
-            res.status(500).json({
-              message: "An investor with that username already exists",
-              data: []
-            });
-            return;
-          }
-          else{
-            bcrypt.hash(req.body.password, saltRounds, async function(err, hash) {
                 Proj.create({ 
                   name: req.body.name,
                   industry: 'industry' in req.body ? req.body.industry : "",
@@ -59,7 +48,6 @@ projectRoute.post(async function (req, res) {
                     });
                               }
                 else{
-                  result.passwordHash = undefined; // don't return passwordHash
                     console.log(result);
                 res.status(201).json({
                   message: "Added Project to database",
@@ -67,8 +55,6 @@ projectRoute.post(async function (req, res) {
                     })
                   };
                 })
-                })
-              }
           }
           catch (err) {
             res.status(500).json({
@@ -77,6 +63,27 @@ projectRoute.post(async function (req, res) {
             return;
           }
     });
+
+    var projectRouteId = router.route('/:id');
+
+    projectRouteId.get(async function (req, res) {
+        // default no where parameters
+        if ((await Proj.find({_id:req.params.id})).length === 0){
+          res.status(404).json({
+            message: "No Project found with this id"
+          });
+          return;
+        }
+        
+        await Proj.find(Proj.find({_id:req.params.id}), async function (err, result) {
+        if (err){
+            res.status(500).json({message:"Couldn't find Projects due to error" + err.message});
+        }
+        else{
+            res.status(200).json({message:"OK", data:result});
+                    }
+            });
+        })
     
 
 module.exports = router;
