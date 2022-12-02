@@ -20,7 +20,7 @@ function MyProjectsEdit(props) {
   ];
   const returnCard = (projectName, projectId) => {
     let card = (
-      <Grid item xs={6} sm={3} md={3} key={projectId}>
+      <Grid item xs={6} sm={6} md={3} key={projectId}>
           <Card
             sx={{
               maxWidth: 345,
