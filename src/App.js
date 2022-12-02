@@ -12,7 +12,7 @@ import SubmitProject from "./SubmitProject";
 import LogIn from "./logIn";
 function App() {
   return (
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
+    <BrowserRouter>
       <Routes>
         <Route path="/projects" element={<ProjectGallery />} />
         <Route path="/project/:projectId" element={<ProjectDetailView />} />
