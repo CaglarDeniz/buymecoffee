@@ -59,9 +59,9 @@ h3 {
 }
 
 
-h5 {
+.proj-details {
     margin: 8px auto;
-    padding: 2% 18%;
+    padding: 2% 18%; 
 }
 
 .box_d-text {
