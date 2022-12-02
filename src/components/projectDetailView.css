@@ -64,7 +64,7 @@ h5 {
     padding: 2% 18%;
 }
 
-.box-text {
+.box_d-text {
     /* width: 110px; */
     text-align: center;
     padding: 0.5% 0.5%;
@@ -74,7 +74,7 @@ h5 {
     color: #313335;
 }
 
-.back-icon {
+.back1-icon {
     position: relative;
     padding: 1%;
     margin-left: -80%;
@@ -83,7 +83,7 @@ h5 {
     border-radius: 8px;
 }
 
-.back-icon:hover{
+.back1-icon:hover{
     background-color: #0077b5;
     color: white
 }
