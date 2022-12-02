@@ -12,12 +12,12 @@ function ProjectDetailHeader(props) {
 
     return (
         <div className="white-area">
-            <ArrowBackIosNewIcon className="back-icon" onClick={goBack} />
+            <ArrowBackIosNewIcon className="back1-icon" onClick={goBack} />
             <div className="flex-area">
             <Link to="/projects">
                 <img
-                className="bmcf-logo"
-                src={require("./img/BuyMeCoffee.png")}
+                className="bmcfblue-logo"
+                src={require("./img/BuyMeCoffeeBlue.png")}
                 alt="BuyMeCoffeeLogo"
                 />
             </Link>
