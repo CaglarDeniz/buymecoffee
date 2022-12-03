@@ -7,6 +7,8 @@ function ProjectDetailViewBlueArea(props) {
             <h5 className='proj-details'>{props.project.name}</h5>
             <h5 className="box_d-text">Details</h5>
             <h5 className='proj-details'>{props.project.description}</h5>
+            <h5 className="box_d-text">Industry</h5>
+            <h5 className='proj-details'>{props.project.industry}</h5>
             <h5 className="box_d-text">Money</h5>
             <h5 className='proj-details'>{props.project.amount}</h5>
             <button className="buy-coffee" onClick={() => window.location = 'mailto:np.js409@gmail.com'}>Buy Me Coffee</button>

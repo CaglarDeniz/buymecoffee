@@ -1,19 +1,10 @@
-.logIn-navbar{
-    position: relative;
-    background-color:#0077B5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100px;
-}
-
 .grey-area{
     height: 500px;
-    background-color: #CACCCE;
     display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   
     font-family: 'Roboto Mono', monospace;
     font-weight: 800;
     font-style: bold;
@@ -24,24 +15,29 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    align-items: center;
 }
 
 .login-input{
+    padding: 1% 4%;
+    margin: 4px 4px 4px 4px;
     width: 400px;
     height: 40px;
 }
+
 .login-buttons{
+    padding: 3% 4%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     height: 40px;
    
 }
 .login-button{
     background-color: #0077B5;
     color: white;
-    border: #0077B5 solid;
-    border-radius: 10px;
+    border: black solid;
+    /* border-radius: 10px; */
     width: 200px;
     text-align: center;
     font-family: 'Roboto Mono', monospace;
@@ -49,6 +45,19 @@
     font-style: bold;
 }
 
-.login-button:focus, .login-button:hover{
+.submit-button{
+    padding: 3% 4%;
+    margin: 5px 5px 5px 5px ;
+    text-align: center;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 800;
+    font-style: bold;
+    border-radius: 8px;
+    border: #0077B5 solid;
+    background-color: #0077B5;
+    color: white;
+}
+
+.submit-button:focus, .submit-button:hover{
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }

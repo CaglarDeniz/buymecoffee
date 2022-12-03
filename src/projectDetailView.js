@@ -6,7 +6,7 @@ import './components/projectDetailView.css';
 function ProjectDetailView(props) {
     let params = useParams();
     console.log("params", params)
-    const tempProject = {name:'Facebook x Tesla', description:'FACEBOOK X TESLA is a Project that combines tesla\'s advances in techware with facebook\'s current strategies to be able to enable more technology accessibility to those around.', ownerId:12, photoLink:"", amount:500000 , cookieString:'', cookieExpDate: new Date() }
+    const tempProject = {name:'Facebook x Tesla', description:'FACEBOOK X TESLA is a Project that combines tesla\'s advances in techware with facebook\'s current strategies to be able to enable more technology accessibility to those around.', ownerId:12, photoLink:"", amount:500000 , industry: "Technology", cookieString:'', cookieExpDate: new Date() }
 
     return (
         <div className="projdet-wrap">
