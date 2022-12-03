@@ -89,8 +89,9 @@ projectRoute.post(async function (req, res) {
             if((await Proj.find({_id:req.params.id})).length ==0){
               return res.status(404).json({message:"Could not find Project with this Id", data:{}});
             }
+            prev_results = await Proj.findById(req.params.id)
             await Proj.findByIdAndUpdate(req.params.id, 
-             req.body, {new:true}, async function(err, result){
+             {name:req.body.name, description:req.body.description, industry:req.body.industry?req.body.industry:prev_results.industry,ownerId:req.body.ownerId, amount: req.body.amount?req.body.amount:prev_results.amount}, {new:true}, async function(err, result){
                 if(err){
                   res.status(500).json({message:"Couldn't get project to database due to error"+err.message});
                 }
