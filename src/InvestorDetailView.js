@@ -15,4 +15,4 @@ function InvestorDetailView(props) {
     );
 }
 
-export default InvestorDetailView
+export default InvestorDetailView;
