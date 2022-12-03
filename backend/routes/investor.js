@@ -55,10 +55,10 @@ investorRoute.post(async function (req, res) {
               email: req.body.email,
               username: req.body.username,
               passwordHash: hash,
-              industry: 'industry' in req.body ? req.body.industry : [],
+              industry: 'industry' in req.body ? req.body.industry : ["Other"],
               bio: 'bio' in req.body ? req.body.bio : "",
               oldStartups: 'oldStartups' in req.body ? req.body.oldStartups : [],
-              amount: 'amount' in req.body ? req.body.amount : 0},
+              amount: 'amount' in req.body ? req.body.amount : null},
              async function (err, result) {
               if (err){
                 res.status(500).json({
