@@ -29,6 +29,7 @@ function LogIn(props) {
                 left:300,
                 color: "#0077B5",
                 }}/> */}
+             
                 <form className="login-form" onSubmit={handleSubmit}>
                     <div className="login-buttons">
                     <button className="login-button" type="button">Login as User</button>

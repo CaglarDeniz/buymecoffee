@@ -37,13 +37,15 @@
     flex-direction: row;
     justify-content: center;
     height: 40px;
+
    
 }
 .login-button{
     background-color: #0077B5;
     color: white;
-    border: black solid;
-    /* border-radius: 10px; */
+    border: #000000 solid;
+    margin: 0px 5px 0px 5px;
+    border-radius: 10px;
     width: 200px;
     text-align: center;
     font-family: 'Roboto Mono', monospace;
@@ -63,8 +65,9 @@
     font-family: 'Roboto Mono', monospace;
     font-weight: 800;
     font-style: bold;
+    
     border-radius: 8px;
-    border: #0077B5 solid;
+    border: #000000 solid;
     background-color: #0077B5;
     color: white;
 }
