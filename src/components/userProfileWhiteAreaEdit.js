@@ -29,6 +29,7 @@ function UserProfileWhiteAreaEdit(props) {
         main: "#313335",
         grey: "#CACCCE",
         blue: "#0077B5",
+        white: "#ffffff"
       },
     },
     typography: {
@@ -47,7 +48,7 @@ function UserProfileWhiteAreaEdit(props) {
           sx={{
             ":hover": {
               bgcolor: "primary.blue", // theme.palette.primary.main
-              color: "primary.grey",
+              color: "primary.white",
             },
             position: "absolute",
             right: "5%",
