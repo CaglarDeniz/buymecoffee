@@ -19,7 +19,7 @@ function LogIn(props) {
     return (
         <div className="container-wrap">
             <div className="grey-area">
-                <img className="bmcfblue-logo"
+                <img className="bmcflog-logo"
                 src={require("./components/img/BuyMeCoffeeBlue.png")}
                 alt="BuyMeCoffeeLogo"/>
                 {/* <AccountCircleIcon
