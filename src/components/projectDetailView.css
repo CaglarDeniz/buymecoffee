@@ -51,6 +51,7 @@ h3 {
     font-weight: 800;
     font-style: bold;
     text-align: center;
+    font-size: medium;
     padding: 0.75%  4%;
     background: #FFFFFF;
     margin: 15px auto;
@@ -66,12 +67,14 @@ h3 {
 .proj-details {
     margin: 8px auto;
     padding: 2% 18%; 
+    font-size: medium;
 }
 /* details of the project - box text */
 .box_d-text {
     /* width: 110px; */
     text-align: center;
     padding: 0.5% 0.5%;
+    font-size: medium;
     border-radius: 20px;
     background-color: white;
     border: 3px #CACCCE solid;

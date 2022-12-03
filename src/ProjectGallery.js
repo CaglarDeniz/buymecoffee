@@ -74,7 +74,7 @@ function ProjectGallery(props) {
               sx={{
                 ":hover": {
                   bgcolor: "primary.blue", // theme.palette.primary.main
-                  color: "primary.grey",
+                  color: "secondary.main",
                 },
               }}
             >
@@ -90,7 +90,7 @@ function ProjectGallery(props) {
               sx={{
                 ":hover": {
                   bgcolor: "primary.blue", // theme.palette.primary.main
-                  color: "primary.grey",
+                  color: "secondary.main",
                 },
               }}
             >
@@ -106,7 +106,7 @@ function ProjectGallery(props) {
               sx={{
                 ":hover": {
                   bgcolor: "primary.blue", // theme.palette.primary.main
-                  color: "primary.grey",
+                  color: "secondary.main",
                 },
               }}
             >
@@ -122,7 +122,7 @@ function ProjectGallery(props) {
               sx={{
                 ":hover": {
                   bgcolor: "primary.blue", // theme.palette.primary.main
-                  color: "primary.grey",
+                  color: "secondary.main",
                 },
               }}
             >

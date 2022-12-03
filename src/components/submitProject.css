@@ -1,0 +1,115 @@
+.submit-headerblue{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    color: white;
+    background-color: #0077b5;
+    margin: 0;
+    border-radius: 0 0 300px 300px;
+}
+
+.submitproj-header{
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 800;
+    font-style: bold;
+    text-align: center;
+    font-size: medium;
+    background-color: white;
+
+}
+
+.submitproj-backicon{
+    position: absolute;
+    padding: 1%;
+    margin-left: -80%;
+  
+    background-color: #CACCCE;
+    border-radius: 8px;
+}
+.submitproj-backicon:hover{
+    background-color: white;
+    color: black;
+}
+
+.proj-greyarea{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    position: relative;
+    background-color: #CACCCE;
+    margin: 0 auto;
+    width: 80%;
+    height: 100%;
+}
+
+.project-wrap{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.project-submitform{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 auto;
+    padding: 3% 4%;
+}
+
+.submit-field{
+    padding: 1% 4%;
+    margin: 5px 4px 15px 4px;
+    width: 400px;
+    height: 40px;
+    border: #0077B5 solid 5px;
+}
+
+.submit-field_d{
+    padding: 1% 4%;
+    margin: 5px 4px 15px 4px;
+    width: 400px;
+    height: 100px;
+    border: #0077B5 solid 5px;
+}
+
+.submit-label{
+    padding: 1% 0%;
+    margin: 5px 0px 5px 0px;
+    color: black;
+    justify-self: flex-start;
+    align-self: flex-start;
+    font-size:large;
+    font-weight: 800;
+    font-family: 'Roboto Mono', monospace;
+    font-style: bold;
+}
+.submit-projbutton{
+    padding: 3% 4%;
+    margin: 40px 10px 40px 10px ;
+    text-align: center;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 800;
+    font-style: bold;
+    
+    border-radius: 8px;
+    border: #0077B5 solid;
+    background-color: #0077B5;
+    color: white;
+}
+
+.submit-projbutton:focus,.submit-projbutton:hover{
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.submit-projbutton:active{
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    background-color: white;
+    color: #0077B5;
+    border: #0077B5 solid 4px;;
+}

@@ -47,11 +47,13 @@
     margin: 0;
 }
 
+/* pitch me your coffee */
 .pitch-coffee{
     font-family: 'Roboto Mono', monospace;
     font-weight: 800;
     font-style: bold;
     text-align: center;
+    font-size: medium;
     padding: 0.75%  4%;
     background: #FFFFFF;
     margin: 15px auto;
@@ -62,6 +64,7 @@
 /* details of the invest - text */
 .invest-details {
     margin: 8px auto;
+    font-size: medium;
     padding: 2% 18%; 
 }
 
@@ -70,6 +73,7 @@
     /* width: 110px; */
     text-align: center;
     padding: 0.5% 0.5%;
+    font-size: medium ;
     border-radius: 15px;
     background-color: white;
     border: 3px #CACCCE solid;
