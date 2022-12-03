@@ -37,10 +37,10 @@ projectRoute.post(async function (req, res) {
         try{
                 Proj.create({ 
                   name: req.body.name,
-                  industry: 'industry' in req.body ? req.body.industry : "",
+                  industry: 'industry' in req.body ? req.body.industry : "Other",
                   description: req.body.description,
-                  ownerId: 'ownerId' in req.body ? req.body.ownerId : "",
-                  amount: 'amount' in req.body ? req.body.amount : 0},
+                  ownerId: req.body.ownerId,
+                  amount: 'amount' in req.body ? req.body.amount : null},
                  async function (err, result) {
                   if (err){
                     res.status(500).json({
