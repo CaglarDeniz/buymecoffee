@@ -52,6 +52,20 @@
     font-weight: 800;
     font-style: bold;
 }
+.login-header{
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 800;
+    font-style: bold;
+    text-align: center;
+    /* background-color: white; */
+}
+
+.goto-signup{
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 800;
+    font-style: bold;
+    text-align: center;
+}
 
 .login-button:active, .login-button:focus{
     background-color: white;
@@ -65,7 +79,6 @@
     font-family: 'Roboto Mono', monospace;
     font-weight: 800;
     font-style: bold;
-    
     border-radius: 8px;
     border: #000000 solid;
     background-color: #0077B5;

@@ -29,16 +29,17 @@ function LogIn(props) {
                 left:300,
                 color: "#0077B5",
                 }}/> */}
-             
+                <h3 className="login-header">Login to BuyMeCoffee</h3>
                 <form className="login-form" onSubmit={handleSubmit}>
                     <div className="login-buttons">
-                    <button className="login-button" type="button">Login as User</button>
+                    <button className="login-button" type="button">Login as Developer</button>
                     <button className="login-button" type="button">Login as Investor</button>
                     </div>
                     <input className="login-input" type="text" placeholder="Enter Username" value={username} onChange={(e) => setName(e.target.value)}/>
                     <input className="login-input" type="text" placeholder="Enter password" value={password} onChange={(e) => setPassword(e.target.value)}/>
                     <button className="submit-button" type="Submit">Login</button>
                 </form>
+                <h5 className="goto-signup">Not a User yet? SignUp here</h5> 
             </div>
         </div>
 
