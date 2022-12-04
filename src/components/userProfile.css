@@ -79,3 +79,11 @@ h5 {
     background-color: #313335;
     color: white;
 }
+.oldStartUp-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.startup-name{
+    margin: 0 15%;
+}

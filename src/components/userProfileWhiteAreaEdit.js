@@ -6,7 +6,10 @@ import { createTheme } from "@mui/material/styles";
 import { ThemeProvider } from "@mui/system";
 import { useNavigate } from "react-router-dom";
 import { Message } from "@mui/icons-material";
+import { useLocation } from "react-router-dom";
+
 function UserProfileWhiteAreaEdit(props) {
+  const location = useLocation();
   //TODO: Change this to Axios call
   const navigate = useNavigate();
   const [username, setUsername] = useState(props.person.username);
@@ -19,7 +22,7 @@ function UserProfileWhiteAreaEdit(props) {
   const updateDB = () => {
     //TODO: call AXIOS
     let backTo =
-      props.mode === "investor"
+      location.pathname !== "/projectOwner/profile/:username/edit"
         ? `/investor/profile/${props.username}`
         : `/projectOwner/profile/${props.username}`;
 
@@ -42,7 +45,6 @@ function UserProfileWhiteAreaEdit(props) {
       fontFamily: ["Roboto Mono", "monospace"].join(","),
     },
   });
-console.log(oldStartUp)
   return (
     <div className="white-area">
       <ThemeProvider theme={theme}>
@@ -101,7 +103,7 @@ console.log(oldStartUp)
         value={bio}
         onChange={(e) => setBio(e.target.value)}
       />
-      {props.mode === "investor" ? (
+      {location.pathname !== "/projectOwner/profile/:username/edit" ? (
         <>
           <h5 className="box-text">OLD STARTUPS</h5>
 
@@ -119,7 +121,6 @@ console.log(oldStartUp)
         </>
       )}
     </div>
-
   );
 }
 

@@ -34,7 +34,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 4% auto;
+    margin: 2.5% auto;
 }
 
 .MuiButton-root {
@@ -86,4 +86,9 @@
 .sort-text-small{
     font-size: 14px;
     margin:  0 0 3%;
+}
+
+.project-heading {
+    margin-top: 2.5%;
+    text-align: center;
 }

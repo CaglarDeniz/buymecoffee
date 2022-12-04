@@ -1,5 +1,4 @@
 import MyProjects from "./myProjects";
-
 import EditIcon from "@mui/icons-material/Edit";
 import { Link } from "react-router-dom";
 import "./userProfile.css";
