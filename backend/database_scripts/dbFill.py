@@ -48,9 +48,9 @@ def main(argv):
     port = 8080
 
     # Number of POSTs that will be made to the server
-    devCount = 50
-    investorCount = 20
-    projectCount = 32
+    devCount = 0
+    investorCount = 0
+    projectCount = 0
 
     try:
         opts, args = getopt.getopt(
@@ -583,9 +583,11 @@ def main(argv):
         
     print(
         str(devCount)
-        + " developers added" 
+        + " developers added " 
         + str(investorCount)
-        + " investors added"
+        + " investors added "
+        + str(projectCount)
+        + " projects added "
         +"at "
         + baseurl
         + ":"
