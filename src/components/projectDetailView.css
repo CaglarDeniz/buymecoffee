@@ -101,6 +101,18 @@ h3 {
     text-decoration: none;
 }
 
+.devproj-details{
+    background-color: white;
+    color: #313335;
+    margin: 8px auto;
+    padding: 3% 18%; 
+   
+    font-size: medium;
+    border-radius: 15px;
+    text-align: center;
+    border: #313335 3px solid;
+}
+
 #developer-proj:visited {
     text-decoration: none;
     color: white;
