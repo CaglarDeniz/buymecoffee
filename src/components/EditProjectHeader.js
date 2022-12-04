@@ -6,7 +6,7 @@ function EditProjectHeader(props){
     const navigate = useNavigate();
 
     const goBack = ()=> {
-      navigate("/:username"); 
+      navigate("/projectOwner/profile/:username"); 
     }
     
     return (
