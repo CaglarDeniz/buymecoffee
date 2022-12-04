@@ -12,13 +12,13 @@ function DeveloperDetailViewHeader(props){
     }
 
     return (
-        <div className="white-area">
+        <div className="devheader-area">
             <ArrowBackIosNewIcon className="back2-icon" onClick={goBack} />
             <div className="flex-area">
             <Link to="/project/:projectId">
                 <img
-                className="bmcfblue-logo"
-                src={require("./img/BuyMeCoffeeBlue.png")}
+                className="bmcfdet-logo"
+                src={require("./img/BuyMeCoffee.png")}
                 alt="BuyMeCoffeeLogo"
                 />
             </Link>
