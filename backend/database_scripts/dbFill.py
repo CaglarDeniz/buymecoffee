@@ -441,7 +441,7 @@ def main(argv):
             presence_penalty=0
         )
 
-        print(response)
+        # print(response)
 
         body = {
                 "name": firstNames[i] + " " + lastNames[i],
@@ -481,7 +481,7 @@ def main(argv):
 
         response = openai.Completion.create(
             model="text-davinci-003",
-            prompt=f"Write a short biography for {firstNames[i]} {lastNames[i]}. {firstNames[i]} {lastNames[i]} is an entrepreneur working in the {industryList[0]} industry",
+            prompt=f"Write a short biography for {firstNames[i]} {lastNames[i]}. {firstNames[i]} {lastNames[i]} is an investor working in the {industryList[0]} industry",
             temperature=0.7,
             max_tokens=256,
             top_p=1,
@@ -489,7 +489,7 @@ def main(argv):
             presence_penalty=0
         )
 
-        print(response)
+        # print(response)
 
         body = {
                 "name": firstNames[i] + " " + lastNames[i],
@@ -503,7 +503,8 @@ def main(argv):
             }
         
         # POST the user
-        res = requests.post(f"http://{baseurl}:{str(port)}/api/investors",data = body,headers=headers)
+        res = requests.post(f"http://{baseurl}:{str(port)}/api/investor",data = body,headers=headers)
+        print(res.content)
         # print(res.json())
         d = res.json()
 
@@ -514,84 +515,63 @@ def main(argv):
         InvUserNames.append(str(d["data"]["username"]))
         print(f"Saved investors number {i}")
 
-    # Loop 'taskCount' number of times
-    # for i in range(taskCount):
+    # projectIDs = []
+    # projectNames = []
+    # projectEmails = []
+    # projectUserNames = []
 
-    #     # Randomly generate task parameters
-    #     assigned = randint(0, 10) > 4
-    #     assignedUser = randint(0, len(userIDs) - 1) if assigned else -1
-    #     assignedUserID = userIDs[assignedUser] if assigned else ""
-    #     assignedUserName = userNames[assignedUser] if assigned else "unassigned"
-    #     assignedUserEmail = userEmails[assignedUser] if assigned else "unassigned"
-    #     completed = randint(0, 10) > 5
-    #     deadline = (mktime(date.today().timetuple()) + randint(86400, 864000)) * 1000
-    #     description = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English."
-    #     params = urllib.parse.urlencode(
-    #         {
-    #             "name": choice(taskNames),
-    #             "deadline": deadline,
-    #             "assignedUserName": assignedUserName,
-    #             "assignedUser": assignedUserID,
-    #             "completed": str(completed).lower(),
-    #             "description": description,
-    #         }
-    #     )
+    shuffle(firstNames)
+    shuffle(lastNames)
 
-    #     # POST the task
-    #     conn.request("POST", "/api/tasks", params, headers)
-    #     response = conn.getresponse()
-    #     data = response.read()
-    #     d = json.loads(data)
+    # Loop 'userCount' number of times
+    for i in range(investorCount):
 
-    #     taskID = str(d["data"]["_id"])
+        # Pick a random first name and last name
+        industryList = sample(industryNames,3)
+        oldStartUps = sample(oldStartUpsNames, 2)
 
-    #     # Make sure the task is added to the pending list of the user
-    #     if assigned and not completed:
-    #         # GET the correct user
-    #         conn.request(
-    #             "GET", """/api/users?where={"_id":\"""" + assignedUserID + """\"}"""
-    #         )
-    #         response = conn.getresponse()
-    #         data = response.read()
-    #         d = json.loads(data)
+        response = openai.Completion.create(
+            model="text-davinci-003",
+            prompt=f"Write a short biography for {firstNames[i]} {lastNames[i]}. {firstNames[i]} {lastNames[i]} is an investor working in the {industryList[0]} industry",
+            temperature=0.7,
+            max_tokens=256,
+            top_p=1,
+            frequency_penalty=0,
+            presence_penalty=0
+        )
 
-    #         # Store all the user properties
-    #         assignedUserName = str(d["data"][0]["name"])
-    #         assignedUserEmail = str(d["data"][0]["email"])
-    #         assignedUserDate = str(d["data"][0]["dateCreated"])
+        # print(response)
 
-    #         # Append the new taskID to pending tasks
-    #         assignedUserTasks = d["data"][0]["pendingTasks"]
-    #         assignedUserTasks = [
-    #             str(x)
-    #             .replace("[", "")
-    #             .replace("]", "")
-    #             .replace("'", "")
-    #             .replace('"', "")
-    #             for x in assignedUserTasks
-    #         ]
-    #         assignedUserTasks.append(taskID)
+        body = {
+                "name": firstNames[i] + " " + lastNames[i],
+                "email": firstNames[i] + "@" + lastNames[i] + ".com",
+                "username": firstNames[i] + "_" + lastNames[i],
+                "password": "ilovellamas",
+                "industry" : industryList,
+                "oldStartups": oldStartUps,
+                "amount": randint(10000,100000000),
+                "bio": response["choices"][0]["text"]
+            }
+        
+        # POST the user
+        res = requests.post(f"http://{baseurl}:{str(port)}/api/investor",data = body,headers=headers)
+        print(res.content)
+        # print(res.json())
+        d = res.json()
 
-    #         # PUT in the user
-    #         params = urllib.parse.urlencode(
-    #             {
-    #                 "_id": assignedUserID,
-    #                 "name": assignedUserName,
-    #                 "email": assignedUserEmail,
-    #                 "dateCreated": assignedUserDate,
-    #                 "pendingTasks": assignedUserTasks,
-    #             },
-    #             True,
-    #         )
-    #         conn.request("PUT", "/api/users/" + assignedUserID, params, headers)
-    #         response = conn.getresponse()
-    #         data = response.read()
-    #         d = json.loads(data)
-    
-
+        # # Store the users id
+        # projectIDs.append(str(d["data"]["_id"]))
+        # projectNames.append(str(d["data"]["name"]))
+        # projectEmails.append(str(d["data"]["email"]))
+        # projectUserNames.append(str(d["data"]["username"]))
+        print(f"Saved investors number {i}")
+        
     print(
         str(devCount)
-        + " developers added at "
+        + " developers added" 
+        + str(investorCount)
+        + " investors added"
+        +"at "
         + baseurl
         + ":"
         + str(port)
