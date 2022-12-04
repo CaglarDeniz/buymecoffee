@@ -40,15 +40,16 @@ investorRoute.post(async function (req, res) {
     // find by username
     try{
     const  curInvestor = await Investor.find({ username: req.body.username})
+    const  investorEmail = await Investor.find({ email: req.body.email})
 
-    if (curInvestor.length != 0) { // if a dev with the same username exists
+    if (curInvestor.length != 0 || investorEmail.length != 0 ) { // if a dev with the same username exists
         res.status(500).json({
-          message: "An investor with that username already exists",
+          message: "An investor with that username or email already exists",
           data: []
         });
         return;
       }
-      else{
+         else{
         bcrypt.hash(req.body.password, saltRounds, async function(err, hash) {
             Investor.create({ 
               name: req.body.name,
@@ -89,7 +90,7 @@ var investorRouteId = router.route('/:id');
 
 investorRouteId.get(async function (req, res) {
   // default no where parameters
-  if ((await Investor.find({_id:ObjectId(req.params.id)})).length === 0){
+  if ((await Investor.find({_id:req.params.id})).length === 0){
     res.status(404).json({
       message: "No investor found with this id"
     });
@@ -97,7 +98,7 @@ investorRouteId.get(async function (req, res) {
   }
 
   
-  await Investor.find(Investor.find({_id:ObjectId(req.params.id)},{passwordHash:0}), async function (err, result) {
+  await Investor.find(Investor.find({_id:req.params.id},{passwordHash:0}), async function (err, result) {
   if (err){
       res.status(500).json({message:"Couldn't find Investors due to error" + err.message});
   }
@@ -134,8 +135,27 @@ investorRouteId.get(async function (req, res) {
     if((await Investor.find({_id:req.params.id})).length ==0){
       return res.status(404).json({message:"Could not find Investor with this Id", data:{}});
     }
+    prev_results = await Investor.findById(req.params.id)
+    if (req.body.password== undefined){
+      await Investor.findByIdAndUpdate(req.params.id, 
+        {name:req.body.name?req.body.name:prev_results.name, email:req.body.email?req.body.email:prev_results.email, passwordHash:prev_results.passwordHash, username:req.body.username?req.body.username:prev_results.username, bio:req.body.bio?req.body.bio:prev_results.bio, industry:req.body.industry?req.body.industry:prev_results.industry, oldStartups: req.body.oldStartups?req.body.oldStartups: prev_results.oldStartups , amount: req.body.amount?req.body.amount:prev_results.amount}, {new:true}, async function(err, result){
+          if(err){
+            res.status(500).json({message:"Couldn't get investor to database due to error"+err.message});
+          }
+          else{
+            result.passwordHash = undefined; 
+            res.status(200).json({
+              message: "OK",
+              data: result
+            });
+          }
+       }
+      )
+    }
+    else{
+    bcrypt.hash(req.body.password, saltRounds, async function(err, hash) {
     await Investor.findByIdAndUpdate(req.params.id, 
-     req.body, {new:true}, async function(err, result){
+      {name:req.body.name?req.body.name:prev_results.name, email:req.body.email?req.body.email:prev_results.email, passwordHash:hash, username:req.body.username?req.body.username:prev_results.username, bio:req.body.bio?req.body.bio:prev_results.bio, industry:req.body.industry?req.body.industry:prev_results.industry, oldStartups: req.body.oldStartups?req.body.oldStartups: prev_results.oldStartups , amount: req.body.amount?req.body.amount:prev_results.amount}, {new:true}, async function(err, result){
         if(err){
           res.status(500).json({message:"Couldn't get investor to database due to error"+err.message});
         }
@@ -148,6 +168,8 @@ investorRouteId.get(async function (req, res) {
         }
      }
     )
+    })
+  }
     })
 
   
