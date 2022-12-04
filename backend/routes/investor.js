@@ -61,7 +61,7 @@ investorRoute.post(async function (req, res) {
               bio: 'bio' in req.body ? req.body.bio : "",
               oldStartups: 'oldStartups' in req.body ? req.body.oldStartups : [],
               amount: 'amount' in req.body ? req.body.amount : null,
-              photoLink:'photoLink' in req.body ? req.body.photoLink : "https://cdn2.iconfinder.com/data/icons/audio-16/96/user_avatar_profile_login_button_account_member-512.png"},
+              photoLink:'photoLink' in req.body ? req.body.photoLink : "https://banner2.cleanpng.com/20180921/fli/kisspng-clip-art-computer-icons-user-profile-portable-netw-5ba4ba1895c2d4.2769715015375222006134.jpg"},
              async function (err, result) {
               if (err){
                 res.status(500).json({
