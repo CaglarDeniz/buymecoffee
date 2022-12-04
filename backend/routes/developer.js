@@ -164,7 +164,7 @@ devIdRoute.put(async function(req, res) {
       const nameRe = /^[a-zA-Z ]+$/
 			const usernameRe = /^[\w._-]+$/
 
-      if (nameRe.test(req.body.name)) {
+      if (!nameRe.test(req.body.name)) {
         res.status(500).json({
           message: "Invalid Name",
           data: null
@@ -172,7 +172,7 @@ devIdRoute.put(async function(req, res) {
 				return;
       }
 			
-      if (usernameRe.test(req.body.username)) {
+      if (!usernameRe.test(req.body.username)) {
         res.status(500).json({
           message: "Invalid User Name",
           data: null
