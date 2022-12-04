@@ -419,8 +419,9 @@ def main(argv):
         # Pick a random first name and last name
         industryList = sample(industryNames,3)
 
-        openai.Completion.create(
+        response = openai.Completion.create(
             model="text-davinci-003",
+            prompt=f"Write a short biography for {firstNames[i]} {lastNames[i]}. {firstNames[i]} {lastNames[i]} is an entrepreneur working in the {industryList[0]} industry",
             temperature=0.7,
             max_tokens=256,
             top_p=1,
@@ -428,13 +429,16 @@ def main(argv):
             presence_penalty=0
         )
 
+        # print(response)
+
         params = urllib.parse.urlencode(
             {
                 "name": firstNames[i] + " " + lastNames[i],
                 "email": firstNames[i] + "@" + lastNames[i] + ".com",
                 "username": firstNames[i] + "_" + lastNames[i],
                 "password": "ilovellamas",
-                "industry" : industryList
+                "industry" : industryList,
+                "bio": response["choices"]["text"]
             }
         )
 
@@ -449,6 +453,7 @@ def main(argv):
         devNames.append(str(d["data"]["name"]))
         devEmails.append(str(d["data"]["email"]))
         devUserNames.append(str(d["data"]["username"]))
+        print(f"Saved developer number {i}")
 
     # Loop 'taskCount' number of times
     # for i in range(taskCount):
