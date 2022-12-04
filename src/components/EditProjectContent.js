@@ -1,14 +1,15 @@
+import './submitProject.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
-import './submitProject.css';
 
-function SubmitProjectContent(props){
-    const [name, setName] = useState("");
-    const [description, setDescription] = useState("");
-    const [industry, setIndustry] = useState("");
-    const [amount, setAmount] = useState("");
-    const [photolink, setPhotoLink] = useState("");
-    const [email, setEmail] = useState("");
+function EditProjectContent(props){
+    const [name, setName] = useState(props.project.name);
+    const [description, setDescription] = useState(props.project.description);
+    const [industry, setIndustry] = useState(props.project.industry);
+    const [amount, setAmount] = useState(props.project.amount);
+    const [photolink, setPhotoLink] = useState(props.project.photolink);
+    const [email, setEmail] = useState("np.js409@gmail.com"); // get the email using the ownerId to access email
+
     const navigate = useNavigate();
     const handleonSubmit = (event) => {
         event.preventDefault();
@@ -54,11 +55,11 @@ function SubmitProjectContent(props){
                         placeholder="Your Email Information" 
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}/>
-                <button className="submit-projbutton" type="Submit">Submit Project</button>
+                <button className="submit-projbutton" type="Submit">Save and Submit</button>
             </form>
         </div>
 
     );
 }
 
-export default SubmitProjectContent;
+export default EditProjectContent;
