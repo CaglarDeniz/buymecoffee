@@ -70,14 +70,6 @@
     text-decoration: none;
 }
 
-#signup-link{
-    text-decoration: none;
-}
-
-#signup-link:visited{
-    color: black;
-}
-
 .login-button:active, .login-button:focus{
     background-color: white;
     border: #0077B5 solid 4px;
