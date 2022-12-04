@@ -60,7 +60,8 @@ function ProjectGallery(props) {
   return (
     <ThemeProvider theme={theme}>
       <div className="container-wrap">
-        <Navbar />
+        <Navbar mode={"investor"}/>
+        <h2 className="project-heading">Projects</h2>
         {windowSize.innerWidth > 768 ? (
           <div className="filter-container">
             <span className="sort-text">FILTER BY INDUSTRY:</span>

@@ -15,28 +15,34 @@ function UserProfileWhiteAreaEdit(props) {
   const [industry, setIndustry] = useState(props.person.industry);
   const [bio, setBio] = useState(props.person.bio);
   const [changeMade, setChangeMade] = useState(false);
+  const [oldStartUp, setOldStartUp] = useState(props.person.oldStartups);
   const updateDB = () => {
     //TODO: call AXIOS
-    navigate("/:username"); //TODO: change this to the correct param value
+    let backTo =
+      props.mode === "investor"
+        ? `/investor/profile/${props.username}`
+        : `/projectOwner/profile/${props.username}`;
+
+    navigate(backTo); //TODO: change this to the correct param value
   };
 
-  useEffect(()=>{
-    window.onbeforeunload = changeMade && (()=> Message)
-  })
+  useEffect(() => {
+    window.onbeforeunload = changeMade && (() => Message);
+  });
   const theme = createTheme({
     palette: {
       primary: {
         main: "#313335",
         grey: "#CACCCE",
         blue: "#0077B5",
-        white: "#ffffff"
+        white: "#ffffff",
       },
     },
     typography: {
       fontFamily: ["Roboto Mono", "monospace"].join(","),
     },
   });
-
+console.log(oldStartUp)
   return (
     <div className="white-area">
       <ThemeProvider theme={theme}>
@@ -95,9 +101,25 @@ function UserProfileWhiteAreaEdit(props) {
         value={bio}
         onChange={(e) => setBio(e.target.value)}
       />
-      <h4 className="box-text">MY PROJECTS</h4>
-      <MyProjectsEdit />
+      {props.mode === "investor" ? (
+        <>
+          <h5 className="box-text">OLD STARTUPS</h5>
+
+          <input
+            type="text"
+            placeholder="StartUp1, StartUp2, ..."
+            value={oldStartUp}
+            onChange={(e) => setOldStartUp([e.target.value])}
+          />
+        </>
+      ) : (
+        <>
+          <h4 className="box-text">MY PROJECTS</h4>
+          <MyProjectsEdit />
+        </>
+      )}
     </div>
+
   );
 }
 

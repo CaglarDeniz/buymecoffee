@@ -1,14 +1,21 @@
 import MyProjects from "./myProjects";
 
-import EditIcon from '@mui/icons-material/Edit';
+import EditIcon from "@mui/icons-material/Edit";
 import { Link } from "react-router-dom";
 import "./userProfile.css";
 function UserProfileWhiteArea(props) {
   return (
     <div className="white-area">
-            <Link className="link" to={`/${props.username}/edit`}>
-            <EditIcon  className = "edit-user"/>
-            </Link>
+      <Link
+        className="link"
+        to={
+          props.mode === "investor"
+            ? `/investor/profile/${props.username}/edit`
+            : `/projectOwner/profile/${props.username}/edit`
+        }
+      >
+        <EditIcon className="edit-user" />
+      </Link>
       <h5 className="box-text">USERNAME</h5>
       <h5>{props.person.username}</h5>
       <h5 className="box-text">EMAIL</h5>
@@ -19,8 +26,23 @@ function UserProfileWhiteArea(props) {
       <h5>{props.person.industry}</h5>
       <h5 className="box-text">BIO</h5>
       <h5>{props.person.bio}</h5>
-      <h4 className="box-text">MY PROJECTS</h4>
-      <MyProjects/>
+      {props.mode === "investor" ? (
+        <>
+          <h5 className="box-text">OLD STARTUPS</h5>
+          <div className="oldStartUp-container">
+            {props.person.oldStartups.map((startUp) => (
+              <h5 key={startUp} className="startup-name">
+                {startUp}
+              </h5>
+            ))}
+          </div>
+        </>
+      ) : (
+        <>
+          <h4 className="box-text">MY PROJECTS</h4>
+          <MyProjects />
+        </>
+      )}
     </div>
   );
 }
