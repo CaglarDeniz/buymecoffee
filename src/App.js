@@ -10,6 +10,7 @@ import EditUserProfile from "./EditUserProfile";
 import SubmitProject from "./SubmitProject";
 
 import LogIn from "./logIn";
+import InvestorProfile from "./InvestorProfile";
 function App() {
   return (
     <BrowserRouter>
@@ -19,8 +20,10 @@ function App() {
         <Route path="/project/:projectId/edit" element={<EditProject />} />
         <Route path="/investors" element={<InvestorGallery />} />
         <Route path="/investor/:investorId" element={<InvestorDetailView />} />
-        <Route path="/:username" element={<UserProfile />} />
-        <Route path="/:username/edit" element={<EditUserProfile />} />
+        <Route path="/investor/profile/:username" element={<InvestorProfile />} />
+        <Route path="/projectOwner/profile/:username" element={<UserProfile />} />
+        <Route path="/investor/profile/:username/edit" element={<EditUserProfile />} />
+        <Route path="/projectOwner/profile/:username/edit" element={<EditUserProfile />} />
         <Route path="/login" element={<LogIn />} />
         <Route path="/submitProject" element={<SubmitProject />} />
       </Routes>

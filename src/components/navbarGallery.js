@@ -11,26 +11,27 @@ import { Link } from "react-router-dom";
 import "./navbar.css";
 
 //TODO: change link path to log in page after clicking log out
-const settings = [
-  {
-    id: 0,
-    item: 
-      <Link className="nav-link" to="/:username">
-        Profile
-      </Link>
-    ,
-  },
-  {
-    id: 1,
-    item: 
-      <Link className="nav-link" to="/login">
-        LogOut
-      </Link>
-    ,
-  },
-];
 
-function ResponsiveAppBar() {
+
+function ResponsiveAppBar(props) {
+  const settings = [
+    {
+      id: 0,
+      item: 
+        <Link className="nav-link" to={props.mode === "investor" ? '/investor/profile/:username' : '/projectOwner/profile/:username' }>
+          Profile
+        </Link>
+      ,
+    },
+    {
+      id: 1,
+      item: 
+        <Link className="nav-link" to="/login">
+          LogOut
+        </Link>
+      ,
+    },
+  ];
   // const [isInvestor, setIsInvestor] = React.useState(true);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const handleOpenUserMenu = (event) => {

@@ -8,13 +8,20 @@ function UserProfileBlueAreaEdit(props) {
 
   const goBack = ()=> {
     // alert(`You will lose all the unsave changes`);
-    navigate("/:username"); //TODO: change this to the correct param
+    let backTo = 
+      props.mode === "investor"
+        ? `/investor/profile/${props.username}/edit`
+        : `/projectOwner/profile/${props.username}/edit`
+    
+    navigate(backTo); //TODO: change this to the correct param
   }
   return (
     <div className="blue-area">
       <ArrowBackIosNewIcon className="back-icon" onClick={goBack} />
       <div className="flex-area">
-      <Link to="/projects">
+      <Link to={props.mode === "investor"
+        ? `/projects`
+        : `investors`}>
         <img
           className="bmcf-logo"
           src={require("./img/BuyMeCoffee.png")}

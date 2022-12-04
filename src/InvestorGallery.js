@@ -1,14 +1,151 @@
-import ResponsiveAppBar from './components/navbarGallery';
+import GalleryView from "./components/galleryView";
+import Navbar from "./components/navbarGallery";
+import { useEffect, useState } from "react";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import Button from "@mui/material/Button";
+import SelectAutoWidth from "./components/selectButton";
 
+import "./components/galleryView.css";
 function InvestorGallery(props) {
+  function getWindowSize() {
+    const { innerWidth, innerHeight } = window;
+    return { innerWidth, innerHeight };
+  }
 
-    return (
-        <div className="container-wrap">
-        <ResponsiveAppBar/>
-            <h1>hello investor gallery</h1>
+  const [windowSize, setWindowSize] = useState(getWindowSize());
 
+  useEffect(() => {
+    function handleWindowResize() {
+      setWindowSize(getWindowSize());
+    }
+
+    window.addEventListener("resize", handleWindowResize);
+
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, []);
+
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: "#313335",
+        grey: "#CACCCE",
+        blue: "#0077B5",
+      },
+      secondary: {
+        main: "#FFFFFF",
+      },
+    },
+    typography: {
+      fontFamily: ["Roboto Mono", "monospace"].join(","),
+    },
+  });
+  const [curIndustry, setCurIndustry] = useState("none");
+  console.log("indust", curIndustry);
+  useEffect(() => {
+    const filters = ["none","technology", "creative", "food"];
+    filters.map((filterName) => {
+      const element = document.getElementById(filterName);
+      if(element) {
+        element.classList.remove("blue-text");
+      }
+      return null;
+    });
+    const element = document.getElementById(curIndustry);
+    if(element) {
+    element.classList.add("blue-text");
+    }
+  }, [curIndustry]);
+  return (
+    <ThemeProvider theme={theme}>
+      <div className="container-wrap">
+        <Navbar mode={"projectOwner"}/>
+        <h2 className="project-heading">Investors</h2>
+        {windowSize.innerWidth > 768 ? (
+          <div className="filter-container">
+            <span className="sort-text">FILTER BY INDUSTRY:</span>
+            <Button
+              id="none"
+              className="button"
+              onClick={() => {
+                setCurIndustry("none");
+              }}
+              variant="contained"
+              sx={{
+                ":hover": {
+                  bgcolor: "primary.blue", // theme.palette.primary.main
+                  color: "secondary.main",
+                },
+              }}
+            >
+              ALL
+            </Button>
+            <Button
+              id="technology"
+              className="button"
+              onClick={() => {
+                setCurIndustry("technology");
+              }}
+              variant="contained"
+              sx={{
+                ":hover": {
+                  bgcolor: "primary.blue", // theme.palette.primary.main
+                  color: "secondary.main",
+                },
+              }}
+            >
+              Technology
+            </Button>
+            <Button
+              id="food"
+              className="button"
+              onClick={() => {
+                setCurIndustry("food");
+              }}
+              variant="contained"
+              sx={{
+                ":hover": {
+                  bgcolor: "primary.blue", // theme.palette.primary.main
+                  color: "secondary.main",
+                },
+              }}
+            >
+              FOOD
+            </Button>
+            <Button
+              id="creative"
+              className="button"
+              onClick={() => {
+                setCurIndustry("creative");
+              }}
+              variant="contained"
+              sx={{
+                ":hover": {
+                  bgcolor: "primary.blue", // theme.palette.primary.main
+                  color: "secondary.main",
+                },
+              }}
+            >
+              CREATIVE
+            </Button>
+          </div>
+        ) : ( 
+          <div className="filter-container-small">
+          <span className="sort-text-small">FILTER BY INDUSTRY:</span>
+          <SelectAutoWidth
+            setCurIndustry={setCurIndustry}
+            curIndustry={curIndustry}
+          />
+          </div>
+        )}
+
+        <div className="grid-container">
+          <GalleryView curIndustry={curIndustry} mode="investor" />
         </div>
-    );
+      </div>
+    </ThemeProvider>
+  );
 }
 
-export default InvestorGallery
+export default InvestorGallery;
