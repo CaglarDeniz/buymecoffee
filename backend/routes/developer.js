@@ -33,6 +33,8 @@ devRoute.get(async function(req, res) {
 
 devRoute.post(async function(req, res) {
 
+  console.log(req.body)
+
   const query = {
     $or: [{
         username: 'username' in req.body ? req.body.username : ""

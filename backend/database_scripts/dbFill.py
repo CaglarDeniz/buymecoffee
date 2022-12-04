@@ -7,11 +7,12 @@
 
 import sys
 import getopt
-import http.client
-import urllib
+# import http.client
+# import urllib
 import json
-import openai
-from os import getenv
+import requests
+# import openai
+# from os import getenv
 from random import randint
 from random import choice
 from random import sample
@@ -19,7 +20,7 @@ from datetime import date
 from time import mktime
 from random import shuffle
 
-openai.api_key = getenv("OPENAI_API_KEY")
+# openai.api_key = getenv("OPENAI_API_KEY")
 
 def usage():
     print(
@@ -395,9 +396,6 @@ def main(argv):
         "real estate",
     ]
 
-    # Server to connect to (1: url, 2: port number)
-    conn = http.client.HTTPConnection(baseurl, port)
-
     # HTTP Headers
     headers = {
         "Content-type": "application/x-www-form-urlencoded",
@@ -419,34 +417,31 @@ def main(argv):
         # Pick a random first name and last name
         industryList = sample(industryNames,3)
 
-        response = openai.Completion.create(
-            model="text-davinci-003",
-            prompt=f"Write a short biography for {firstNames[i]} {lastNames[i]}. {firstNames[i]} {lastNames[i]} is an entrepreneur working in the {industryList[0]} industry",
-            temperature=0.7,
-            max_tokens=256,
-            top_p=1,
-            frequency_penalty=0,
-            presence_penalty=0
-        )
+        # response = openai.Completion.create(
+        #     model="text-davinci-003",
+        #     prompt=f"Write a short biography for {firstNames[i]} {lastNames[i]}. {firstNames[i]} {lastNames[i]} is an entrepreneur working in the {industryList[0]} industry",
+        #     temperature=0.7,
+        #     max_tokens=256,
+        #     top_p=1,
+        #     frequency_penalty=0,
+        #     presence_penalty=0
+        # )
 
         # print(response)
 
-        params = urllib.parse.urlencode(
-            {
+        body = {
                 "name": firstNames[i] + " " + lastNames[i],
                 "email": firstNames[i] + "@" + lastNames[i] + ".com",
                 "username": firstNames[i] + "_" + lastNames[i],
                 "password": "ilovellamas",
                 "industry" : industryList,
-                "bio": response["choices"]["text"]
+                # "bio": response["choices"][0]["text"]
             }
-        )
-
+        
         # POST the user
-        conn.request("POST", "/api/developer", params, headers)
-        response = conn.getresponse()
-        data = response.read()
-        d = json.loads(data)
+        res = requests.post(f"http://{baseurl}:{str(port)}/api/developer",data = body,headers=headers)
+        print(res.json())
+        d = res.json()
 
         # Store the users id
         devIDs.append(str(d["data"]["_id"]))
@@ -528,9 +523,6 @@ def main(argv):
     #         response = conn.getresponse()
     #         data = response.read()
     #         d = json.loads(data)
-
-    # Exit gracefully
-    conn.close()
     print(
         str(devCount)
         + " developers added at "
