@@ -33,6 +33,8 @@ devRoute.get(async function(req, res) {
 
 devRoute.post(async function(req, res) {
 
+  console.log(req.body)
+
   const query = {
     $or: [{
         username: 'username' in req.body ? req.body.username : ""
@@ -58,22 +60,22 @@ devRoute.post(async function(req, res) {
     } else {
 
       const nameRe = /^[a-zA-Z ]+$/
-			const usernameRe = /^[\w._-]+$/
+      const usernameRe = /^[\w._-]+$/
 
       if (!nameRe.test(req.body.name)) {
         res.status(500).json({
           message: "Invalid Name",
           data: null
         });
-				return;
+        return;
       }
-			
+
       if (!usernameRe.test(req.body.username)) {
         res.status(500).json({
           message: "Invalid User Name",
           data: null
         });
-				return;
+        return;
       }
 
       // hash given plaintext user password
@@ -151,40 +153,61 @@ devUsernameRoute.get(async function(req, res) {
 devUsernameRoute.put(async function(req, res) {
 
   const query = {
-    $or: [{
-        username: 'username' in req.body ? req.body.username : ""
-      },
-      {
-        email: 'email' in req.body ? req.body.email : ""
-      }
-    ]
+    username: req.params.username
   };
   try {
-		
-      const nameRe = /^[a-zA-Z ]+$/
-			const usernameRe = /^[\w._-]+$/
 
+    const duplicateQuery = {
+      $or: [{
+          username: 'username' in req.body ? req.body.username : undefined
+        },
+        {
+          email: 'email' in req.body ? req.body.email : undefined
+        }
+      ]
+    }
+
+		console.log(duplicateQuery);
+
+    const data = await Dev.findOne(duplicateQuery);
+
+    if (data !== null) { // if duplicate entry exists don't update
+      res.status(500).json({
+        message: "Given username or email already taken",
+        data: {}
+      })
+      return;
+    }
+
+    const nameRe = /^[a-zA-Z ]+$/
+    const usernameRe = /^[\w._-]+$/
+
+    if ('name' in req.body) {
       if (!nameRe.test(req.body.name)) {
         res.status(500).json({
           message: "Invalid Name",
           data: null
         });
-				return;
+        return;
       }
-			
+    }
+
+    if ('username' in req.body) {
       if (!usernameRe.test(req.body.username)) {
         res.status(500).json({
           message: "Invalid User Name",
           data: null
         });
-				return;
+        return;
       }
+    }
 
     if ('password' in req.body) {
       const pwHash = bcrypt.hashSync(req.body.password, saltRounds);
       delete req.body.password;
       req.body.passwordHash = pwHash;
     }
+
     await Dev.updateOne(query, req.body, async function(err, dev) {
       if (!err) {
 
@@ -228,7 +251,7 @@ var devIdRoute = router.route('/single_developer/:id');
 devIdRoute.get(async function(req, res) {
 
   const query = {
-		_id: req.params.id
+    _id: req.params.id
   };
 
   try {
@@ -259,34 +282,55 @@ devIdRoute.get(async function(req, res) {
 devIdRoute.put(async function(req, res) {
 
   const query = {
-    $or: [{
-        username: 'username' in req.body ? req.body.username : ""
-      },
-      {
-        email: 'email' in req.body ? req.body.email : ""
-      }
-    ]
+    _id: req.params.id
   };
   try {
-		
-      const nameRe = /^[a-zA-Z ]+$/
-			const usernameRe = /^[\w._-]+$/
 
+    const duplicateQuery = {
+      $or: [{
+          username: 'username' in req.body ? req.body.username : undefined
+        },
+        {
+          email: 'email' in req.body ? req.body.email : undefined
+        }
+      ]
+    }
+
+		console.log(duplicateQuery);
+
+    const data = await Dev.findOne(duplicateQuery)
+
+    if (data !== null) {
+      res.status(500).json({
+        message: "Given username or email already taken",
+        data: {}
+      });
+      return;
+    }
+
+
+    const nameRe = /^[a-zA-Z ]+$/
+    const usernameRe = /^[\w._-]+$/
+
+    if ('name' in req.body) {
       if (!nameRe.test(req.body.name)) {
         res.status(500).json({
           message: "Invalid Name",
           data: null
         });
-				return;
+        return;
       }
-			
+    }
+
+    if ('username' in req.body) {
       if (!usernameRe.test(req.body.username)) {
         res.status(500).json({
           message: "Invalid User Name",
           data: null
         });
-				return;
+        return;
       }
+    }
 
     if ('password' in req.body) {
       const pwHash = bcrypt.hashSync(req.body.password, saltRounds);

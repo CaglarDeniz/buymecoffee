@@ -48,3 +48,6 @@ yarn-error.log*
 # backend
 /backend/node_modules
 /backend/config/secrets.js
+
+# openai api key
+/backend/database_scripts/openai_key.txt
