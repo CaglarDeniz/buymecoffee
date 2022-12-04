@@ -32,18 +32,21 @@ devRoute.get(async function(req, res) {
 devRoute.post(async function(req, res) {
 
   const query = {
-    username: req.body.username
+		$or: [
+			{username: 'username' in req.body ? req.body.username : ""},
+			{email: 'email' in req.body ? req.body.email : ""}
+		]
   };
 
   try {
 
     const data = await Dev.findOne(query);
 
-    console.log(data);
+    // console.log(data);
 
     if (data !== null) { // if a dev with the same username exists
       res.status(500).json({
-        message: "A developer with that username already exists",
+        message: "A developer with that username or email already exists",
         data: []
       });
       return;
@@ -62,7 +65,7 @@ devRoute.post(async function(req, res) {
           photoLink: 'photoLink' in req.body ? req.body.photoLink : "",
         })
 
-				console.log(newDev);
+				// console.log(newDev);
 
         try {
           await newDev.save();
@@ -122,9 +125,18 @@ devIdRoute.get(async function(req, res) {
 devIdRoute.put(async function(req, res) {
 
   const query = {
-		username: req.params.username
+		$or : [
+			{username: 'username' in req.body ? req.body.username : ""},
+			{email: 'email' in req.body ? req.body.email : ""}
+		]
   };
   try {
+
+		if('password' in req.body){
+			const pwHash = bcrypt.hashSync(req.body.password,saltRounds);
+			delete req.body.password;
+			req.body.passwordHash = pwHash;
+		}
     await Dev.updateOne(query, req.body, async function(err, dev) {
       if (!err) {
 
@@ -162,7 +174,7 @@ devIdRoute.put(async function(req, res) {
 })
 
 devIdRoute.delete(function(req, res) {
-  res.json({
+  res.status(405).json({
     message: 'This method has not been implemented for this endpoint, thank you for your request!'
   });
 })
