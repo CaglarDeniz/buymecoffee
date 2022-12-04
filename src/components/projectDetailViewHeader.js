@@ -21,7 +21,7 @@ function ProjectDetailHeader(props) {
                 alt="BuyMeCoffeeLogo"
                 />
             </Link>
-            <img
+            <img   // add project picture here
                 className="project-pic"
                 src="https://i.pinimg.com/736x/af/66/74/af6674a0eff59ecde8edec24b6033b85.jpg"
                 alt="UserProfilePicture"

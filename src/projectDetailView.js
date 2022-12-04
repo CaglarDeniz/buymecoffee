@@ -11,7 +11,7 @@ function ProjectDetailView(props) {
     return (
         <div className="projdet-wrap">
             <ProjectDetailHeader name={tempProject.name}/>
-            <ProjectDetailViewBlueArea id = {params.projectId} project={tempProject}/>
+            <ProjectDetailViewBlueArea id = {params.projectId} project={tempProject} developer={"Melon  Husk"} />
         </div>
     );
 }

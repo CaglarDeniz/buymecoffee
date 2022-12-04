@@ -68,6 +68,8 @@ h3 {
     margin: 8px auto;
     padding: 2% 18%; 
     font-size: medium;
+    text-decoration: none;
+    text-emphasis: none;
 }
 /* details of the project - box text */
 .box_d-text {
@@ -93,4 +95,13 @@ h3 {
 .back1-icon:hover{
     background-color: #0077b5;
     color: white
+}
+
+#developer-proj {
+    text-decoration: none;
+}
+
+#developer-proj:visited {
+    text-decoration: none;
+    color: white;
 }

@@ -13,7 +13,7 @@ function EditProjectContent(props){
     const navigate = useNavigate();
     const handleonSubmit = (event) => {
         event.preventDefault();
-        navigate("/:username");
+        navigate("/projectOwner/profile/:username");
     }
 
     return (
