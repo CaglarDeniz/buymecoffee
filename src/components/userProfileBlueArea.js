@@ -7,7 +7,8 @@ function UserProfileBlueArea(props) {
   const navigate = useNavigate();
 
   const goBack = ()=> {
-    navigate("/projects"); //TODO: change this to the correct param
+    let goTo = props.mode === "investor" ? '/projects' : '/investors'
+    navigate(goTo); //TODO: change this to the correct param
   }
   return (
     <div className="blue-area">

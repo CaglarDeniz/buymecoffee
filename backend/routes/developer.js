@@ -60,7 +60,7 @@ devRoute.post(async function(req, res) {
       const nameRe = /^[a-zA-Z ]+$/
 			const usernameRe = /^[\w._-]+$/
 
-      if (nameRe.test(req.body.name)) {
+      if (!nameRe.test(req.body.name)) {
         res.status(500).json({
           message: "Invalid Name",
           data: null
@@ -68,7 +68,7 @@ devRoute.post(async function(req, res) {
 				return;
       }
 			
-      if (usernameRe.test(req.body.username)) {
+      if (!usernameRe.test(req.body.username)) {
         res.status(500).json({
           message: "Invalid User Name",
           data: null
@@ -86,7 +86,7 @@ devRoute.post(async function(req, res) {
           industry: 'industry' in req.body ? req.body.industry : [],
           bio: 'bio' in req.body ? req.body.bio : "",
           projectId: 'projectId' in req.body ? req.body.projectId : [],
-          photoLink: 'photoLink' in req.body ? req.body.photoLink : "",
+          photoLink: 'photoLink' in req.body ? req.body.photoLink : "https://cdn2.iconfinder.com/data/icons/audio-16/96/user_avatar_profile_login_button_account_member-512.png",
         })
 
         // console.log(newDev);

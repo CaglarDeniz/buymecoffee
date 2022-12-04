@@ -21,7 +21,7 @@ function GalleryView(props) {
   const returnCard = (projectName, projectId) => {
     let card = (
       <Grid item xs={6} sm={4} md={3} key={projectId}>
-        <Link className="link" to={`/project/${projectId}`}>
+        <Link className="link" to={props.mode === 'investor' ? `/investor/${projectId}`:`/project/${projectId}`}>
           <Card
             sx={{
               maxWidth: 345,

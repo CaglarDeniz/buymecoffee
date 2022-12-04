@@ -2,16 +2,17 @@ import { useParams } from "react-router";
 import UserProfileBlueArea from "./components/userProfileBlueArea";
 import UserProfileWhiteArea from "./components/userProfileWhiteArea";
 
-function UserProfile(props) {
+function InvestorProfile(props) {
   let params = useParams();
   //TODO: Change this to axios call
   const tempUserArray = {
-    name: "Care Bear",
+    name: "Investor Bear",
     email: "payYourMeal@dd.com",
     username: "theofficialdd",
     password: "hello",
     industry: "technology",
     bio: "Hi! Nice to meet you",
+    oldStartups:["chocolate","sad", "happu", "really"],
     projectId: [1234, 122, 2],
     photoLink: "",
     cookieString: "",
@@ -19,10 +20,10 @@ function UserProfile(props) {
   };
   return (
     <div className="container-wrap">
-      <UserProfileBlueArea name={tempUserArray.name} mode={"projectOwner"} />
-      <UserProfileWhiteArea username={params.username} person={tempUserArray} mode={"projectOwner"}/>
+      <UserProfileBlueArea name={tempUserArray.name} mode={"investor"}/>
+      <UserProfileWhiteArea username={params.username} person={tempUserArray} mode={"investor"}/>
     </div>
   );
 }
 
-export default UserProfile;
+export default InvestorProfile;

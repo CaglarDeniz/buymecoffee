@@ -15,6 +15,7 @@ from random import choice
 from random import sample
 from datetime import date
 from time import mktime
+from random import shuffle
 
 
 def usage():
@@ -45,7 +46,7 @@ def main(argv):
     # Number of POSTs that will be made to the server
     devCount = 50
     investorCount = 200
-    projectCount = 36
+    projectCount = 64
 
     try:
         opts, args = getopt.getopt(
@@ -406,19 +407,20 @@ def main(argv):
     devEmails = []
     devUserNames = []
 
+    shuffle(firstNames)
+    shuffle(lastNames)
+
     # Loop 'userCount' number of times
     for i in range(devCount):
 
         # Pick a random first name and last name
-        x = randint(0, 99)
-        y = randint(0, 99)
         industryList = sample(industryNames,3)
 
         params = urllib.parse.urlencode(
             {
-                "name": firstNames[x] + " " + lastNames[y],
-                "email": firstNames[x] + "@" + lastNames[y] + ".com",
-                "username": firstNames[x] + "_" + lastNames[y],
+                "name": firstNames[i] + " " + lastNames[i],
+                "email": firstNames[i] + "@" + lastNames[i] + ".com",
+                "username": firstNames[i] + "_" + lastNames[i],
                 "password": "ilovellamas",
                 "industry" : industryList
             }
