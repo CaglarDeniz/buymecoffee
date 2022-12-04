@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 function DeveloperProjectDetails(props) {
   //TODO:  change projectList to state && use the curIndustry to perform Axios
-  const emptyProject = [11, 12, 13, 14];
+  //const emptyProject = [11, 12, 13, 14];
   const projectList = [
     { name: "Facebook x Tesla", industry: "tech", _id: 1 },
     { name: "Interactive Code", industry: "tech", _id: 2 },

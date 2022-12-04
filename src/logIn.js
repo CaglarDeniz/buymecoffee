@@ -17,6 +17,14 @@ function LogIn(props) {
         // then pass in as props to userProfile for verification and display
     }
 
+    // (".login-button").click(function(){
+    //     (".login-button").removeClass("pressed");
+    //     this.addClass("pressed");
+    //  });
+    
+    // (".login-button").click(function() {
+    //  this.toggleClass("active");
+    // });
     return (
         <div className="container-wrap">
             <div className="grey-area">
