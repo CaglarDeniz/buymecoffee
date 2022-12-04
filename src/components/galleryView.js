@@ -6,18 +6,44 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import "./galleryView.css";
 import { Link } from "react-router-dom";
+import Axios from "axios";
 
 function GalleryView(props) {
   //TODO:  change projectList to state && use the curIndustry to perform Axios
-  const projectList = [
-    { name: "Facebook x Tesla", industry: "tech", _id: 1 },
-    { name: "Interactive Code", industry: "tech", _id: 2 },
-    { name: "The new github", industry: "tech", _id: 3 },
-    { name: "Realer than be real", industry: "tech", _id: 4 },
-    { name: "Realer than be real", industry: "tech", _id: 5 },
-    { name: "Realer than be real", industry: "tech", _id: 6 },
-    { name: "Realer than be real", industry: "tech", _id: 7 },
-  ];
+  const [projectList, setProjectList] = React.useState([]);
+
+  React.useEffect(()=>{
+    let industry = props.curIndustry === 'none' ? {}:{industry:props.curIndustry}
+    if(props.mode !== 'investor') {
+    let url = `http://localhost:8080/api/project?where=${JSON.stringify(industry)}`
+    Axios.get(url).then((res)=>{
+      console.log(res.data.data)
+      setProjectList(res.data.data)
+    })}
+    else {
+      let url = `http://localhost:8080/api/investor?where=${JSON.stringify(industry)}`
+      Axios.get(url).then((res)=>{
+        console.log(res.data.data)
+        setProjectList(res.data.data)
+      })
+    }
+  }, [props.curIndustry, props.mode])
+
+  React.useEffect(()=>{
+    if(props.mode !== 'investor') {
+    let url = `http://localhost:8080/api/project`
+    Axios.get(url).then((res)=>{
+      console.log(res.data.data)
+      setProjectList(res.data.data)
+    })
+  } else {
+    let url = `http://localhost:8080/api/investor`
+    Axios.get(url).then((res)=>{
+      console.log(res.data.data)
+      setProjectList(res.data.data)
+    })
+  }
+  },[props.mode])
   const returnCard = (projectName, projectId) => {
     let card = (
       <Grid item xs={6} sm={4} md={3} key={projectId}>

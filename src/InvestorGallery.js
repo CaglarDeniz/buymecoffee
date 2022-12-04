@@ -2,11 +2,25 @@ import GalleryView from "./components/galleryView";
 import Navbar from "./components/navbarGallery";
 import { useEffect, useState } from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import Button from "@mui/material/Button";
+import ScrollingMenu from "./components/ScrollingMenu";
 import SelectAutoWidth from "./components/selectButton";
 
 import "./components/galleryView.css";
 function InvestorGallery(props) {
+  const industryNames = [ "none",
+  "healthcare",
+  "automotive",
+  "communication",
+  "entertainment",
+  "retail",
+  "food",
+  "energy",
+  "finance",
+  "construction",
+  "aerospace",
+  "software",
+  "chemical"
+]
   function getWindowSize() {
     const { innerWidth, innerHeight } = window;
     return { innerWidth, innerHeight };
@@ -44,7 +58,19 @@ function InvestorGallery(props) {
   const [curIndustry, setCurIndustry] = useState("none");
   console.log("indust", curIndustry);
   useEffect(() => {
-    const filters = ["none","technology", "creative", "food"];
+    const filters = ["none",
+    "healthcare",
+    "automotive",
+    "communication",
+    "entertainment",
+    "retail",
+    "food",
+    "energy",
+    "finance",
+    "construction",
+    "aerospace",
+    "software",
+    "chemical"];
     filters.map((filterName) => {
       const element = document.getElementById(filterName);
       if(element) {
@@ -63,73 +89,10 @@ function InvestorGallery(props) {
         <Navbar mode={"projectOwner"}/>
         <h2 className="project-heading">Investors</h2>
         {windowSize.innerWidth > 768 ? (
-          <div className="filter-container">
-            <span className="sort-text">FILTER BY INDUSTRY:</span>
-            <Button
-              id="none"
-              className="button"
-              onClick={() => {
-                setCurIndustry("none");
-              }}
-              variant="contained"
-              sx={{
-                ":hover": {
-                  bgcolor: "primary.blue", // theme.palette.primary.main
-                  color: "secondary.main",
-                },
-              }}
-            >
-              ALL
-            </Button>
-            <Button
-              id="technology"
-              className="button"
-              onClick={() => {
-                setCurIndustry("technology");
-              }}
-              variant="contained"
-              sx={{
-                ":hover": {
-                  bgcolor: "primary.blue", // theme.palette.primary.main
-                  color: "secondary.main",
-                },
-              }}
-            >
-              Technology
-            </Button>
-            <Button
-              id="food"
-              className="button"
-              onClick={() => {
-                setCurIndustry("food");
-              }}
-              variant="contained"
-              sx={{
-                ":hover": {
-                  bgcolor: "primary.blue", // theme.palette.primary.main
-                  color: "secondary.main",
-                },
-              }}
-            >
-              FOOD
-            </Button>
-            <Button
-              id="creative"
-              className="button"
-              onClick={() => {
-                setCurIndustry("creative");
-              }}
-              variant="contained"
-              sx={{
-                ":hover": {
-                  bgcolor: "primary.blue", // theme.palette.primary.main
-                  color: "secondary.main",
-                },
-              }}
-            >
-              CREATIVE
-            </Button>
-          </div>
+          <ScrollingMenu
+            setCurIndustry={setCurIndustry}
+            industryNames={industryNames}
+          />
         ) : ( 
           <div className="filter-container-small">
           <span className="sort-text-small">FILTER BY INDUSTRY:</span>
