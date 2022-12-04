@@ -8,7 +8,7 @@ import InvestorDetailView from "./InvestorDetailView";
 import EditProject from "./EditProject";
 import EditUserProfile from "./EditUserProfile";
 import SubmitProject from "./SubmitProject";
-
+import DeveloperDetailView from "./DeveloperDetailView";
 import LogIn from "./logIn";
 import InvestorProfile from "./InvestorProfile";
 function App() {
@@ -20,6 +20,7 @@ function App() {
         <Route path="/project/:projectId/edit" element={<EditProject />} />
         <Route path="/investors" element={<InvestorGallery />} />
         <Route path="/investor/:investorId" element={<InvestorDetailView />} />
+        <Route path="/projectOwner/:projectOwnerId" element={<DeveloperDetailView/>} />
         <Route path="/investor/profile/:username" element={<InvestorProfile />} />
         <Route path="/projectOwner/profile/:username" element={<UserProfile />} />
         <Route path="/investor/profile/:username/edit" element={<EditUserProfile />} />
