@@ -115,12 +115,120 @@ devRoute.post(async function(req, res) {
   }
 })
 
-var devIdRoute = router.route('/:username');
+var devUsernameRoute = router.route('/:username');
+
+devUsernameRoute.get(async function(req, res) {
+
+  const query = {
+    username: req.params.username
+  };
+
+  try {
+
+    const projection = {
+      passwordHash: 0
+    }; // don't return passwordHash
+
+    const dev = await Dev.findOne(query, projection);
+
+    if (dev.length !== 0 || Object.keys(dev).length !== 0) { // if not empty object
+      res.status(200).json({
+        message: "OK",
+        data: dev
+      });
+    } else {
+      res.status(404).json({
+        message: "No developer found with that username"
+      });
+    }
+  } catch (error) {
+    res.json({
+      message: "Couldn't fetch developer due to error: " + error.message
+    });
+  }
+})
+
+devUsernameRoute.put(async function(req, res) {
+
+  const query = {
+    $or: [{
+        username: 'username' in req.body ? req.body.username : ""
+      },
+      {
+        email: 'email' in req.body ? req.body.email : ""
+      }
+    ]
+  };
+  try {
+		
+      const nameRe = /^[a-zA-Z ]+$/
+			const usernameRe = /^[\w._-]+$/
+
+      if (!nameRe.test(req.body.name)) {
+        res.status(500).json({
+          message: "Invalid Name",
+          data: null
+        });
+				return;
+      }
+			
+      if (!usernameRe.test(req.body.username)) {
+        res.status(500).json({
+          message: "Invalid User Name",
+          data: null
+        });
+				return;
+      }
+
+    if ('password' in req.body) {
+      const pwHash = bcrypt.hashSync(req.body.password, saltRounds);
+      delete req.body.password;
+      req.body.passwordHash = pwHash;
+    }
+    await Dev.updateOne(query, req.body, async function(err, dev) {
+      if (!err) {
+
+        let updatedDev;
+
+        try {
+          const projection = {
+            passwordHash: 0
+          }; // don't return passwordHash
+          updatedDev = await Dev.findOne(query, projection);
+        } catch (err) {
+          res.status(500).json({
+            message: "Couldn't fetch developer after update",
+            data: {}
+          })
+          return;
+        }
+        res.status(200).json({
+          message: "Successfully updated developer",
+          data: updatedDev,
+          stats: dev
+        });
+        return;
+      } else {
+        res.status(500).json({
+          message: "Couldn't update developer due to error " + err,
+          data: {}
+        });
+      };
+    });
+  } catch (err) {
+    res.status(500).json({
+      message: err.message,
+      data: {}
+    });
+  }
+})
+
+var devIdRoute = router.route('/single_developer/:id');
 
 devIdRoute.get(async function(req, res) {
 
   const query = {
-    username: req.params.username
+		_id: req.params.id
   };
 
   try {
