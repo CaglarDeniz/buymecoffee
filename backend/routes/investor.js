@@ -39,6 +39,7 @@ else{
 investorRoute.post(async function (req, res) {
     // find by username
     try{
+    // const name_assertion = /^[a-zA-Z ]+$/;
     const  curInvestor = await Investor.find({ username: req.body.username})
     const  investorEmail = await Investor.find({ email: req.body.email})
 
@@ -59,7 +60,8 @@ investorRoute.post(async function (req, res) {
               industry: 'industry' in req.body ? req.body.industry : ["Other"],
               bio: 'bio' in req.body ? req.body.bio : "",
               oldStartups: 'oldStartups' in req.body ? req.body.oldStartups : [],
-              amount: 'amount' in req.body ? req.body.amount : null},
+              amount: 'amount' in req.body ? req.body.amount : null,
+              photoLink:'photoLink' in req.body ? req.body.photoLink : "https://cdn2.iconfinder.com/data/icons/audio-16/96/user_avatar_profile_login_button_account_member-512.png"},
              async function (err, result) {
               if (err){
                 res.status(500).json({
