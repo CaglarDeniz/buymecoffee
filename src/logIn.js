@@ -2,6 +2,7 @@ import "./login.css";
 // import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useState } from "react";
 import {useNavigate} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 function LogIn(props) {
     const [username, setName] = useState("");
@@ -39,7 +40,7 @@ function LogIn(props) {
                     <input className="login-input" type="text" placeholder="Enter password" value={password} onChange={(e) => setPassword(e.target.value)}/>
                     <button className="submit-button" type="Submit">Login</button>
                 </form>
-                <h5 className="goto-signup">Not a User yet? SignUp here</h5> 
+                <h5 className="goto-signup">Not a User yet? <Link to="/signup" id="signup-link">SignUp here</Link></h5> 
             </div>
         </div>
 
