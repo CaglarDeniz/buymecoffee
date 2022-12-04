@@ -12,7 +12,7 @@ import getopt
 import json
 import requests
 import openai
-# from os import getenv
+from os import getenv
 from random import randint
 from random import choice
 from random import sample
@@ -20,7 +20,7 @@ from datetime import date
 from time import mktime
 from random import shuffle
 
-# openai.api_key = getenv("OPENAI_API_KEY")
+openai.api_key = getenv("OPENAIAPIKEY")
 
 def usage():
     print(
@@ -49,8 +49,8 @@ def main(argv):
 
     # Number of POSTs that will be made to the server
     devCount = 50
-    investorCount = 200
-    projectCount = 64
+    investorCount = 20
+    projectCount = 32
 
     try:
         opts, args = getopt.getopt(
@@ -395,6 +395,18 @@ def main(argv):
         "chemical",
         "real estate",
     ]
+    oldStartUpsNames = [
+        "Start up1",
+        "Start up2",
+        "Start up3",
+        "Start up4",
+        "Start up5",
+        "Start up6",
+        "Start up7",
+        "Start up8",
+        "Start up9",
+        "Start up10"
+    ]
 
 
     # HTTP Headers
@@ -408,6 +420,7 @@ def main(argv):
     devNames = []
     devEmails = []
     devUserNames = []
+    
 
     shuffle(firstNames)
     shuffle(lastNames)
@@ -451,6 +464,55 @@ def main(argv):
         devUserNames.append(str(d["data"]["username"]))
         print(f"Saved developer number {i}")
         
+    InvIDs = []
+    InvNames = []
+    InvEmails = []
+    InvUserNames = []
+
+    shuffle(firstNames)
+    shuffle(lastNames)
+
+    # Loop 'userCount' number of times
+    for i in range(investorCount):
+
+        # Pick a random first name and last name
+        industryList = sample(industryNames,3)
+        oldStartUps = sample(oldStartUpsNames, 2)
+
+        response = openai.Completion.create(
+            model="text-davinci-003",
+            prompt=f"Write a short biography for {firstNames[i]} {lastNames[i]}. {firstNames[i]} {lastNames[i]} is an entrepreneur working in the {industryList[0]} industry",
+            temperature=0.7,
+            max_tokens=256,
+            top_p=1,
+            frequency_penalty=0,
+            presence_penalty=0
+        )
+
+        print(response)
+
+        body = {
+                "name": firstNames[i] + " " + lastNames[i],
+                "email": firstNames[i] + "@" + lastNames[i] + ".com",
+                "username": firstNames[i] + "_" + lastNames[i],
+                "password": "ilovellamas",
+                "industry" : industryList,
+                "oldStartups": oldStartUps,
+                "amount": randint(10000,100000000),
+                "bio": response["choices"][0]["text"]
+            }
+        
+        # POST the user
+        res = requests.post(f"http://{baseurl}:{str(port)}/api/investors",data = body,headers=headers)
+        # print(res.json())
+        d = res.json()
+
+        # Store the users id
+        InvIDs.append(str(d["data"]["_id"]))
+        InvNames.append(str(d["data"]["name"]))
+        InvEmails.append(str(d["data"]["email"]))
+        InvUserNames.append(str(d["data"]["username"]))
+        print(f"Saved investors number {i}")
 
     # Loop 'taskCount' number of times
     # for i in range(taskCount):
@@ -525,6 +587,7 @@ def main(argv):
     #         response = conn.getresponse()
     #         data = response.read()
     #         d = json.loads(data)
+    
 
     print(
         str(devCount)
