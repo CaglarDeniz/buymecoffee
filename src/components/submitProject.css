@@ -63,13 +63,20 @@
 }
 
 .submit-field{
-    padding: 1% 4%;
+    padding: 1.5% 4%;
     margin: 5px 4px 15px 4px;
     width: 400px;
     height: 40px;
     border: #0077B5 solid 5px;
 }
+.submit-field_s{
+    padding: 1.5% 4%;
+    margin: 5px 4px 15px 4px;
+    width: 450px;
+    height: 60px;
+    border: #0077B5 solid 5px;
 
+}
 .submit-field_d{
     padding: 1% 4%;
     margin: 5px 4px 15px 4px;

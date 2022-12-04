@@ -31,11 +31,23 @@ function SubmitProjectContent(props){
                         value={description} 
                         onChange={(e) => setDescription(e.target.value)}/>
                 <label className='submit-label'>Industry</label>
-                <input className="submit-field" 
-                        type="text" 
-                        placeholder="Industry" 
+                <select className="submit-field_s"                         
                         value={industry} 
-                        onChange={(e) => setIndustry(e.target.value)}/>
+                        onChange={(e) => setIndustry(e.target.value)}>
+                        <option value="Healthcare">Healthcare</option>
+                        <option value="Automotive">Automotive</option>
+                        <option value="Communication">Communication</option>
+                        <option value="Entertainment">Entertainment</option>
+                        <option value="Retail">Retail</option>
+                        <option value="Food">Food</option>
+                        <option value="Energy">Energy</option>
+                        <option value="Finance">Finance</option>
+                        <option value="Construction">Construction</option>
+                        <option value="Aerospace">Aerospace</option>
+                        <option value="Software">Software</option>
+                        <option value="Chemical">Chemical</option>
+                        <option value="Other">Other</option>
+                </select>
                 <label className='submit-label'>Photo</label>
                 <input className="submit-field" 
                         type="text" 
