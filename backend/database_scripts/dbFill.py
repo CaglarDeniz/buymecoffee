@@ -395,6 +395,7 @@ def main(argv):
         "chemical",
         "real estate",
     ]
+
     oldStartUpsNames = [
         "Start up1",
         "Start up2",
@@ -406,6 +407,23 @@ def main(argv):
         "Start up8",
         "Start up9",
         "Start up10"
+    ]
+
+    projectNames = [
+        "Tesla",
+        "Meta",
+        "Google",
+        "Twitter",
+        "Cactus",
+        "Uber",
+        "SpaceX",
+        "Box",
+        "Deloitte",
+        "Hersheys",
+        "Dominoes",
+        "Dunkin",
+        "Starbucks",
+        "Boeing"
     ]
 
 
@@ -520,19 +538,19 @@ def main(argv):
     # projectEmails = []
     # projectUserNames = []
 
-    shuffle(firstNames)
-    shuffle(lastNames)
+    shuffle(projectNames)
 
     # Loop 'userCount' number of times
-    for i in range(investorCount):
+    for i in range(projectCount):
 
         # Pick a random first name and last name
-        industryList = sample(industryNames,3)
-        oldStartUps = sample(oldStartUpsNames, 2)
+
+        name = sample(projectNames,1)[0] + sample(["x",".","+"],1)[0] + sample(projectNames,1)[0]
+        industry = sample(industryNames,1)[0]
 
         response = openai.Completion.create(
             model="text-davinci-003",
-            prompt=f"Write a short biography for {firstNames[i]} {lastNames[i]}. {firstNames[i]} {lastNames[i]} is an investor working in the {industryList[0]} industry",
+            prompt=f"Describe the revolutionary startup {name}. {name} is an startupt  in the {industry} industry",
             temperature=0.7,
             max_tokens=256,
             top_p=1,
@@ -543,18 +561,15 @@ def main(argv):
         # print(response)
 
         body = {
-                "name": firstNames[i] + " " + lastNames[i],
-                "email": firstNames[i] + "@" + lastNames[i] + ".com",
-                "username": firstNames[i] + "_" + lastNames[i],
-                "password": "ilovellamas",
-                "industry" : industryList,
-                "oldStartups": oldStartUps,
-                "amount": randint(10000,100000000),
-                "bio": response["choices"][0]["text"]
+                "name": name,
+                "industry" : industry,
+                "ownerId": "me",
+                "amount" : randint(1000,1000000),
+                "description": response['choices'][0]['text']
             }
         
         # POST the user
-        res = requests.post(f"http://{baseurl}:{str(port)}/api/investor",data = body,headers=headers)
+        res = requests.post(f"http://{baseurl}:{str(port)}/api/project",data = body,headers=headers)
         print(res.content)
         # print(res.json())
         d = res.json()
