@@ -11,7 +11,7 @@ import getopt
 # import urllib
 import json
 import requests
-# import openai
+import openai
 # from os import getenv
 from random import randint
 from random import choice
@@ -396,6 +396,7 @@ def main(argv):
         "real estate",
     ]
 
+
     # HTTP Headers
     headers = {
         "Content-type": "application/x-www-form-urlencoded",
@@ -417,17 +418,17 @@ def main(argv):
         # Pick a random first name and last name
         industryList = sample(industryNames,3)
 
-        # response = openai.Completion.create(
-        #     model="text-davinci-003",
-        #     prompt=f"Write a short biography for {firstNames[i]} {lastNames[i]}. {firstNames[i]} {lastNames[i]} is an entrepreneur working in the {industryList[0]} industry",
-        #     temperature=0.7,
-        #     max_tokens=256,
-        #     top_p=1,
-        #     frequency_penalty=0,
-        #     presence_penalty=0
-        # )
+        response = openai.Completion.create(
+            model="text-davinci-003",
+            prompt=f"Write a short biography for {firstNames[i]} {lastNames[i]}. {firstNames[i]} {lastNames[i]} is an entrepreneur working in the {industryList[0]} industry",
+            temperature=0.7,
+            max_tokens=256,
+            top_p=1,
+            frequency_penalty=0,
+            presence_penalty=0
+        )
 
-        # print(response)
+        print(response)
 
         body = {
                 "name": firstNames[i] + " " + lastNames[i],
@@ -435,12 +436,12 @@ def main(argv):
                 "username": firstNames[i] + "_" + lastNames[i],
                 "password": "ilovellamas",
                 "industry" : industryList,
-                # "bio": response["choices"][0]["text"]
+                "bio": response["choices"][0]["text"]
             }
         
         # POST the user
         res = requests.post(f"http://{baseurl}:{str(port)}/api/developer",data = body,headers=headers)
-        print(res.json())
+        # print(res.json())
         d = res.json()
 
         # Store the users id
@@ -449,6 +450,7 @@ def main(argv):
         devEmails.append(str(d["data"]["email"]))
         devUserNames.append(str(d["data"]["username"]))
         print(f"Saved developer number {i}")
+        
 
     # Loop 'taskCount' number of times
     # for i in range(taskCount):
@@ -523,6 +525,7 @@ def main(argv):
     #         response = conn.getresponse()
     #         data = response.read()
     #         d = json.loads(data)
+
     print(
         str(devCount)
         + " developers added at "
