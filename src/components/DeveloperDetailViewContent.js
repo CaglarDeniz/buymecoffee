@@ -1,5 +1,6 @@
 import './DeveloperDetailView.css';
-import MyProjects from "./myProjects";
+import DeveloperProjectDetails from './DeveloperProjectDetails';
+
 
 function DeveloperDetailViewContent(props) {
     let industry_string = " ";
@@ -17,7 +18,7 @@ function DeveloperDetailViewContent(props) {
             <h5 className="box_dev-text">Email</h5>
             <h5 className='dev-details'>{props.developer.email}</h5>
             <h4 className="box_dev-text">MY PROJECTS</h4>
-            <MyProjects />
+            <DeveloperProjectDetails />
         </div>
 
     );

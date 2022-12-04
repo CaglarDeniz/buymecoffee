@@ -13,7 +13,7 @@ function DeveloperDetailViewHeader(props){
 
     return (
         <div className="devheader-area">
-            <ArrowBackIosNewIcon className="back2-icon" onClick={goBack} />
+            <ArrowBackIosNewIcon className="backdev-icon" onClick={goBack} />
             <div className="flex-area">
             <Link to="/project/:projectId">
                 <img
