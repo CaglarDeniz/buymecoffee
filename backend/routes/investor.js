@@ -43,6 +43,25 @@ investorRoute.post(async function (req, res) {
     const  curInvestor = await Investor.find({ username: req.body.username})
     const  investorEmail = await Investor.find({ email: req.body.email})
 
+    const nameRe = /^[a-zA-Z ]+$/
+		const usernameRe = /^[\w._-]+$/
+
+      if (!nameRe.test(req.body.name)) {
+        res.status(500).json({
+          message: "Invalid Name",
+          data: null
+        });
+				return;
+      }
+			
+      if (!usernameRe.test(req.body.username)) {
+        res.status(500).json({
+          message: "Invalid Username",
+          data: null
+        });
+				return;
+      }
+
     if (curInvestor.length != 0 || investorEmail.length != 0 ) { // if a dev with the same username exists
         res.status(500).json({
           message: "An investor with that username or email already exists",
@@ -136,6 +155,28 @@ investorRouteId.get(async function (req, res) {
   investorRouteId.put(async function(req, res) {
     if((await Investor.find({_id:req.params.id})).length ==0){
       return res.status(404).json({message:"Could not find Investor with this Id", data:{}});
+    }
+    const nameRe = /^[a-zA-Z ]+$/
+		const usernameRe = /^[\w._-]+$/
+
+    if ('name' in req.body){
+      if (!nameRe.test(req.body.name)) {
+        res.status(500).json({
+          message: "Invalid Name",
+          data: null
+        });
+				return;
+      }
+    }
+			
+    if ('username' in req.body){
+      if (!usernameRe.test(req.body.username)) {
+        res.status(500).json({
+          message: "Invalid Username",
+          data: null
+        });
+				return;
+      }
     }
     prev_results = await Investor.findById(req.params.id)
     if (req.body.password== undefined){
