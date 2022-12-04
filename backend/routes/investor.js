@@ -40,15 +40,16 @@ investorRoute.post(async function (req, res) {
     // find by username
     try{
     const  curInvestor = await Investor.find({ username: req.body.username})
+    const  investorEmail = await Investor.find({ email: req.body.email})
 
-    if (curInvestor.length != 0) { // if a dev with the same username exists
+    if (curInvestor.length != 0 || investorEmail.length != 0 ) { // if a dev with the same username exists
         res.status(500).json({
-          message: "An investor with that username already exists",
+          message: "An investor with that username or email already exists",
           data: []
         });
         return;
       }
-      else{
+         else{
         bcrypt.hash(req.body.password, saltRounds, async function(err, hash) {
             Investor.create({ 
               name: req.body.name,
