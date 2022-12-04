@@ -10,6 +10,8 @@ import getopt
 import http.client
 import urllib
 import json
+import openai
+from os import getenv
 from random import randint
 from random import choice
 from random import sample
@@ -17,6 +19,7 @@ from datetime import date
 from time import mktime
 from random import shuffle
 
+openai.api_key = getenv("OPENAI_API_KEY")
 
 def usage():
     print(
@@ -415,6 +418,15 @@ def main(argv):
 
         # Pick a random first name and last name
         industryList = sample(industryNames,3)
+
+        openai.Completion.create(
+            model="text-davinci-003",
+            temperature=0.7,
+            max_tokens=256,
+            top_p=1,
+            frequency_penalty=0,
+            presence_penalty=0
+        )
 
         params = urllib.parse.urlencode(
             {
