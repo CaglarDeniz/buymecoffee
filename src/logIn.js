@@ -1,17 +1,15 @@
 import "./login.css";
 // import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { useState } from "react";
 import {useNavigate} from 'react-router-dom';
 import {Link} from 'react-router-dom';
 
 function LogIn(props) {
-    const [username, setName] = useState("");
-    const [password, setPassword] = useState("");
+   
     const navigate = useNavigate();
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        alert(`The name and password you entered was: ${username}, ${password}`);
+        alert(`The name and password you entered was: ${props.username}, ${props.password}`);
         navigate("/projects");
         // need to use the input and authenticate using the endpoint
         // then pass in as props to userProfile for verification and display
@@ -44,8 +42,8 @@ function LogIn(props) {
                     <button className="login-button" type="button">Login as Developer</button>
                     <button className="login-button" type="button">Login as Investor</button>
                     </div>
-                    <input className="login-input" type="text" placeholder="Enter Username" value={username} onChange={(e) => setName(e.target.value)}/>
-                    <input className="login-input" type="text" placeholder="Enter password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                    <input className="login-input" type="text" placeholder="Enter Username" value={props.username} onChange={(e) => props.setName(e.target.value)}/>
+                    <input className="login-input" type="text" placeholder="Enter password" value={props.password} onChange={(e) => props.setPassword(e.target.value)}/>
                     <button className="submit-button" type="Submit">Login</button>
                 </form>
                 <h5 className="goto-signup">Not a User yet? <Link to="/signup" id="signup-link">SignUp here</Link></h5> 

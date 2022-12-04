@@ -12,7 +12,14 @@ import DeveloperDetailView from "./DeveloperDetailView";
 import LogIn from "./logIn";
 import Signup from "./Signup";
 import InvestorProfile from "./InvestorProfile";
+import {useState} from "react";
 function App() {
+  const [username, setName] = useState("");
+  const [password, setPassword] = useState("");
+  
+  console.log(username);
+  console.log(password);
+
   return (
     <BrowserRouter>
       <Routes>
@@ -26,12 +33,13 @@ function App() {
         <Route path="/projectOwner/profile/:username" element={<UserProfile />} />
         <Route path="/investor/profile/:username/edit" element={<EditUserProfile />} />
         <Route path="/projectOwner/profile/:username/edit" element={<EditUserProfile />} />
-        <Route path="/login" element={<LogIn />} />
+        <Route path="/login" element={<LogIn password={password} username={username} setPassword={setPassword} setName={setName}/>} />
         <Route path="/signup" element={<Signup />}/>
         <Route path="/submitProject" element={<SubmitProject />} />
       </Routes>
     </BrowserRouter>
   );
+
 }
 
 export default App;
