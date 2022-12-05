@@ -375,10 +375,22 @@ devIdRoute.put(async function(req, res) {
   }
 })
 
-devIdRoute.delete(function(req, res) {
-  res.status(405).json({
-    message: 'This method has not been implemented for this endpoint, thank you for your request!'
-  });
+devIdRoute.delete(async function(req, res) {
+  if((await Dev.find({_id:req.params.id})).length ==0){
+    res.status(404).json({message:"Could not find Developer Id", data:{}});
+  }
+  else{
+
+await Dev.deleteOne({ _id: req.params.id}, async function (err, result) {
+    if (err){
+        res.status(500).json({message:"Internal Server Error", "data":{}});
+    }
+    else{
+        res.status(200).json({message:"OK", "data":{}});
+                }
+}
+    );
+}
 })
 
 module.exports = router;
