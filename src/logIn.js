@@ -13,20 +13,23 @@ function LogIn(props) {
         event.preventDefault();
         if(role === "developer"){
             axios.post(`http://localhost:8080/api/auth_developer/`, {username: props.username, password:props.password}).then( res => {
-            if(res.data.data === true){
-                navigate("/investors");
-            }
-            else{
-                alert('The name and password you entered was incorrect.Try Again!');
-            }
+                console.log(res.data.data);
+                if(res.data.data === true){
+                    navigate("/investors");
+                }
+                else if(res.status !== 200){
+                    alert('The name and password you entered was incorrect.Try Again!');
+                }
             });
         }
         if (role === "investor"){
             axios.post(`http://localhost:8080/api/auth_investor/`, {username: props.username, password:props.password}).then( res => {
+            console.log(res.data.data);
             if(res.data.data === true){
                 navigate("/projects");
             }
             else{
+                console.log(res.data.data);
                 alert('The name and password you entered was incorrect.Try Again!');
             }
             });
