@@ -392,8 +392,7 @@ def main(argv):
         "construction",
         "aerospace",
         "software",
-        "chemical",
-        "real estate",
+        "chemical"
     ]
 
     oldStartUpsNames = [
@@ -426,6 +425,10 @@ def main(argv):
         "Boeing"
     ]
 
+    firstNames = [name.capitalize() for name in firstNames]
+    lastNames = [name.capitalize() for name in lastNames]
+    industryNames = [name.capitalize() for name in industryNames]
+
 
     # HTTP Headers
     headers = {
@@ -442,12 +445,15 @@ def main(argv):
 
     shuffle(firstNames)
     shuffle(lastNames)
+    shuffle(industryNames)
+
 
     # Loop 'userCount' number of times
     for i in range(devCount):
 
         # Pick a random first name and last name
-        industryList = sample(industryNames,3)
+        ind_i= ((i+2)%len(industryNames))
+        industryList = industryNames[ind_i:ind_i+3]
 
         response = openai.Completion.create(
             model="text-davinci-003",
@@ -467,7 +473,7 @@ def main(argv):
                 "username": firstNames[i] + "_" + lastNames[i],
                 "password": "ilovellamas",
                 "industry" : industryList,
-                "bio": response["choices"][0]["text"]
+                "bio": (response["choices"][0]["text"]).lstrip(['.'])
             }
         
         # POST the user
