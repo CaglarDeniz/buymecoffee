@@ -9,12 +9,20 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { Link } from "react-router-dom";
 import "./navbar.css";
+import Axios from "axios";
 
 //TODO: change link path to log in page after clicking log out
 
 
 function ResponsiveAppBar(props) {
   console.log('username', props.username)
+  const [photoLink, setPhotoLink] = React.useState("https://banner2.cleanpng.com/20180921/fli/kisspng-clip-art-computer-icons-user-profile-portable-netw-5ba4ba1895c2d4.2769715015375222006134.jpg")
+  React.useEffect(()=>{
+    Axios.get(`http://localhost:8080/api/developer/${props.username}`).then((res)=>{
+      console.log(res.data.data.photoLink)
+      setPhotoLink(res.data.data.photoLink)
+  })},[props.username])
+  
   const settings = [
     {
       id: 0,
@@ -51,26 +59,14 @@ function ResponsiveAppBar(props) {
           alt="BuyMeCoffeeLogo"
           className="brand-logo"
         />
-        {/* {isInvestor ? (
-          <div className="link-container">
-            <Link className="nav-link project" to="/projects">
-              PROJECTS
-            </Link>
-          </div>
-        ) : (
-          <div className="link-container">
-            <Link className="nav-link" to="/investors">
-              INVESTORS
-            </Link>
-          </div>
-        )} */}
+
         <Tooltip title="Open settings">
           <IconButton
             className="userprofile-container"
             onClick={handleOpenUserMenu}
             sx={{ p: 0 }}
           >
-            <Avatar alt="Remy Sharp" src="https://i.pinimg.com/736x/af/66/74/af6674a0eff59ecde8edec24b6033b85.jpg" />
+            <Avatar alt="Profile Picture" src={photoLink} />
           </IconButton>
         </Tooltip>
         <Menu

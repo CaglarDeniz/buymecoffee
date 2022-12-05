@@ -32,7 +32,7 @@ function EditUserProfile(props) {
 
   return (
     <div className="container-wrap">
-      <UserProfileBlueAreaEdit name={investor.name} mode={mode} />
+      <UserProfileBlueAreaEdit name={investor.name} photoLink={investor.photoLink} mode={mode} />
       <UserProfileWhiteAreaEdit
         username={params.username}
         person={investor}

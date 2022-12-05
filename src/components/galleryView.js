@@ -11,7 +11,7 @@ import Axios from "axios";
 function GalleryView(props) {
   //TODO:  change projectList to state && use the curIndustry to perform Axios
   const [projectList, setProjectList] = React.useState([]);
-
+  console.log(projectList)
   React.useEffect(()=>{
     let industry = props.curIndustry === 'none' ? {}:{industry:props.curIndustry}
     if(props.mode !== 'investor') {
@@ -59,7 +59,7 @@ function GalleryView(props) {
             <CardMedia
               component="img"
               height="140"
-              image="/static/images/cards/contemplative-reptile.jpg"
+              image={projectList.photoLink}
               alt="project cover photo"
             />
             <CardContent>

@@ -15,7 +15,7 @@ function UserProfile() {
 
   return (
     <div className="container-wrap">
-      <UserProfileBlueArea name={user.name} mode={"projectOwner"} />
+      <UserProfileBlueArea name={user.name} photoLink={user.photoLink} mode={"projectOwner"} />
       <UserProfileWhiteArea username={params.username} person={user} mode={"projectOwner"}/>
     </div>
   );
