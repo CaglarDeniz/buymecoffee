@@ -465,7 +465,7 @@ def main(argv):
             presence_penalty=0
         )
 
-        # print(response)
+        print(type(response["choices"][0]["text"]))
 
         body = {
                 "name": firstNames[i] + " " + lastNames[i],
@@ -473,7 +473,7 @@ def main(argv):
                 "username": firstNames[i] + "_" + lastNames[i],
                 "password": "ilovellamas",
                 "industry" : industryList,
-                "bio": (response["choices"][0]["text"]).lstrip(['.'])
+                "bio": (response["choices"][0]["text"].lstrip("."))
             }
         
         # POST the user
