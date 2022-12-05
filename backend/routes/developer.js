@@ -171,7 +171,7 @@ devUsernameRoute.put(async function(req, res) {
 
     const data = await Dev.findOne(duplicateQuery);
 
-    if (data !== null) { // if duplicate entry exists don't update
+    if (data !== null && data.username !== req.params.username) { // if duplicate entry exists don't update
       res.status(500).json({
         message: "Given username or email already taken",
         data: {}
@@ -300,7 +300,7 @@ devIdRoute.put(async function(req, res) {
 
     const data = await Dev.findOne(duplicateQuery)
 
-    if (data !== null && data.username !== req.params.username) {
+    if (data !== null  && data._id !== req.params.id) {
       res.status(500).json({
         message: "Given username or email already taken",
         data: {}
