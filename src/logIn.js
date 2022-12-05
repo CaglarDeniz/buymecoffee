@@ -13,17 +13,25 @@ function LogIn(props) {
         event.preventDefault();
         if(role === "developer"){
             axios.post(`http://localhost:8080/api/auth_developer/`, {username: props.username, password:props.password}).then( res => {
-            console.log(res.data);
+            if(res.data.data === true){
+                navigate("/investors");
+            }
+            else{
+                alert('The name and password you entered was incorrect.Try Again!');
+            }
             });
         }
         if (role === "investor"){
             axios.post(`http://localhost:8080/api/auth_investor/`, {username: props.username, password:props.password}).then( res => {
-            console.log(res.data);
+            if(res.data.data === true){
+                navigate("/projects");
+            }
+            else{
+                alert('The name and password you entered was incorrect.Try Again!');
+            }
             });
         }
-  
         //alert(`The name and password you entered was: ${props.username}, ${props.password}`);
-        navigate("/projects");
     }
 
     const handleDevClick = (event) => {
