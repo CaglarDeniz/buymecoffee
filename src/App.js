@@ -17,9 +17,6 @@ function App() {
   const [username, setName] = useState("");
   const [password, setPassword] = useState("");
   
-  console.log(username);
-  console.log(password);
-
   return (
     <BrowserRouter>
       <Routes>

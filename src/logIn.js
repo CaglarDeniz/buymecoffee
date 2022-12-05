@@ -1,24 +1,39 @@
 import "./login.css";
 // import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import {useNavigate} from 'react-router-dom';
+import { useState } from "react";
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 function LogIn(props) {
    
     const navigate = useNavigate();
+    const [role, setRole] = useState("");
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        axios.post(`http://localhost:8080/api/auth_developer/`, {username: props.username, password:props.password}).then( res => {
+        if(role === "developer"){
+            axios.post(`http://localhost:8080/api/auth_developer/`, {username: props.username, password:props.password}).then( res => {
             console.log(res.data);
-            console.log(res);
-            console.log(res.message)
-        });
+            });
+        }
+        if (role === "investor"){
+            axios.post(`http://localhost:8080/api/auth_investor/`, {username: props.username, password:props.password}).then( res => {
+            console.log(res.data);
+            });
+        }
   
         //alert(`The name and password you entered was: ${props.username}, ${props.password}`);
         navigate("/projects");
-        // need to use the input and authenticate using the endpoint
-        // then pass in as props to userProfile for verification and display
+    }
+
+    const handleDevClick = (event) => {
+        event.preventDefault();
+        setRole("developer");
+    }
+
+    const handleInvClick = (event) => {
+        event.preventDefault();
+        setRole("investor");
     }
 
     // (".login-button").click(function(){
@@ -50,8 +65,8 @@ function LogIn(props) {
                 <h3 className="login-header">Login to BuyMeCoffee</h3>
                 <form className="login-form" onSubmit={handleSubmit}>
                     <div className="login-buttons">
-                    <button className="login-button" type="button">Login as Developer</button>
-                    <button className="login-button" type="button">Login as Investor</button>
+                    <button className="login-button" type="button" onClick={handleDevClick}>Login as Developer</button>
+                    <button className="login-button" type="button" onClick={handleInvClick}>Login as Investor</button>
                     </div>
                     <input className="login-input" type="text" placeholder="Enter Username" value={props.username} onChange={(e) => props.setName(e.target.value)}/>
                     <input className="login-input" type="text" placeholder="Enter password" value={props.password} onChange={(e) => props.setPassword(e.target.value)}/>
