@@ -8,18 +8,18 @@ import "./components/galleryView.css";
 function ProjectGallery(props) {
   const industryNames = [
     "none",
-    "healthcare",
-    "automotive",
-    "communication",
-    "entertainment",
-    "retail",
-    "food",
-    "energy",
-    "finance",
-    "construction",
-    "aerospace",
-    "software",
-    "chemical",
+    "Healthcare",
+    "Automotive",
+    "Communication",
+    "Entertainment",
+    "Retail",
+    "Food",
+    "Energy",
+    "Finance",
+    "Construction",
+    "Aerospace",
+    "Software",
+    "Chemical",
   ];
   function getWindowSize() {
     const { innerWidth, innerHeight } = window;
@@ -60,18 +60,18 @@ function ProjectGallery(props) {
   useEffect(() => {
     const filters = [
       "none",
-      "healthcare",
-      "automotive",
-      "communication",
-      "entertainment",
-      "retail",
-      "food",
-      "energy",
-      "finance",
-      "construction",
-      "aerospace",
-      "software",
-      "chemical",
+      "Healthcare",
+      "Automotive",
+      "Communication",
+      "Entertainment",
+      "Retail",
+      "Food",
+      "Energy",
+      "Finance",
+      "Construction",
+      "Aerospace",
+      "Software",
+      "Chemical",
     ];
     filters.map((filterName) => {
       const element = document.getElementById(filterName);
@@ -88,7 +88,7 @@ function ProjectGallery(props) {
   return (
     <ThemeProvider theme={theme}>
       <div className="container-wrap">
-        <Navbar mode={"investor"} username={props.username}/>
+        <Navbar mode={"investor"} username={props.username} />
         <h2 className="project-heading">Projects</h2>
 
         {windowSize.innerWidth > 768 ? (
