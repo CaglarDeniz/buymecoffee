@@ -19,9 +19,9 @@ import json
 def usage():
     print('dbClean.py -u <baseurl> -p <port>')
 
-def getUsers(conn):
+def getDevelopers(conn):
     # Retrieve the list of users
-    conn.request("GET","""/api/users?filter={"_id":1}""")
+    conn.request("GET","""/api/developer?filter={"_id":1}""")
     response = conn.getresponse()
     data = response.read()
     d = json.loads(data)
@@ -31,9 +31,9 @@ def getUsers(conn):
 
     return users
 
-def getTasks(conn):
+def getInvestors(conn):
     # Retrieve the list of tasks
-    conn.request("GET","""/api/tasks?filter={"_id":1}""")
+    conn.request("GET","""/api/investor?filter={"_id":1}""")
     response = conn.getresponse()
     data = response.read()
     d = json.loads(data)
@@ -43,11 +43,24 @@ def getTasks(conn):
 
     return tasks
 
+
+def getProjects(conn):
+    # Retrieve the list of users
+    conn.request("GET","""/api/project?filter={"_id":1}""")
+    response = conn.getresponse()
+    data = response.read()
+    d = json.loads(data)
+
+    # Array of user IDs
+    users = [str(d['data'][x]['_id']) for x in range(len(d['data']))]
+
+    return users
+
 def main(argv):
 
     # Server Base URL and port
     baseurl = "localhost"
-    port = 4000
+    port = 8080
 
     try:
         opts, args = getopt.getopt(argv,"hu:p:",["url=","port="])
@@ -67,38 +80,49 @@ def main(argv):
     conn = http.client.HTTPConnection(baseurl, port)
 
     # Fetch a list of users
-    users = getUsers(conn)
+    devs = getDevelopers(conn)
 
     # Loop for as long as the database still returns users
-    while len(users):
+    while len(devs):
 
         # Delete each individual user
-        for user in users:
-            conn.request("DELETE","/api/users/"+user)
+        for dev in devs:
+            conn.request("DELETE","/api/developer/single_developer/"+dev)
             response = conn.getresponse()
             data = response.read()
 
         # Fetch a list of users
-        users = getUsers(conn)
+        devs = getDevelopers(conn)
 
-    # Fetch a list of tasks
-    tasks = getTasks(conn)
+    invs = getInvestors(conn)
 
     # Loop for as long as the database still returns tasks
-    while len(tasks):
+    while len(invs):
 
-        # Delete each individual task
-        for task in tasks:
-            conn.request("DELETE","/api/tasks/"+task)
+        # Delete each individual investor
+        for inv in invs:
+            conn.request("DELETE","/api/investor/"+inv)
             response = conn.getresponse()
             data = response.read()
 
         # Fetch a list of tasks
-        tasks = getTasks(conn)
+        invs = getInvestors(conn)
+    
+    projs = getProjects(conn)
+    while len(projs):
+
+        # Delete each individual investor
+        for proj in projs:
+            conn.request("DELETE","/api/project/"+proj)
+            response = conn.getresponse()
+            data = response.read()
+
+        # Fetch a list of tasks
+        projs = getProjects(conn)
 
     # Exit gracefully
     conn.close()
-    print("All users and tasks removed at "+baseurl+":"+str(port))
+    print("All Developers, Investors and Projects removed at "+baseurl+":"+str(port))
 
 
 if __name__ == "__main__":
