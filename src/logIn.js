@@ -9,7 +9,7 @@ function LogIn(props) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        axios.get(`http://localhost:8080/api/auth_developer/`, {username: props.username, password:props.password}).then( res => {
+        axios.post(`http://localhost:8080/api/auth_developer/`, {username: props.username, password:props.password}).then( res => {
             console.log(res.data);
             console.log(res);
             console.log(res.message)
