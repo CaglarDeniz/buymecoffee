@@ -2,14 +2,20 @@ import "./login.css";
 // import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import {useNavigate} from 'react-router-dom';
 import {Link} from 'react-router-dom';
-
+import axios from 'axios';
 function LogIn(props) {
    
     const navigate = useNavigate();
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        alert(`The name and password you entered was: ${props.username}, ${props.password}`);
+        axios.get(`http://localhost:8080/api/auth_developer/`, {username: props.username, password:props.password}).then( res => {
+            console.log(res.data);
+            console.log(res);
+            console.log(res.message)
+        });
+  
+        //alert(`The name and password you entered was: ${props.username}, ${props.password}`);
         navigate("/projects");
         // need to use the input and authenticate using the endpoint
         // then pass in as props to userProfile for verification and display
@@ -22,6 +28,11 @@ function LogIn(props) {
     
     // (".login-button").click(function() {
     //  this.toggleClass("active");
+    // });
+    // axios.post(`http://localhost:8080/api/auth_developer/`, {"username": "travis_howard", "password":"ilovellamas"}).then( res => {
+    //         console.log(res.data);
+    //         console.log(res);
+    //         console.log(res.message)
     // });
     return (
         <div className="container-wrap">
