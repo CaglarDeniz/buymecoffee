@@ -23,8 +23,8 @@ function UserProfileWhiteAreaEdit(props) {
     //TODO: call AXIOS
     let backTo =
       location.pathname !== "/projectOwner/profile/:username/edit"
-        ? `/investor/profile/${props.username}`
-        : `/projectOwner/profile/${props.username}`;
+        ? `/projectOwner/profile/${props.username}`
+        : `/investor/profile/${props.username}`;
 
     navigate(backTo); //TODO: change this to the correct param value
   };

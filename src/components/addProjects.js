@@ -9,7 +9,7 @@ function AddProjects(props) {
         <Link className="link" to={`/submitProject`}>
           <Card 
             sx={{
-              minWidth: props.projectList.length === 0 ? 165.825 : "",
+              minWidth: props.projectList?.length === 0 ? 165.825 : "",
               maxWidth: 345,
               minHeight: 198,
               height: "100%",

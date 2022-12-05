@@ -17,13 +17,13 @@ function GalleryView(props) {
     if(props.mode !== 'investor') {
     let url = `http://localhost:8080/api/project?where=${JSON.stringify(industry)}`
     Axios.get(url).then((res)=>{
-      console.log(res.data.data)
+      // console.log(res.data.data)
       setProjectList(res.data.data)
     })}
     else {
       let url = `http://localhost:8080/api/investor?where=${JSON.stringify(industry)}`
       Axios.get(url).then((res)=>{
-        console.log(res.data.data)
+        // console.log(res.data.data)
         setProjectList(res.data.data)
       })
     }
@@ -33,13 +33,13 @@ function GalleryView(props) {
     if(props.mode !== 'investor') {
     let url = `http://localhost:8080/api/project`
     Axios.get(url).then((res)=>{
-      console.log(res.data.data)
+      // console.log(res.data.data)
       setProjectList(res.data.data)
     })
   } else {
     let url = `http://localhost:8080/api/investor`
     Axios.get(url).then((res)=>{
-      console.log(res.data.data)
+      // console.log(res.data.data)
       setProjectList(res.data.data)
     })
   }

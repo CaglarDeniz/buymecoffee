@@ -7,19 +7,31 @@ import Typography from "@mui/material/Typography";
 import "./galleryView.css";
 import { Link } from "react-router-dom";
 import AddProjects from "./addProjects";
+import Axios from "axios";
 
 function MyProjects(props) {
   //TODO:  change projectList to state && use the curIndustry to perform Axios
   const emptyProject = [11, 12, 13, 14];
-  const projectList = [
-    { name: "Facebook x Tesla", industry: "tech", _id: 1 },
-    { name: "Interactive Code", industry: "tech", _id: 2 },
-    { name: "The new github", industry: "tech", _id: 3 },
-  ];
+  const [projectInfo, setProjectInfo] = React.useState([]);
+  React.useEffect(() => {
+    if (props.projectList?.length > 0) {
+      const arrayOfPromises = props.projectList?.map((projectId) => {
+        return Axios.get(`http://localhost:8080/api/project/${projectId}`);
+      });
+      let obj = Promise.all(arrayOfPromises);
+      obj.then((res) => {
+        let tempArr = res?.map((item) => {
+          return item.data.data[0];
+        });
+        setProjectInfo(tempArr);
+      });
+    } else {
+      setProjectInfo([]);
+    }
+  }, [props.projectList]);
   const returnCard = (projectName, projectId) => {
     let card = (
-      <Grid item xs={6} sm={6} md={3
-      } key={projectId}>
+      <Grid item xs={6} sm={6} md={3} key={projectId}>
         <Link className="link" to={`/project/${projectId}`}>
           <Card
             sx={{
@@ -53,10 +65,6 @@ function MyProjects(props) {
               >
                 {projectName.toUpperCase()}
               </Typography>
-              {/* <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
-        </Typography> */}
             </CardContent>
           </Card>
         </Link>
@@ -66,9 +74,7 @@ function MyProjects(props) {
   };
 
   const AddProject = (id) => {
-    let card = (
-    <AddProjects id={id} projectList={projectList} key={id}/>
-    );
+    let card = <AddProjects id={id} projectList={props.projectList} key={id} />;
     return card;
   };
   return (
@@ -79,13 +85,13 @@ function MyProjects(props) {
         rowSpacing={3}
         columnSpacing={{ xs: 3, sm: 4, md: 4 }}
       >
-        {projectList.map((project) => {
-          return returnCard(project.name, project._id);
+        {projectInfo?.map((proj) => {
+          return returnCard(proj.name, proj._id);
         })}
 
-        {projectList.length < 4
+        {projectInfo?.length < 4
           ? emptyProject
-              .slice(0, 4 - projectList.length)
+              .slice(0, 4 - projectInfo?.length)
               .map((id) => AddProject(id))
           : ""}
       </Grid>

@@ -1,26 +1,22 @@
 import { useParams } from "react-router";
 import UserProfileBlueArea from "./components/userProfileBlueArea";
 import UserProfileWhiteArea from "./components/userProfileWhiteArea";
-
-function UserProfile(props) {
+import Axios from "axios";
+import React from "react";
+function UserProfile() {
   let params = useParams();
-  //TODO: Change this to axios call
-  const tempUserArray = {
-    name: "Care Bear",
-    email: "payYourMeal@dd.com",
-    username: "theofficialdd",
-    password: "hello",
-    industry: "technology",
-    bio: "Hi! Nice to meet you",
-    projectId: [1234, 122, 2],
-    photoLink: "",
-    cookieString: "",
-    cookieExpDate: new Date(),
-  };
+  const [user, setUser] = React.useState("");
+  React.useEffect(()=>{
+    Axios.get(`http://localhost:8080/api/developer/${params.username}`).then((res)=>{
+      console.log(res.data.data)
+      setUser(res.data.data)
+    })
+  },[params.username])
+
   return (
     <div className="container-wrap">
-      <UserProfileBlueArea name={tempUserArray.name} mode={"projectOwner"} />
-      <UserProfileWhiteArea username={params.username} person={tempUserArray} mode={"projectOwner"}/>
+      <UserProfileBlueArea name={user.name} mode={"projectOwner"} />
+      <UserProfileWhiteArea username={params.username} person={user} mode={"projectOwner"}/>
     </div>
   );
 }

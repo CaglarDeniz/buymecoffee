@@ -7,13 +7,13 @@ function UserProfileBlueAreaEdit(props) {
   const navigate = useNavigate();
 
   const goBack = ()=> {
-    // alert(`You will lose all the unsave changes`);
+    // TODO: alert(`You will lose all the unsave changes`);
     let backTo = 
       props.mode === "investor"
         ? `/investor/profile/${props.username}/edit`
         : `/projectOwner/profile/${props.username}/edit`
     
-    navigate(backTo); //TODO: change this to the correct param
+    navigate(backTo); 
   }
   return (
     <div className="blue-area">

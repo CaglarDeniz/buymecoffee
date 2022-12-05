@@ -14,11 +14,12 @@ import "./navbar.css";
 
 
 function ResponsiveAppBar(props) {
+  console.log('username', props.username)
   const settings = [
     {
       id: 0,
       item: 
-        <Link className="nav-link" to={props.mode === "investor" ? '/investor/profile/:username' : '/projectOwner/profile/:username' }>
+        <Link className="nav-link" to={props.mode === "investor" ? `/investor/profile/${props.username}` : `/projectOwner/profile/${props.username}` }>
           Profile
         </Link>
       ,

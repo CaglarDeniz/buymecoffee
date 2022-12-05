@@ -1,27 +1,23 @@
 import { useParams } from "react-router";
 import UserProfileBlueArea from "./components/userProfileBlueArea";
 import UserProfileWhiteArea from "./components/userProfileWhiteArea";
+import Axios from "axios";
+import React from "react";
 
-function InvestorProfile(props) {
+function InvestorProfile() {
   let params = useParams();
-  //TODO: Change this to axios call
-  const tempUserArray = {
-    name: "Investor Bear",
-    email: "payYourMeal@dd.com",
-    username: "theofficialdd",
-    password: "hello",
-    industry: "technology",
-    bio: "Hi! Nice to meet you",
-    oldStartups:["chocolate","sad", "happu", "really"],
-    projectId: [1234, 122, 2],
-    photoLink: "",
-    cookieString: "",
-    cookieExpDate: new Date(),
-  };
+  const [investor, setInvestor] = React.useState("");
+  React.useEffect(()=>{
+    Axios.get(`http://localhost:8080/api/investor/single_investor/${params.username}`).then((res)=>{
+      console.log(res.data.data[0])
+      setInvestor(res.data.data[0])
+    })
+  },[params.username])
+
   return (
     <div className="container-wrap">
-      <UserProfileBlueArea name={tempUserArray.name} mode={"investor"}/>
-      <UserProfileWhiteArea username={params.username} person={tempUserArray} mode={"investor"}/>
+      <UserProfileBlueArea name={investor.name} mode={"investor"}/>
+      <UserProfileWhiteArea username={params.username} person={investor} mode={"investor"}/>
     </div>
   );
 }

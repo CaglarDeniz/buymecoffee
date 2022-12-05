@@ -23,10 +23,10 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/projects" element={<ProjectGallery />} />
+        <Route path="/projects" element={<ProjectGallery username={username}/>} />
         <Route path="/project/:projectId" element={<ProjectDetailView />} />
         <Route path="/project/:projectId/edit" element={<EditProject />} />
-        <Route path="/investors" element={<InvestorGallery />} />
+        <Route path="/investors" element={<InvestorGallery username={username}/>} />
         <Route path="/investor/:investorId" element={<InvestorDetailView />} />
         <Route path="/projectOwner/:projectOwnerId" element={<DeveloperDetailView/>} />
         <Route path="/investor/profile/:username" element={<InvestorProfile />} />
