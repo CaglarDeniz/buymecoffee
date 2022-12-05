@@ -300,7 +300,7 @@ devIdRoute.put(async function(req, res) {
 
     const data = await Dev.findOne(duplicateQuery)
 
-    if (data !== null) {
+    if (data !== null && data.username !== req.params.username) {
       res.status(500).json({
         message: "Given username or email already taken",
         data: {}

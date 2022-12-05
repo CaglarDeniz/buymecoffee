@@ -7,6 +7,7 @@ import { ThemeProvider } from "@mui/system";
 import { useNavigate } from "react-router-dom";
 import { Message } from "@mui/icons-material";
 import { useLocation } from "react-router-dom";
+import Axios from "axios";
 
 function UserProfileWhiteAreaEdit(props) {
   const location = useLocation();
@@ -20,15 +21,61 @@ function UserProfileWhiteAreaEdit(props) {
   const [changeMade, setChangeMade] = useState(false);
   const [oldStartUp, setOldStartUp] = useState(props.person.oldStartups);
   const updateDB = () => {
-    //TODO: call AXIOS
-    let backTo =
-      location.pathname !== "/projectOwner/profile/:username/edit"
-        ? `/projectOwner/profile/${props.username}`
-        : `/investor/profile/${props.username}`;
+    let backTo;
 
-    navigate(backTo); //TODO: change this to the correct param value
+    if(location.pathname.includes("/projectOwner/profile")){
+      backTo = `/projectOwner/profile/${username}`
+      Axios.put(`http://localhost:8080/api/developer/${props.person.username}`, {
+        name: props.person.name,
+        email:email,
+        passwordHash: password,
+        username:username,
+        industry: industry,
+        bio: bio,
+        projectId: props.person.projectId,
+        photoLink: props.person.photoLink,
+        cookieString: props.person.cookieString,
+        cookieExpDate: props.person.cookieExpDate
+      }).then((res)=>{
+        console.log(res)
+        navigate(backTo)
+      }).catch((err)=>{
+        console.log(err)
+      })
+    } else {
+      backTo = `/investor/profile/${username}`
+      Axios.put(`http://localhost:8080/api/investor/${props.person._id}`, {
+        name: props.person.name,
+        email:email,
+        passwordHash: password,
+        username:username,
+        industry: industry,
+        bio: bio,
+        oldStartups: props.person.oldStartups,
+        amount: props.person.amount,
+        photoLink: props.person.photoLink,
+        cookieString: props.person.cookieString,
+        cookieExpDate: props.person.cookieExpDate
+      }).then((res)=>{
+        console.log(res)
+        navigate(backTo)
+      }).catch((err)=>{
+        console.log(err)
+      })
+
+    }
+
+    ; //TODO: change this to the correct param value
   };
-
+  useEffect(() => {
+    setUsername(props.person.username);
+    setEmail(props.person.email);
+    setPassword(props.person.password);
+    setIndustry(props.person.industry);
+    setBio(props.person.bio);
+    setChangeMade(false);
+    setOldStartUp(props.person.oldStartups);
+  }, [props.person]);
   useEffect(() => {
     window.onbeforeunload = changeMade && (() => Message);
   });
@@ -68,9 +115,10 @@ function UserProfileWhiteAreaEdit(props) {
       <h5 className="box-text">USERNAME</h5>
       <input
         type="text"
-        placeholder="Enter New Username"
-        value={username}
+        placeholder={'Enter New Username'}
+        value={username ||''}
         onChange={(e) => {
+          e.preventDefault();
           setUsername(e.target.value);
           setChangeMade(true);
         }}
@@ -79,45 +127,45 @@ function UserProfileWhiteAreaEdit(props) {
       <input
         type="text"
         placeholder="Enter New Email"
-        value={email}
+        value={email ||''}
         onChange={(e) => setEmail(e.target.value)}
       />
       <h5 className="box-text">PASSWORD</h5>
       <input
         type="text"
         placeholder="Enter New Password"
-        value={password}
+        value={password ||''}
         onChange={(e) => setPassword(e.target.value)}
       />
       <h5 className="box-text">INDUSTRY</h5>
       <input
         type="text"
         placeholder="Enter New Industry"
-        value={industry}
+        value={industry ||''}
         onChange={(e) => setIndustry(e.target.value)}
       />
       <h5 className="box-text">BIO</h5>
       <input
         type="text"
         placeholder="Enter New Bio"
-        value={bio}
+        value={bio ||''}
         onChange={(e) => setBio(e.target.value)}
       />
-      {location.pathname !== "/projectOwner/profile/:username/edit" ? (
+      {location.pathname.includes( "/investor/profile") ? (
         <>
           <h5 className="box-text">OLD STARTUPS</h5>
 
           <input
             type="text"
             placeholder="StartUp1, StartUp2, ..."
-            value={oldStartUp}
+            value={oldStartUp ||''}
             onChange={(e) => setOldStartUp([e.target.value])}
           />
         </>
       ) : (
         <>
           <h4 className="box-text">MY PROJECTS</h4>
-          <MyProjectsEdit />
+          <MyProjectsEdit projectList={props.person.projectId}/>
         </>
       )}
     </div>

@@ -1,30 +1,42 @@
 import { useParams } from "react-router";
 import UserProfileBlueAreaEdit from "./components/userProfileBlueAreaEdit";
 import UserProfileWhiteAreaEdit from "./components/userProfileWhiteAreaEdit";
+import { useLocation } from "react-router-dom";
+import Axios from "axios";
+import React from "react";
 
 function EditUserProfile(props) {
   let params = useParams();
-  //TODO: Change this to axios call depending on the mode
-  const tempUserArray = {
-    name: "Care Bear",
-    email: "payYourMeal@dd.com",
-    username: "theofficialdd",
-    password: "summertime",
-    industry: "technology",
-    bio: "Hi! Nice to meet you",
-    oldStartups: ["hello", "lol", "hehe"],
-    projectId: [1234, 122, 2],
-    photoLink: "",
-    cookieString: "",
-    cookieExpDate: new Date(),
-  };
+  const [investor, setInvestor] = React.useState("");
+  const [mode, setMode]=React.useState("")
+  const location = useLocation();
+  React.useEffect(() => {
+    if (location.pathname.includes("/investor/profile")) {
+      setMode("investor")
+      Axios.get(
+        `http://localhost:8080/api/investor/single_investor/${params.username}`
+      ).then((res) => {
+        console.log(res.data.data[0]);
+        setInvestor(res.data.data[0]);
+      });
+    } else {
+      setMode("projectOwner")
+      Axios.get(`http://localhost:8080/api/developer/${params.username}`).then(
+        (res) => {
+          console.log(res.data.data);
+          setInvestor(res.data.data);
+        }
+      );
+    }
+  }, [params.username, location.pathname]);
+
   return (
     <div className="container-wrap">
-      <UserProfileBlueAreaEdit name={tempUserArray.name} mode={"investor"} />
+      <UserProfileBlueAreaEdit name={investor.name} mode={mode} />
       <UserProfileWhiteAreaEdit
         username={params.username}
-        person={tempUserArray}
-        mode={"investor"}
+        person={investor}
+        mode={mode}
       />
     </div>
   );
