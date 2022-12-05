@@ -1,5 +1,4 @@
 import "./login.css";
-// import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import {useNavigate} from 'react-router-dom';
 import { useState } from "react";
 import {Link} from 'react-router-dom';
@@ -17,24 +16,22 @@ function LogIn(props) {
                 if(res.data.data === true){
                     navigate("/investors");
                 }
-                else if(res.status !== 200){
-                    alert('The name and password you entered was incorrect.Try Again!');
-                }
+            }).catch(function(rejected){
+                alert(`Username and password is incorrect. Try again!`)
+                console.log(rejected);
             });
         }
         if (role === "investor"){
             axios.post(`http://localhost:8080/api/auth_investor/`, {username: props.username, password:props.password}).then( res => {
-            console.log(res.data.data);
-            if(res.data.data === true){
-                navigate("/projects");
-            }
-            else{
                 console.log(res.data.data);
-                alert('The name and password you entered was incorrect.Try Again!');
-            }
+                if(res.data.data === true){
+                    navigate("/projects");
+                }
+            }).catch( function(rejected){
+                alert(`Username and password is incorrect. Try again!`)
+                console.log(rejected);
             });
         }
-        //alert(`The name and password you entered was: ${props.username}, ${props.password}`);
     }
 
     const handleDevClick = (event) => {
