@@ -10,7 +10,7 @@ function SubmitProjectContent(props){
     const [amount, setAmount] = useState(0);
     const [photolink, setPhotoLink] = useState("");
     const [email, setEmail] = useState("");
-    const [projectowner_id, setOwnerId] = useState("");
+    //const [projectowner_id, setOwnerId] = useState("");
     const navigate = useNavigate();
 
     const handleonSubmit = (event) => {
@@ -18,7 +18,7 @@ function SubmitProjectContent(props){
         // we have username for owner -> use get by username to get id
         axios.get("http://localhost:8080/api/developer/"+props.username).then( (res) =>{
                 console.log(res.data.data._id);
-                setOwnerId(res.data.data._id);
+                //setOwnerId(res.data.data._id);
                 axios.post("http://localhost:8080/api/project", {
                       "name": name, 
                       "industry": industry,
