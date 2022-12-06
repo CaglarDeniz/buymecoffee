@@ -1,6 +1,6 @@
 import "./login.css";
 import {useNavigate} from 'react-router-dom';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 function LogIn(props) {
@@ -44,6 +44,23 @@ function LogIn(props) {
         setRole("investor");
     }
 
+    useEffect( () => {
+        const roles = [
+            "developer",
+            "investor"
+        ];
+        roles.map( (each_role) => {
+            const element = document.getElementById(each_role);
+            if(element){
+                element.classList.remove("toggle_case");
+            }
+            return null;
+        });
+        const element = document.getElementById(role);
+        if(element){
+            element.classList.add("toggle_case");
+        }
+    }, [role]);
     // (".login-button").click(function(){
     //     (".login-button").removeClass("pressed");
     //     this.addClass("pressed");
