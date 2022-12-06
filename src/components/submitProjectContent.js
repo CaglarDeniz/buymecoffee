@@ -31,11 +31,12 @@ function SubmitProjectContent(props){
                 }).then ( (res) =>{
                         console.log(res.data);
                         alert('Project has been successfully created! ');
+                         //make post request for project with this
+                        navigate("/projectOwner/profile/"+props.username);
                 });
         });
         
-        //make post request for project with this
-        navigate("/projectOwner/profile/"+props.username);
+       
         
     }
 
