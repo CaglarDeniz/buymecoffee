@@ -4,8 +4,8 @@ import './components/submitProject.css';
 function SubmitProject(props) {
   return (
     <div className="project-wrap">
-      <SubmitProjectHeader/>
-      <SubmitProjectContent/>
+      <SubmitProjectHeader username={props.username}/>
+      <SubmitProjectContent username={props.username}/>
     </div>
   )
   
