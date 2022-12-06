@@ -20,21 +20,21 @@ function App() {
   const [password, setPassword] = useState("");
   console.log(username)
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Routes>
-        <Route path="buymecoffee/projects" element={<ProjectGallery username={username}/>} />
-        <Route path="buymecoffee/project/:projectId" element={<ProjectDetailView />} />
-        <Route path="buymecoffee/project/:projectId/edit" element={<EditProject />} />
-        <Route path="buymecoffee/investors" element={<InvestorGallery username={username}/>} />
-        <Route path="buymecoffee/investor/:investorId" element={<InvestorDetailView />} />
-        <Route path="buymecoffee/projectOwner/:projectOwnerId" element={<DeveloperDetailView/>} />
-        <Route path="buymecoffee/investor/profile/:username" element={<InvestorProfile />} />
-        <Route path="buymecoffee/projectOwner/profile/:username" element={<UserProfile />} />
-        <Route path="buymecoffee/investor/profile/:username/edit" element={<EditUserProfile />} />
-        <Route path="buymecoffee/projectOwner/profile/:username/edit" element={<EditUserProfile />} />
-        <Route path="buymecoffee/login" element={<LogIn password={password} username={username} setPassword={setPassword} setName={setName}/>} />
-        <Route path="buymecoffee/signup" element={<Signup />}/>
-        <Route path="buymecoffee/submitProject" element={<SubmitProject />} />
+        <Route path="/projects" element={<ProjectGallery username={username}/>} />
+        <Route path="/project/:projectId" element={<ProjectDetailView />} />
+        <Route path="/project/:projectId/edit" element={<EditProject />} />
+        <Route path="/investors" element={<InvestorGallery username={username}/>} />
+        <Route path="/investor/:investorId" element={<InvestorDetailView />} />
+        <Route path="/projectOwner/:projectOwnerId" element={<DeveloperDetailView/>} />
+        <Route path="/investor/profile/:username" element={<InvestorProfile />} />
+        <Route path="/projectOwner/profile/:username" element={<UserProfile />} />
+        <Route path="/investor/profile/:username/edit" element={<EditUserProfile />} />
+        <Route path="/projectOwner/profile/:username/edit" element={<EditUserProfile />} />
+        <Route path="/login" element={<LogIn password={password} username={username} setPassword={setPassword} setName={setName}/>} />
+        <Route path="/signup" element={<Signup />}/>
+        <Route path="/submitProject" element={<SubmitProject />} />
       </Routes>
     </BrowserRouter>
   );
