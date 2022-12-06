@@ -475,6 +475,8 @@ def main(argv):
                 "industry" : industryList,
                 "bio": (response["choices"][0]["text"].lstrip("."))
             }
+
+        # print(listOfIds)
         
         # POST the user
         res = requests.post(f"http://{baseurl}:{str(port)}/api/developer",data = body,headers=headers)
@@ -523,7 +525,7 @@ def main(argv):
                 "industry" : industryList,
                 "oldStartups": oldStartUps,
                 "amount": randint(10000,100000000),
-                "bio": response["choices"][0]["text"]
+                "bio": (response['choices'][0]['text'].lstrip(".")).lstrip()
             }
         
         # POST the user
@@ -544,8 +546,13 @@ def main(argv):
     # projectEmails = []
     # projectUserNames = []
 
+
     shuffle(projectNames)
 
+    res_ = requests.get(f"http://{baseurl}:{str(port)}/api/developer", headers=headers)
+        # print(type(res_.json()))
+    listOfIds = [i['_id'] for i in res_.json()['data']]*3
+    
     # Loop 'userCount' number of times
     for i in range(projectCount):
 
@@ -567,7 +574,7 @@ def main(argv):
         body = {
                 "name": name,
                 "industry" : industry,
-                "ownerId": "me",
+                "ownerId": listOfIds[i],
                 "amount" : randint(1000,1000000),
                 "description": name + " " + (response['choices'][0]['text'].lstrip(".")).lstrip().split(' ', 1)[1]
             }
