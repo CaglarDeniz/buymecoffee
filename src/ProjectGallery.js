@@ -20,6 +20,7 @@ function ProjectGallery(props) {
     "Aerospace",
     "Software",
     "Chemical",
+    "Other",
   ];
   function getWindowSize() {
     const { innerWidth, innerHeight } = window;
@@ -72,6 +73,7 @@ function ProjectGallery(props) {
       "Aerospace",
       "Software",
       "Chemical",
+      "Other",
     ];
     filters.map((filterName) => {
       const element = document.getElementById(filterName);
@@ -100,6 +102,7 @@ function ProjectGallery(props) {
           <div className="filter-container-small">
             <span className="sort-text-small">FILTER BY INDUSTRY:</span>
             <SelectAutoWidth
+              industryNames={industryNames}
               setCurIndustry={setCurIndustry}
               curIndustry={curIndustry}
             />

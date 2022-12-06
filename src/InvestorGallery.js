@@ -7,20 +7,22 @@ import SelectAutoWidth from "./components/selectButton";
 
 import "./components/galleryView.css";
 function InvestorGallery(props) {
-  const industryNames = [ "none",
-  "Healthcare",
-  "Automotive",
-  "Communication",
-  "Entertainment",
-  "Retail",
-  "Food",
-  "Energy",
-  "Finance",
-  "Construction",
-  "Aerospace",
-  "Software",
-  "Chemical"
-]
+  const industryNames = [
+    "none",
+    "Healthcare",
+    "Automotive",
+    "Communication",
+    "Entertainment",
+    "Retail",
+    "Food",
+    "Energy",
+    "Finance",
+    "Construction",
+    "Aerospace",
+    "Software",
+    "Chemical",
+    "Other"
+  ];
   function getWindowSize() {
     const { innerWidth, innerHeight } = window;
     return { innerWidth, innerHeight };
@@ -58,48 +60,52 @@ function InvestorGallery(props) {
   const [curIndustry, setCurIndustry] = useState("none");
   console.log("indust", curIndustry);
   useEffect(() => {
-    const filters = ["none",
-    "Healthcare",
-    "Automotive",
-    "Communication",
-    "Entertainment",
-    "Retail",
-    "Food",
-    "Energy",
-    "Finance",
-    "Construction",
-    "Aerospace",
-    "Software",
-    "Chemical"];
+    const filters = [
+      "none",
+      "Healthcare",
+      "Automotive",
+      "Communication",
+      "Entertainment",
+      "Retail",
+      "Food",
+      "Energy",
+      "Finance",
+      "Construction",
+      "Aerospace",
+      "Software",
+      "Chemical",
+      "Other",
+    ];
     filters.map((filterName) => {
       const element = document.getElementById(filterName);
-      if(element) {
+      if (element) {
         element.classList.remove("blue-text");
       }
       return null;
     });
     const element = document.getElementById(curIndustry);
-    if(element) {
-    element.classList.add("blue-text");
+    if (element) {
+      element.classList.add("blue-text");
     }
   }, [curIndustry]);
   return (
     <ThemeProvider theme={theme}>
       <div className="container-wrap">
-        <Navbar mode={"projectOwner"}  username={props.username}/>
+        <Navbar mode={"projectOwner"} username={props.username} />
         <h2 className="project-heading">Investors</h2>
         {windowSize.innerWidth > 768 ? (
           <ScrollingMenu
             setCurIndustry={setCurIndustry}
             industryNames={industryNames}
           />
-        ) : ( 
+        ) : (
           <div className="filter-container-small">
-          <span className="sort-text-small">FILTER BY INDUSTRY:</span>
-          <SelectAutoWidth
-            setCurIndustry={setCurIndustry}
-            curIndustry={curIndustry}
-          />
+            <span className="sort-text-small">FILTER BY INDUSTRY:</span>
+            <SelectAutoWidth
+              industryNames={industryNames}
+              setCurIndustry={setCurIndustry}
+              curIndustry={curIndustry}
+            />
           </div>
         )}
 
