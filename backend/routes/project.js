@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const Proj = require('../models/project.js');
+const Dev = require('../models/developer.js');
 
 var projectRoute = router.route('/');
 
@@ -34,6 +35,12 @@ projectRoute.get(async function (req, res) {
 
 projectRoute.post(async function (req, res) {
         // find by username
+       if((await Dev.findById(req.body.ownerId)).length==0){
+        res.status(404).json({
+          message: "No project found with this ID"
+        });
+        return
+       }
         try{
                 Proj.create({ 
                   name: req.body.name,
@@ -49,6 +56,11 @@ projectRoute.post(async function (req, res) {
                               }
                 else{
                     console.log(result);
+                    projectIdList = (await Dev.findById(req.body.ownerId)).projectId
+                    if (!projectIdList.includes(result['_id'])){
+                    projectIdList.push(result['_id'])
+                    }
+                    await Dev.findByIdAndUpdate(req.body.ownerId,{projectId:projectIdList}, {new:true})
                 res.status(201).json({
                   message: "Added Project to database",
                   data: result,
@@ -89,6 +101,10 @@ projectRoute.post(async function (req, res) {
             if((await Proj.find({_id:req.params.id})).length ==0){
               return res.status(404).json({message:"Could not find Project with this Id", data:{}});
             }
+            // console.log(await Dev.findById(req.body.ownerId))
+            // if(req.body.ownerId != undefined && (await Dev.findById(req.body.ownerId)).length ==0 ){
+            //   return res.status(404).json({message:"Could not find owner with this Id", data:{}});
+            // }
             prev_results = await Proj.findById(req.params.id)
             await Proj.findByIdAndUpdate(req.params.id, 
              {name:req.body.name, description:req.body.description, industry:req.body.industry?req.body.industry:prev_results.industry,ownerId:req.body.ownerId, amount: req.body.amount?req.body.amount:prev_results.amount}, {new:true}, async function(err, result){
@@ -96,6 +112,19 @@ projectRoute.post(async function (req, res) {
                   res.status(500).json({message:"Couldn't get project to database due to error"+err.message});
                 }
                 else{
+                  //remove from old owner
+                  
+                  // projectIdOld = await Proj.findById(prev_results.ownerId)
+                  // if(projectIdOld.includes(req.params.id)){
+                  // projectIdOld.remove(req.params.id)
+                  // }
+                  // await Dev.findByIdAndUpdate(prev_results.ownerId, {projectId:projectIdOld})
+                  // // add to new owner
+                  // projectIdList = (await Dev.findById(req.body.ownerId)).projectId
+                  // if (!projectIdList.includes(result['_id'])){
+                  // projectIdList.push(result['_id'])
+                  // }
+                  // await Dev.findByIdAndUpdate(req.body.ownerId,{projectId:projectIdList}, {new:true})
                   res.status(200).json({
                     message: "OK",
                     data: result
