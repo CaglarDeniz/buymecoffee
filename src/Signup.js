@@ -117,7 +117,7 @@ function Signup() {
           />
         )}
       </div>
-      {role === "hhh" ? (
+      {role === "" ? (
         ""
       ) : (
         <>
