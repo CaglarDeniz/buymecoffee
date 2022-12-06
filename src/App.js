@@ -21,7 +21,7 @@ function App() {
   console.log(username)
   return (
     <BrowserRouter>
-      <Routes>buymecoffee
+      <Routes>
         <Route path="buymecoffee/projects" element={<ProjectGallery username={username}/>} />
         <Route path="buymecoffee/project/:projectId" element={<ProjectDetailView />} />
         <Route path="buymecoffee/project/:projectId/edit" element={<EditProject />} />
