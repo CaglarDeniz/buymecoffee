@@ -21,7 +21,7 @@ export default function SelectAutoWidth(props) {
     <div>
       <FormControl sx={{ m: 1, minWidth: 80 }}>
         <InputLabel id="demo-simple-select-autowidth-label">
-          Industry
+          {props.label}
         </InputLabel>
         <Select
           labelId="demo-simple-select-autowidth-label"
@@ -29,7 +29,7 @@ export default function SelectAutoWidth(props) {
           value={props.curIndustry}
           onChange={handleChange}
           autoWidth
-          label="Industry"
+          label={props.label}
         >
           {props.industryNames?.map((name) => returnMenuItem(name))}
         </Select>

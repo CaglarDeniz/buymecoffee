@@ -28,7 +28,7 @@ function UserProfileWhiteAreaEdit(props) {
       Axios.put(`http://localhost:8080/api/developer/${props.person.username}`, {
         name: props.person.name,
         email:email,
-        passwordHash: password,
+        password: password,
         username:username,
         industry: industry,
         bio: bio,
@@ -47,7 +47,7 @@ function UserProfileWhiteAreaEdit(props) {
       Axios.put(`http://localhost:8080/api/investor/${props.person._id}`, {
         name: props.person.name,
         email:email,
-        passwordHash: password,
+        password: password,
         username:username,
         industry: industry,
         bio: bio,

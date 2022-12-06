@@ -102,6 +102,7 @@ function InvestorGallery(props) {
           <div className="filter-container-small">
             <span className="sort-text-small">FILTER BY INDUSTRY:</span>
             <SelectAutoWidth
+              label = {"Industry"}
               industryNames={industryNames}
               setCurIndustry={setCurIndustry}
               curIndustry={curIndustry}
