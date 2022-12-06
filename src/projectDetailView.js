@@ -23,7 +23,7 @@ function ProjectDetailView(props) {
     return (
         <div className="projdet-wrap">
             <ProjectDetailHeader name={curr_Project.name}/>
-            <ProjectDetailViewBlueArea id = {curr_Project._id} project={curr_Project} developer={"Elon Musk"} />
+            <ProjectDetailViewBlueArea id = {curr_Project._id} project={curr_Project}/>
         </div>
     );
 }
