@@ -15,10 +15,12 @@ function SubmitProjectContent(props){
 
     const handleonSubmit = (event) => {
         event.preventDefault();
-        // we have username for owner -> use get by username to get id
+        //console.log(industry);
+        //we have username for owner -> use get by username to get id
         axios.get("http://localhost:8080/api/developer/"+props.username).then( (res) =>{
-                console.log(res.data.data._id);
+                //console.log(res.data.data._id);
                 //setOwnerId(res.data.data._id);
+                
                 axios.post("http://localhost:8080/api/project", {
                       "name": name, 
                       "industry": industry,
@@ -28,6 +30,7 @@ function SubmitProjectContent(props){
                       
                 }).then ( (res) =>{
                         console.log(res.data);
+                        alert('Project has been successfully created! ');
                 });
         });
         
