@@ -6,7 +6,7 @@ import axios from 'axios';
 function SubmitProjectContent(props){
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
-    const [industry, setIndustry] = useState("");
+    const [industry, setIndustry] = useState("Other");
     const [amount, setAmount] = useState(0);
     const [photolink, setPhotoLink] = useState("");
     const [email, setEmail] = useState("");
@@ -20,24 +20,19 @@ function SubmitProjectContent(props){
         axios.get("http://localhost:8080/api/developer/"+props.username).then( (res) =>{
                 //console.log(res.data.data._id);
                 //setOwnerId(res.data.data._id);
-                
                 axios.post("http://localhost:8080/api/project", {
                       "name": name, 
                       "industry": industry,
                       "description": description,
                       "amount": amount,
                       "ownerId": res.data.data._id
-                      
                 }).then ( (res) =>{
-                        console.log(res.data);
+                        //console.log(res.data);
                         alert('Project has been successfully created! ');
                          //make post request for project with this
                         navigate("/projectOwner/profile/"+props.username);
                 });
         });
-        
-       
-        
     }
 
     return (
@@ -59,7 +54,7 @@ function SubmitProjectContent(props){
                 <select className="submit-field_s"                         
                         value={industry} 
                         onChange={(e) => setIndustry(e.target.value)}>
-                        <option value="Other">Other</option>
+                        <option value="Other" selected={true}>Other</option>
                         <option value="Healthcare">Healthcare</option>
                         <option value="Automotive">Automotive</option>
                         <option value="Communication">Communication</option>
