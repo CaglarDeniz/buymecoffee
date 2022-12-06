@@ -1,5 +1,4 @@
 import "./login.css";
-// import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import {useNavigate} from 'react-router-dom';
 import { useState } from "react";
 import {Link} from 'react-router-dom';
@@ -13,17 +12,26 @@ function LogIn(props) {
         event.preventDefault();
         if(role === "developer"){
             axios.post(`http://localhost:8080/api/auth_developer/`, {username: props.username, password:props.password}).then( res => {
-            console.log(res.data);
+                console.log(res.data.data);
+                if(res.data.data === true){
+                    navigate("/investors");
+                }
+            }).catch(function(rejected){
+                alert(`Username and password is incorrect. Try again!`)
+                console.log(rejected);
             });
         }
         if (role === "investor"){
             axios.post(`http://localhost:8080/api/auth_investor/`, {username: props.username, password:props.password}).then( res => {
-            console.log(res.data);
+                console.log(res.data.data);
+                if(res.data.data === true){
+                    navigate("/projects");
+                }
+            }).catch( function(rejected){
+                alert(`Username and password is incorrect. Try again!`)
+                console.log(rejected);
             });
         }
-  
-        //alert(`The name and password you entered was: ${props.username}, ${props.password}`);
-        navigate("/projects");
     }
 
     const handleDevClick = (event) => {

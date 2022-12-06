@@ -13,7 +13,7 @@ var devRoute = router.route('/');
 devRoute.post(async function(req, res) {
 
   if (!('username' in req.body) || !('password' in req.body)) {
-    res.status(500).json({
+    res.status(422).json({
       message: "Can't authenticate user without the username or password fields",
       data: {}
     })
@@ -36,14 +36,14 @@ devRoute.post(async function(req, res) {
           data: true,
         })
       } else {
-        res.status(404).json({
+        res.status(401).json({
           message: "Developer credentials invalid",
           data: false
         })
       }
 
     } catch (err) {
-      res.status(400).json({
+      res.status(500).json({
 				message: "Couldn't search database for username due to error: " + err.message,
         data: {}
       })

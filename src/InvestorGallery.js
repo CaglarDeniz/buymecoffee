@@ -8,18 +8,18 @@ import SelectAutoWidth from "./components/selectButton";
 import "./components/galleryView.css";
 function InvestorGallery(props) {
   const industryNames = [ "none",
-  "healthcare",
-  "automotive",
-  "communication",
-  "entertainment",
-  "retail",
-  "food",
-  "energy",
-  "finance",
-  "construction",
-  "aerospace",
-  "software",
-  "chemical"
+  "Healthcare",
+  "Automotive",
+  "Communication",
+  "Entertainment",
+  "Retail",
+  "Food",
+  "Energy",
+  "Finance",
+  "Construction",
+  "Aerospace",
+  "Software",
+  "Chemical"
 ]
   function getWindowSize() {
     const { innerWidth, innerHeight } = window;
@@ -59,18 +59,18 @@ function InvestorGallery(props) {
   console.log("indust", curIndustry);
   useEffect(() => {
     const filters = ["none",
-    "healthcare",
-    "automotive",
-    "communication",
-    "entertainment",
-    "retail",
-    "food",
-    "energy",
-    "finance",
-    "construction",
-    "aerospace",
-    "software",
-    "chemical"];
+    "Healthcare",
+    "Automotive",
+    "Communication",
+    "Entertainment",
+    "Retail",
+    "Food",
+    "Energy",
+    "Finance",
+    "Construction",
+    "Aerospace",
+    "Software",
+    "Chemical"];
     filters.map((filterName) => {
       const element = document.getElementById(filterName);
       if(element) {
