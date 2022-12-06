@@ -18,9 +18,9 @@ import {useState} from "react";
 function App() {
   const [username, setName] = useState(localStorage.getItem("username") || undefined);
   const [password, setPassword] = useState("");
-  console.log(username)
+  // console.log(username)
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Routes>
         <Route path="/projects" element={<ProjectGallery username={username}/>} />
         <Route path="/project/:projectId" element={<ProjectDetailView />} />
@@ -34,7 +34,7 @@ function App() {
         <Route path="/projectOwner/profile/:username/edit" element={<EditUserProfile />} />
         <Route path="/login" element={<LogIn password={password} username={username} setPassword={setPassword} setName={setName}/>} />
         <Route path="/signup" element={<Signup />}/>
-        <Route path="/submitProject" element={<SubmitProject />} />
+        <Route path="/submitProject" element={<SubmitProject username={username} />} />
       </Routes>
     </BrowserRouter>
   );

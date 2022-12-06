@@ -1,0 +1,25 @@
+.sign-up-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 800;
+    font-style: bold;
+    text-align: center;
+    margin: 2% auto
+}
+
+.login-input{
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 800;
+    font-style: bold;
+    margin: 2% auto
+}
+
+.drop-down-container {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+}
