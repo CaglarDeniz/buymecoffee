@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 
 const Dev = require('../models/developer.js');
+const Proj = require('../models/project.js');
+
 
 // User auth dependencies
 const bcrypt = require('bcrypt'); // JS hashing library for password auth
@@ -380,12 +382,19 @@ devIdRoute.delete(async function(req, res) {
     res.status(404).json({message:"Could not find Developer Id", data:{}});
   }
   else{
+        
+  const ProjectList = ((await Dev.find({_id:req.params.id}))[0].projectId)
+  console.log(ProjectList)
 
 await Dev.deleteOne({ _id: req.params.id}, async function (err, result) {
     if (err){
         res.status(500).json({message:"Internal Server Error", "data":{}});
     }
     else{
+      // get all projects list
+        for(i=0;i<ProjectList.length;i++){
+          await Proj.deleteOne({ _id: ProjectList[i] })
+        }
         res.status(200).json({message:"OK", "data":{}});
                 }
 }
