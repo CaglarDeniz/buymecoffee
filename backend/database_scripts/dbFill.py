@@ -556,7 +556,7 @@ def main(argv):
 
         response = openai.Completion.create(
             model="text-davinci-003",
-            prompt=f"Describe the revolutionary startup {name}. {name} is an startupt  in the {industry} industry",
+            prompt=f"Write an explanation for the revolutionary startup idea named {name}. {name} is a startup in the {industry} industry",
             temperature=0.7,
             max_tokens=256,
             top_p=1,
@@ -564,14 +564,12 @@ def main(argv):
             presence_penalty=0
         )
 
-        # print(response)
-
         body = {
                 "name": name,
                 "industry" : industry,
                 "ownerId": "me",
                 "amount" : randint(1000,1000000),
-                "description": response['choices'][0]['text']
+                "description": name + " " + (response['choices'][0]['text'].lstrip(".")).lstrip().split(' ', 1)[1]
             }
         
         # POST the user
@@ -585,7 +583,7 @@ def main(argv):
         # projectNames.append(str(d["data"]["name"]))
         # projectEmails.append(str(d["data"]["email"]))
         # projectUserNames.append(str(d["data"]["username"]))
-        print(f"Saved investors number {i}")
+        print(f"Saved Project number {i}")
         
     print(
         str(devCount)
