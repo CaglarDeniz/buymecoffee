@@ -24,7 +24,7 @@ function MyProjects(props) {
           return item.data.data[0];
         });
         setProjectInfo(tempArr);
-      });
+      }).catch((err)=>{console.log(err)});
     } else {
       setProjectInfo([]);
     }

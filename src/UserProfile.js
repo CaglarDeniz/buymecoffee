@@ -10,7 +10,7 @@ function UserProfile() {
     Axios.get(`http://localhost:8080/api/developer/${params.username}`).then((res)=>{
       console.log(res.data.data)
       setUser(res.data.data)
-    })
+    }).catch((err)=>{console.log(err)})
   },[params.username])
 
   return (

@@ -18,6 +18,8 @@ function EditUserProfile(props) {
       ).then((res) => {
         console.log(res.data.data[0]);
         setInvestor(res.data.data[0]);
+      }).catch((err)=>{
+        console.log(err)
       });
     } else {
       setMode("projectOwner")
@@ -26,7 +28,9 @@ function EditUserProfile(props) {
           console.log(res.data.data);
           setInvestor(res.data.data);
         }
-      );
+      ).catch((err)=>{
+        console.log(err)
+      });
     }
   }, [params.username, location.pathname]);
 

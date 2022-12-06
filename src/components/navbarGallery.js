@@ -7,38 +7,63 @@ import Menu from "@mui/material/Menu";
 import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./navbar.css";
 import Axios from "axios";
 
 //TODO: change link path to log in page after clicking log out
 
-
 function ResponsiveAppBar(props) {
-  console.log('username', props.username)
-  const [photoLink, setPhotoLink] = React.useState("https://banner2.cleanpng.com/20180921/fli/kisspng-clip-art-computer-icons-user-profile-portable-netw-5ba4ba1895c2d4.2769715015375222006134.jpg")
-  React.useEffect(()=>{
-    Axios.get(`http://localhost:8080/api/developer/${props.username}`).then((res)=>{
-      console.log(res.data.data.photoLink)
-      setPhotoLink(res.data.data.photoLink)
-  })},[props.username])
-  
+  const location = useLocation();
+  const [photoLink, setPhotoLink] = React.useState(
+    "https://banner2.cleanpng.com/20180921/fli/kisspng-clip-art-computer-icons-user-profile-portable-netw-5ba4ba1895c2d4.2769715015375222006134.jpg"
+  );
+  React.useEffect(() => {
+    if(location.pathname.includes("/investor")){
+      Axios.get(`http://localhost:8080/api/developer/${props.username}`)
+      .then((res) => {
+        console.log('photos',res.data.data);
+        setPhotoLink(res.data.data.photoLink);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    } else {
+      Axios.get(`http://localhost:8080/api/investor/single_investor/${props.username}`)
+      .then((res) => {
+        console.log('photos investor',res.data.data[0].photoLink);
+        setPhotoLink(res.data.data[0].photoLink);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    }
+    
+  }, [props.username,location.pathname]);
+
   const settings = [
     {
       id: 0,
-      item: 
-        <Link className="nav-link" to={props.mode === "investor" ? `/investor/profile/${props.username}` : `/projectOwner/profile/${props.username}` }>
+      item: (
+        <Link
+          className="nav-link"
+          to={
+            props.mode === "investor"
+              ? `/investor/profile/${props.username}`
+              : `/projectOwner/profile/${props.username}`
+          }
+        >
           Profile
         </Link>
-      ,
+      ),
     },
     {
       id: 1,
-      item: 
+      item: (
         <Link className="nav-link" to="/login">
           LogOut
         </Link>
-      ,
+      ),
     },
   ];
   // const [isInvestor, setIsInvestor] = React.useState(true);
@@ -86,9 +111,13 @@ function ResponsiveAppBar(props) {
           onClose={handleCloseUserMenu}
         >
           {settings.map((setting) => {
-            return (<MenuItem key={setting.id} onClick={handleCloseUserMenu}>
-              <Typography key={setting.id} textAlign="center">{setting.item}</Typography>
-            </MenuItem>);
+            return (
+              <MenuItem key={setting.id} onClick={handleCloseUserMenu}>
+                <Typography key={setting.id} textAlign="center">
+                  {setting.item}
+                </Typography>
+              </MenuItem>
+            );
           })}
         </Menu>
       </Box>

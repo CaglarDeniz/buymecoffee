@@ -11,7 +11,7 @@ function InvestorProfile() {
     Axios.get(`http://localhost:8080/api/investor/single_investor/${params.username}`).then((res)=>{
       console.log(res.data.data[0])
       setInvestor(res.data.data[0])
-    })
+    }).catch((err)=>{console.log(err)})
   },[params.username])
 
   return (

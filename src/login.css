@@ -70,11 +70,14 @@
     text-decoration: none;
 }
 
-.login-button:active, .login-button:focus{
-    background-color: white;
-    border: #0077B5 solid 4px;
-    color: #0077B5;
+.toggle_case, .login-button:active, .login-button:focus{
+    background-color: white !important;
+    border: #0077B5 solid 4px !important;
+    color: #0077B5 !important;
 }
+
+
+
 .submit-button{
     padding: 3% 4%;
     margin: 5px 5px 5px 5px ;
