@@ -472,7 +472,7 @@ def main(argv):
                 "email": firstNames[i] + "@" + lastNames[i] + ".com",
                 "username": firstNames[i] + "_" + lastNames[i],
                 "password": "ilovellamas",
-                "industry" : industryList,
+                "industry" : [],
                 "bio": (response["choices"][0]["text"].lstrip("."))
             }
 
