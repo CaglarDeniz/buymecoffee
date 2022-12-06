@@ -7,7 +7,7 @@ function SubmitProjectHeader(props){
     const navigate = useNavigate();
 
     const goBack = ()=> {
-      navigate("/projectOwner/profile/:username"); 
+      navigate("/projectOwner/profile/"+props.username); 
     }
     
     return (
