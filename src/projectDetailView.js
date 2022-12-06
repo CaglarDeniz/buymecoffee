@@ -4,17 +4,22 @@ import ProjectDetailViewBlueArea from "./components/projectDetailViewBlueArea";
 import './components/projectDetailView.css';
 import axios from  'axios';
 import {useState} from 'react';
+
 function ProjectDetailView(props) {
     let params = useParams();
-    console.log("params", params);
+    //console.log("params", params);
     const [curr_Project,setProject] = useState({});
 
     //const tempProject = {name:'Facebook x Tesla', description:'FACEBOOK X TESLA is a Project that combines tesla\'s advances in techware with facebook\'s current strategies to be able to enable more technology accessibility to those around.', ownerId:12, photoLink:"", amount:500000 , industry: "Technology", cookieString:'', cookieExpDate: new Date() }
-    let projectEndpoint = 'http://localhost:8080/api/project/'
+    let projectEndpoint = 'http://localhost:8080/api/project/';
     axios.get(projectEndpoint+params.projectId).then( (res) =>{
-        console.log(res);
+        //console.log(res);
         setProject(res.data.data[0]);
+    }).catch( function(rejected){
+        console.log(rejected);
+        alert('Project not found for this ID');
     });
+
     return (
         <div className="projdet-wrap">
             <ProjectDetailHeader name={curr_Project.name}/>

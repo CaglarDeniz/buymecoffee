@@ -1,22 +1,25 @@
 import './InvestorDetailView.css';
-
+import {useState, useEffect} from 'react';
 
 function InvestorDetailViewBlueArea(props){
-    let industry_string = " ";
-    props.investor.industry.forEach( (each_industry) =>{
-        industry_string += "    " + each_industry +  "   ," ;
-    });
-    industry_string = industry_string.slice(0,industry_string.length-1);
+   
+    const [industry_Array, setMainIndustry] = useState([]);
+    const [startup_Array, setStartups] = useState([]);
+   
+    useEffect( () => {
+        setMainIndustry(props.investor.industry);
+    }, [props.investor.industry]);
 
-    let startup_string = " ";
-    props.investor.oldStartups.forEach( (each_startup) => {
-        startup_string += "    " + each_startup + "    ";
-    });
+    useEffect( () => {
+        setStartups(props.investor.oldStartups);
+    }, [props.investor.oldStartups]);
 
     return (
         <div className="blue-area">
             <h5 className="box_i-text">Industry</h5>
-            <h5 className='invest-details'>{industry_string}</h5>
+            {industry_Array?.map((indus) => {
+            return <h5 key={indus}>{indus}</h5>;
+            })}
             <h5 className="box_i-text">Bio</h5>
             <h5 className='invest-details'>{props.investor.bio}</h5>
             <h5 className="box_i-text">Email</h5>
@@ -24,7 +27,9 @@ function InvestorDetailViewBlueArea(props){
             <h5 className="box_i-text">Amount</h5>
             <h5 className='invest-details'>{props.investor.amount}</h5>
             <h5 className="box_i-text">Startups</h5>
-            <h5 className='invest-details'>{startup_string}</h5>
+            {startup_Array?.map((startup) => {
+            return <h5 key={startup}>{startup}</h5>;
+            })}
             <button className="pitch-coffee" onClick={() => window.location = 'mailto:np.js409@gmail.com'}>Pitch Me Your Coffee</button>
         </div>
 
