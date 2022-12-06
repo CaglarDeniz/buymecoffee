@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 // Define our user schema
 var ProjectSchema = new mongoose.Schema({
 	name: {type:String,required:true},
-	industry:String,
+	industry:{type:String,required:true},
 	description:{type:String,required:true},
 	ownerId:{type:String,required:true},
 	amount:Number,
