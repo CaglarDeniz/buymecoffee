@@ -13,10 +13,12 @@ import LogIn from "./logIn";
 import Signup from "./Signup";
 import InvestorProfile from "./InvestorProfile";
 import {useState} from "react";
+
+
 function App() {
-  const [username, setName] = useState("");
+  const [username, setName] = useState(localStorage.getItem("username") || undefined);
   const [password, setPassword] = useState("");
-  
+  console.log(username)
   return (
     <BrowserRouter>
       <Routes>

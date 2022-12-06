@@ -10,6 +10,7 @@ function LogIn(props) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        localStorage.setItem("username", props.username);
         if(role === "developer"){
             axios.post(`http://localhost:8080/api/auth_developer/`, {username: props.username, password:props.password}).then( res => {
                 console.log(res.data.data);
