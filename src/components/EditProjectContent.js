@@ -1,7 +1,7 @@
 import './submitProject.css';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
-//import axios from 'axios';
+import axios from 'axios';
 
 function EditProjectContent(props){
     const [name, setName] = useState(props.project.name);
@@ -9,20 +9,28 @@ function EditProjectContent(props){
     const [industry, setIndustry] = useState(props.project.industry);
     const [amount, setAmount] = useState(props.project.amount);
     const [photolink, setPhotoLink] = useState(props.project.photolink);
-
+    const [ownerId, setOwnerId] = useState(props.project.ownerId);
     useEffect(() => {
         setName(props.project.name);
         setDescription(props.project.description);
         setIndustry(props.project.industry);
         setAmount(props.project.amount);
-    }, [props.project.description, props.project.name, props.project.amount, props.project.industry])
+        setOwnerId(props.project.ownerId);
+    }, [props.project.description, props.project.name, props.project.amount, props.project.industry, props.project.ownerId])
 
-    
     const navigate = useNavigate();
     const handleonSubmit = (event) => {
         event.preventDefault();
-        console.log(name, amount);
-        navigate("/projectOwner/profile/"+props.username);
+        axios.put("http://localhost:8080/api/project/"+props.project._id, {
+                "name":name,
+                "description":description,
+                "amount": amount, 
+                "industry": industry, 
+                "ownerId": ownerId
+        }).then( (res) =>{
+                console.log(res);
+                navigate("/projectOwner/profile/"+props.username);
+        }); 
     }
 
     return (
