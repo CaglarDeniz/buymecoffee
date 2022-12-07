@@ -4,12 +4,12 @@ import { useNavigate } from 'react-router';
 import axios from 'axios';
 
 function EditProjectContent(props){
-    const [name, setName] = useState(props.project.name);
-    const [description, setDescription] = useState(props.project.description);
-    const [industry, setIndustry] = useState(props.project.industry);
-    const [amount, setAmount] = useState(props.project.amount);
-    const [photolink, setPhotoLink] = useState(props.project.photolink);
-    const [ownerId, setOwnerId] = useState(props.project.ownerId);
+    const [name, setName] = useState(" ");
+    const [description, setDescription] = useState(" ");
+    const [industry, setIndustry] = useState(" ");
+    const [amount, setAmount] = useState(0);
+    const [photolink, setPhotoLink] = useState(" ");
+    const [ownerId, setOwnerId] = useState(" ");
     useEffect(() => {
         setName(props.project.name);
         setDescription(props.project.description);
