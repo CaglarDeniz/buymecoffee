@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, redirect } from "react-router-dom";
+import { BrowserRouter, Routes, Route} from "react-router-dom";
 import "./App.css";
 import ProjectGallery from "./ProjectGallery";
 import InvestorGallery from "./InvestorGallery";
@@ -15,8 +15,6 @@ import InvestorProfile from "./InvestorProfile";
 import {useState} from "react";
 
 import {redirectInvestor,redirectDeveloper, redirectNotLoggedIn} from "./Redirect"
-
-import {useCookies} from 'react-cookie';
 
 
 function App() {
