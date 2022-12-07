@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 
 const Dev = require('../models/developer.js');
+const Proj = require('../models/project.js');
+
 
 // User auth dependencies
 const bcrypt = require('bcrypt'); // JS hashing library for password auth
@@ -89,7 +91,7 @@ devRoute.post(async function(req, res) {
           email: req.body.email,
           username: req.body.username,
           passwordHash: hash,
-          industry: 'industry' in req.body ? req.body.industry : ['Others'],
+          industry: [],
           bio: 'bio' in req.body ? req.body.bio : "",
           projectId: 'projectId' in req.body ? req.body.projectId : [],
           photoLink: 'photoLink' in req.body ? req.body.photoLink : "https://cdn2.iconfinder.com/data/icons/audio-16/96/user_avatar_profile_login_button_account_member-512.png",
@@ -380,31 +382,28 @@ devIdRoute.put(async function(req, res) {
 })
 
 devIdRoute.delete(async function(req, res) {
-  if ((await Dev.find({
-      _id: req.params.id
-    })).length == 0) {
-    res.status(404).json({
-      message: "Could not find Developer Id",
-      data: {}
-    });
-  } else {
-
-    await Dev.deleteOne({
-      _id: req.params.id
-    }, async function(err, result) {
-      if (err) {
-        res.status(500).json({
-          message: "Internal Server Error",
-          "data": {}
-        });
-      } else {
-        res.status(200).json({
-          message: "OK",
-          "data": {}
-        });
-      }
-    });
+  if((await Dev.find({_id:req.params.id})).length ==0){
+    res.status(404).json({message:"Could not find Developer Id", data:{}});
   }
+  else{
+        
+  const ProjectList = ((await Dev.find({_id:req.params.id}))[0].projectId)
+  console.log(ProjectList)
+
+await Dev.deleteOne({ _id: req.params.id}, async function (err, result) {
+    if (err){
+        res.status(500).json({message:"Internal Server Error", "data":{}});
+    }
+    else{
+      // get all projects list
+        for(i=0;i<ProjectList.length;i++){
+          await Proj.deleteOne({ _id: ProjectList[i] })
+        }
+        res.status(200).json({message:"OK", "data":{}});
+                }
+}
+    );
+}
 })
 
 module.exports = router;

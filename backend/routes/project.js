@@ -44,7 +44,7 @@ projectRoute.post(async function (req, res) {
         try{
                 Proj.create({ 
                   name: req.body.name,
-                  industry: 'industry' in req.body ? req.body.industry : "Other",
+                  industry: req.body.industry,
                   description: req.body.description,
                   ownerId: req.body.ownerId,
                   amount: 'amount' in req.body ? req.body.amount : null},
@@ -60,7 +60,11 @@ projectRoute.post(async function (req, res) {
                     if (!projectIdList.includes(result['_id'])){
                     projectIdList.push(result['_id'])
                     }
-                    await Dev.findByIdAndUpdate(req.body.ownerId,{projectId:projectIdList}, {new:true})
+                    IndustryList = (await Dev.findById(req.body.ownerId)).industry
+                    if (!IndustryList.includes(req.body.industry)){
+                      IndustryList.push(req.body.industry)
+                    }
+                    await Dev.findByIdAndUpdate(req.body.ownerId,{projectId:projectIdList, industry:IndustryList}, {new:true})
                 res.status(201).json({
                   message: "Added Project to database",
                   data: result,
