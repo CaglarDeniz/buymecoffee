@@ -33,7 +33,7 @@ devRoute.post(async function(req, res) {
 
       const result = await bcrypt.compare(req.body.password, userHash);
       if (result === true) {
-        res.status(200).json({
+        res.cookie('papaya','0').status(200).json({
           message: "investor credentials valid",
           data: true,
         })

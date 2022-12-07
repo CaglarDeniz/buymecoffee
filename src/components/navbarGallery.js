@@ -11,6 +11,8 @@ import { Link, useLocation } from "react-router-dom";
 import "./navbar.css";
 import Axios from "axios";
 
+import {deleteCookies} from "../Redirect"
+
 //TODO: change link path to log in page after clicking log out
 
 function ResponsiveAppBar(props) {
@@ -60,7 +62,7 @@ function ResponsiveAppBar(props) {
     {
       id: 1,
       item: (
-        <Link className="nav-link" to="/login">
+        <Link className="nav-link" to="/login" onClick={deleteCookies}>
           LogOut
         </Link>
       ),

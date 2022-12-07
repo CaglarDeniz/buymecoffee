@@ -12,7 +12,8 @@ function LogIn(props) {
         event.preventDefault();
         localStorage.setItem("username", props.username);
         if(role === "developer"){
-            axios.post(`http://localhost:8080/api/auth_developer/`, {username: props.username, password:props.password}).then( res => {
+            axios.post(`http://localhost:8080/api/auth_developer/`, {username: props.username, password:props.password},{withCredentials:true}).then( res => {
+								console.log(res);
                 console.log(res.data.data);
                 if(res.data.data === true){
                     navigate("/investors");
@@ -23,7 +24,7 @@ function LogIn(props) {
             });
         }
         if (role === "investor"){
-            axios.post(`http://localhost:8080/api/auth_investor/`, {username: props.username, password:props.password}).then( res => {
+            axios.post(`http://localhost:8080/api/auth_investor/`, {username: props.username, password:props.password},{withCredentials:true}).then( res => {
                 console.log(res.data.data);
                 if(res.data.data === true){
                     navigate("/projects");

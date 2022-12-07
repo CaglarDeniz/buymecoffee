@@ -4,8 +4,11 @@ var express = require('express'),
     secrets = require('./config/secrets'),
     bodyParser = require('body-parser');
 
+// static image serving
 const multer = require('multer');
 const { v4: uuidv4 } = require('uuid');
+
+const cookieParser = require('cookie-parser');
 
 const storage = multer.diskStorage({
 	destination: function(req,file,cb){
@@ -42,6 +45,8 @@ var allowCrossDomain = function (req, res, next) {
     next();
 };
 app.use(allowCrossDomain);
+
+app.use(cookieParser());
 
 // serve images from the images directory
 app.use('/images',express.static(__dirname + '/images'));
