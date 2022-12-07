@@ -64,6 +64,9 @@ devRoute.post(async function(req, res) {
       const nameRe = /^[a-zA-Z ]+$/
       const usernameRe = /^[\w._-]+$/
 
+
+      let file_name, file_uuid;
+
       if (!nameRe.test(req.body.name)) {
         res.status(500).json({
           message: "Invalid Name",
@@ -79,6 +82,7 @@ devRoute.post(async function(req, res) {
         });
         return;
       }
+
 
       // hash given plaintext user password
       bcrypt.hash(req.body.password, saltRounds, async function(err, hash) {
@@ -169,7 +173,7 @@ devUsernameRoute.put(async function(req, res) {
       ]
     }
 
-		console.log(duplicateQuery);
+    console.log(duplicateQuery);
 
     const data = await Dev.findOne(duplicateQuery);
 
@@ -298,11 +302,11 @@ devIdRoute.put(async function(req, res) {
       ]
     }
 
-		console.log(duplicateQuery);
+    console.log(duplicateQuery);
 
     const data = await Dev.findOne(duplicateQuery)
 
-    if (data !== null  && data._id !== req.params.id) {
+    if (data !== null && data._id !== req.params.id) {
       res.status(500).json({
         message: "Given username or email already taken",
         data: {}
