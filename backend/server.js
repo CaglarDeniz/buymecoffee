@@ -4,6 +4,20 @@ var express = require('express'),
     secrets = require('./config/secrets'),
     bodyParser = require('body-parser');
 
+const multer = require('multer');
+const { v4: uuidv4 } = require('uuid');
+
+const storage = multer.diskStorage({
+	destination: function(req,file,cb){
+		cb(null,__dirname + '/images')
+	},
+
+	filename: function(req,file,cb){
+		cb(null,uuidv4() + '.png')
+	}
+});
+
+
 // Create our Express application
 var app = express();
 
@@ -29,11 +43,25 @@ var allowCrossDomain = function (req, res, next) {
 };
 app.use(allowCrossDomain);
 
-// Use the body-parser package in our application
-app.use(bodyParser.urlencoded({
+// serve images from the images directory
+app.use('/images',express.static(__dirname + '/images'));
+
+// Use the body-parser package in our application, only on api paths
+app.use('/api/',bodyParser.urlencoded({
     extended: true
 }));
-app.use(bodyParser.json());
+app.use('/api/',bodyParser.json());
+
+const upload = multer({storage: storage});
+const baseImageUrl = "http://localhost:8080/images/"
+
+app.post('/upload',upload.single('photo'), (req,res) => {
+	console.log(req.file);
+	res.status(200).json({
+		message:"Success",
+		data: baseImageUrl + req.file.filename
+	})
+})
 
 // Use routes as a module (see index.js)
 require('./routes')(app);

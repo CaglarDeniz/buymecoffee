@@ -62,6 +62,9 @@ devRoute.post(async function(req, res) {
       const nameRe = /^[a-zA-Z ]+$/
       const usernameRe = /^[\w._-]+$/
 
+
+      let file_name, file_uuid;
+
       if (!nameRe.test(req.body.name)) {
         res.status(500).json({
           message: "Invalid Name",
@@ -77,6 +80,7 @@ devRoute.post(async function(req, res) {
         });
         return;
       }
+
 
       // hash given plaintext user password
       bcrypt.hash(req.body.password, saltRounds, async function(err, hash) {
@@ -167,7 +171,7 @@ devUsernameRoute.put(async function(req, res) {
       ]
     }
 
-		console.log(duplicateQuery);
+    console.log(duplicateQuery);
 
     const data = await Dev.findOne(duplicateQuery);
 
@@ -296,11 +300,11 @@ devIdRoute.put(async function(req, res) {
       ]
     }
 
-		console.log(duplicateQuery);
+    console.log(duplicateQuery);
 
     const data = await Dev.findOne(duplicateQuery)
 
-    if (data !== null  && data._id !== req.params.id) {
+    if (data !== null && data._id !== req.params.id) {
       res.status(500).json({
         message: "Given username or email already taken",
         data: {}
@@ -376,21 +380,31 @@ devIdRoute.put(async function(req, res) {
 })
 
 devIdRoute.delete(async function(req, res) {
-  if((await Dev.find({_id:req.params.id})).length ==0){
-    res.status(404).json({message:"Could not find Developer Id", data:{}});
-  }
-  else{
+  if ((await Dev.find({
+      _id: req.params.id
+    })).length == 0) {
+    res.status(404).json({
+      message: "Could not find Developer Id",
+      data: {}
+    });
+  } else {
 
-await Dev.deleteOne({ _id: req.params.id}, async function (err, result) {
-    if (err){
-        res.status(500).json({message:"Internal Server Error", "data":{}});
-    }
-    else{
-        res.status(200).json({message:"OK", "data":{}});
-                }
-}
-    );
-}
+    await Dev.deleteOne({
+      _id: req.params.id
+    }, async function(err, result) {
+      if (err) {
+        res.status(500).json({
+          message: "Internal Server Error",
+          "data": {}
+        });
+      } else {
+        res.status(200).json({
+          message: "OK",
+          "data": {}
+        });
+      }
+    });
+  }
 })
 
 module.exports = router;
