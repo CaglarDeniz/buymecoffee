@@ -9,7 +9,7 @@ function SubmitProjectContent(props){
     const [industry, setIndustry] = useState("Other");
     const [amount, setAmount] = useState(0);
     const [photolink, setPhotoLink] = useState("");
-    const [email, setEmail] = useState("");
+
     //const [projectowner_id, setOwnerId] = useState("");
     const navigate = useNavigate();
 
@@ -46,7 +46,7 @@ function SubmitProjectContent(props){
                         onChange={(e) => setName(e.target.value)}/>
                 <label className='submit-label'>Project Description</label>
                 <textarea className="submit-field_d" 
-                        rows="4" cols="50" 
+                        rows="6" cols="50" 
                         placeholder="Project Description" 
                         value={description} 
                         onChange={(e) => setDescription(e.target.value)}/>
@@ -74,18 +74,12 @@ function SubmitProjectContent(props){
                         placeholder="Project Photo" 
                         value={photolink} 
                         onChange={(e) => setPhotoLink(e.target.value)}/>
-                <label className='submit-label'>Investment Amount</label>
+                <label className='submit-label'>Investment Amount Required</label>
                 <input className="submit-field" 
                         type="text" 
                         placeholder="Investment Amount Required" 
                         value={amount} 
                         onChange={(e) => setAmount(e.target.value)}/>
-                <label className='submit-label'>Contact Information</label>
-                <input className="submit-field" 
-                        type="text" 
-                        placeholder="Your Email Information" 
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}/>
                 <button className="submit-projbutton" type="Submit">Submit Project</button>
             </form>
         </div>

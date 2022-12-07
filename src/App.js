@@ -24,7 +24,7 @@ function App() {
       <Routes>
         <Route path="/projects" element={<ProjectGallery username={username}/>} />
         <Route path="/project/:projectId" element={<ProjectDetailView />} />
-        <Route path="/project/:projectId/edit" element={<EditProject />} />
+        <Route path="/project/:projectId/edit" element={<EditProject username={username}/>} />
         <Route path="/investors" element={<InvestorGallery username={username}/>} />
         <Route path="/investor/:investorId" element={<InvestorDetailView />} />
         <Route path="/projectOwner/:projectOwnerId" element={<DeveloperDetailView/>} />

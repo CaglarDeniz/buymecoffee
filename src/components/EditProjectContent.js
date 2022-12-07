@@ -1,6 +1,7 @@
 import './submitProject.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
+//import axios from 'axios';
 
 function EditProjectContent(props){
     const [name, setName] = useState(props.project.name);
@@ -8,12 +9,20 @@ function EditProjectContent(props){
     const [industry, setIndustry] = useState(props.project.industry);
     const [amount, setAmount] = useState(props.project.amount);
     const [photolink, setPhotoLink] = useState(props.project.photolink);
-    const [email, setEmail] = useState("np.js409@gmail.com"); // get the email using the ownerId to access email
 
+    useEffect(() => {
+        setName(props.project.name);
+        setDescription(props.project.description);
+        setIndustry(props.project.industry);
+        setAmount(props.project.amount);
+    }, [props.project.description, props.project.name, props.project.amount, props.project.industry])
+
+    
     const navigate = useNavigate();
     const handleonSubmit = (event) => {
         event.preventDefault();
-        navigate("/projectOwner/profile/:username");
+        console.log(name, amount);
+        navigate("/projectOwner/profile/"+props.username);
     }
 
     return (
@@ -27,7 +36,7 @@ function EditProjectContent(props){
                         onChange={(e) => setName(e.target.value)}/>
                 <label className='submit-label'>Project Description</label>
                 <textarea className="submit-field_d" 
-                        rows="4" cols="50" 
+                        rows="6" cols="50" 
                         placeholder="Project Description" 
                         value={description} 
                         onChange={(e) => setDescription(e.target.value)}/>
@@ -61,12 +70,7 @@ function EditProjectContent(props){
                         placeholder="Investment Amount Required" 
                         value={amount} 
                         onChange={(e) => setAmount(e.target.value)}/>
-                <label className='submit-label'>Contact Information</label>
-                <input className="submit-field" 
-                        type="text" 
-                        placeholder="Your Email Information" 
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}/>
+
                 <button className="submit-projbutton" type="Submit">Save and Submit</button>
             </form>
         </div>
