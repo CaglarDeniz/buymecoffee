@@ -98,10 +98,11 @@ h3 {
 }
 
 #developer-proj {
-    text-decoration: none;
-}
+    /* //text-decoration: none; */
+    color: white;
+} 
 
-.devproj-details{
+/* .devproj-details{
     background-color: white;
     color: #313335;
     margin: 8px auto;
@@ -111,9 +112,9 @@ h3 {
     border-radius: 15px;
     text-align: center;
     border: #313335 3px solid;
-}
+}  */
 
 #developer-proj:visited {
-    text-decoration: none;
+    /* text-decoration: none; */
     color: white;
 }
