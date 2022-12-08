@@ -22,8 +22,8 @@ function ProjectDetailView(props) {
 
     return (
         <div className="projdet-wrap">
-            <ProjectDetailHeader name={curr_Project.name}/>
-            <ProjectDetailViewBlueArea id = {curr_Project._id} project={curr_Project}/>
+            <ProjectDetailHeader name={curr_Project.name} role={props.role} username={props.username}/>
+            <ProjectDetailViewBlueArea id = {curr_Project._id} project={curr_Project} role={props.role}/>
         </div>
     );
 }

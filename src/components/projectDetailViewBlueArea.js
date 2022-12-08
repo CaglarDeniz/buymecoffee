@@ -6,13 +6,16 @@ import {useState} from 'react';
 function ProjectDetailViewBlueArea(props) {
     let projectOwner_id = props.project.ownerId;
     let routed_url ="/projectOwner/"+projectOwner_id;
-   const [developerName, setDeveloper] = useState("");
+    const [developerName, setDeveloper] = useState("");
+    const [developerEmail, setEmail] = useState("");
 
     axios.get("http://localhost:8080/api/developer/single_developer/"+props.project.ownerId).then( (res) => {
-        console.log(res.data.data.name);
+        //console.log(res.data.data.name);
         setDeveloper(res.data.data.name);
+        setEmail(res.data.data.email);
     });
-    console.log(developerName);
+
+    //console.log(developerName);
     return (
         <div className="blue-area">
             <h5 className="box_d-text">Project Name</h5>
@@ -25,7 +28,7 @@ function ProjectDetailViewBlueArea(props) {
             <Link id="developer-proj" to={routed_url}><h5 className='devproj-details'>{developerName}</h5></Link>
             <h5 className="box_d-text">Investment Required</h5>
             <h5 className='proj-details'>{props.project.amount}</h5>
-            <button className="buy-coffee" onClick={() => window.location = 'mailto:np.js409@gmail.com'}>Buy Me Coffee</button>
+            <button className="buy-coffee" onClick={() => window.location = `mailto:${developerEmail}`}>Buy Me Coffee</button>
         </div>
 
     );
