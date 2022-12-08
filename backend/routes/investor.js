@@ -181,7 +181,7 @@ investorRouteId.get(async function (req, res) {
     prev_results = await Investor.findById(req.params.id)
     if (req.body.password== undefined){
       await Investor.findByIdAndUpdate(req.params.id, 
-        {name:req.body.name?req.body.name:prev_results.name, email:req.body.email?req.body.email:prev_results.email, passwordHash:prev_results.passwordHash, username:req.body.username?req.body.username:prev_results.username, bio:req.body.bio?req.body.bio:prev_results.bio, industry:req.body.industry?req.body.industry:prev_results.industry, oldStartups: req.body.oldStartups?req.body.oldStartups: prev_results.oldStartups , amount: req.body.amount?req.body.amount:prev_results.amount, photoLink: req.body.photoLink?req.body.photoLink:""}, {new:true}, async function(err, result){
+        {name:req.body.name?req.body.name:prev_results.name, email:req.body.email?req.body.email:prev_results.email, passwordHash:prev_results.passwordHash, username:req.body.username?req.body.username:prev_results.username, bio:req.body.bio?req.body.bio:prev_results.bio, industry:req.body.industry?req.body.industry:prev_results.industry, oldStartups: req.body.oldStartups?req.body.oldStartups: prev_results.oldStartups , amount: req.body.amount?req.body.amount:prev_results.amount, photoLink: req.body.photoLink?req.body.photoLink:prev_results.photoLink}, {new:true}, async function(err, result){
           if(err){
             res.status(500).json({message:"Couldn't get investor to database due to error"+err.message});
           }
@@ -198,7 +198,7 @@ investorRouteId.get(async function (req, res) {
     else{
     bcrypt.hash(req.body.password, saltRounds, async function(err, hash) {
     await Investor.findByIdAndUpdate(req.params.id, 
-      {name:req.body.name?req.body.name:prev_results.name, email:req.body.email?req.body.email:prev_results.email, passwordHash:hash, username:req.body.username?req.body.username:prev_results.username, bio:req.body.bio?req.body.bio:prev_results.bio, industry:req.body.industry?req.body.industry:prev_results.industry, oldStartups: req.body.oldStartups?req.body.oldStartups: prev_results.oldStartups , amount: req.body.amount?req.body.amount:prev_results.amount}, {new:true}, async function(err, result){
+      {name:req.body.name?req.body.name:prev_results.name, email:req.body.email?req.body.email:prev_results.email, passwordHash:hash, username:req.body.username?req.body.username:prev_results.username, bio:req.body.bio?req.body.bio:prev_results.bio, industry:req.body.industry?req.body.industry:prev_results.industry, oldStartups: req.body.oldStartups?req.body.oldStartups: prev_results.oldStartups , amount: req.body.amount?req.body.amount:prev_results.amount,photoLink: req.body.photoLink?req.body.photoLink:prev_results.photoLink}, {new:true}, async function(err, result){
         if(err){
           res.status(500).json({message:"Couldn't get investor to database due to error"+err.message});
         }
