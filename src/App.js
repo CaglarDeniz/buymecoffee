@@ -21,6 +21,7 @@ import {redirectInvestor,redirectDeveloper, redirectNotLoggedIn} from "./Redirec
 function App() {
   const [username, setName] = useState(localStorage.getItem("username") || "");
   const [password, setPassword] = useState("");
+  const [role, setRole] = useState(localStorage.getItem("role") || undefined);
 	const [cookies,setCookie,removeCookie] = useCookies(["papaya"]);
 	
   // console.log(username)
@@ -28,16 +29,16 @@ function App() {
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Routes>
         <Route path="/projects" element={redirectDeveloper(<ProjectGallery username={username} removeCookie={removeCookie}/>,cookies)} />
-        <Route path="/project/:projectId" element={redirectNotLoggedIn(<ProjectDetailView />,cookies)} />
+        <Route path="/project/:projectId" element={redirectNotLoggedIn(<ProjectDetailView role={role} username={username} />,cookies)} />
         <Route path="/project/:projectId/edit" element={redirectInvestor(<EditProject username={username}/>,cookies)} />
         <Route path="/investors" element={redirectInvestor(<InvestorGallery username={username} removeCookie={removeCookie}/>,cookies)} />
-        <Route path="/investor/:investorId" element={redirectNotLoggedIn(<InvestorDetailView />,cookies)} />
-        <Route path="/projectOwner/:projectOwnerId" element={redirectNotLoggedIn(<DeveloperDetailView/>,cookies)} />
-        <Route path="/investor/profile/:username" element={redirectNotLoggedIn(<InvestorProfile />,cookies)} />
-        <Route path="/projectOwner/profile/:username" element={redirectNotLoggedIn(<UserProfile />,cookies)} />
+        <Route path="/investor/:investorId" element={redirectInvestor(<InvestorDetailView />,cookies)} />
+        <Route path="/projectOwner/:projectOwnerId" element={redirectNotLoggedIn(<DeveloperDetailView role={role}/>,cookies)} />
+        <Route path="/investor/profile/:username" element={redirectDeveloper(<InvestorProfile />,cookies)} />
+        <Route path="/projectOwner/profile/:username" element={redirectInvestor(<UserProfile />,cookies)} />
         <Route path="/investor/profile/:username/edit" element={redirectDeveloper(<EditUserProfile />,cookies)} />
         <Route path="/projectOwner/profile/:username/edit" element={redirectInvestor(<EditUserProfile />,cookies)} />
-        <Route path="/login" element={<LogIn password={password} username={username} setPassword={setPassword} setName={setName} setCookie={setCookie}/>} />
+        <Route path="/login" element={<LogIn password={password} username={username} setPassword={setPassword} setName={setName} setCookie={setCookie} role={role} setRole={setRole}/>} />
         <Route path="/signup" element={<Signup />}/>
         <Route path="/submitProject" element={redirectInvestor(<SubmitProject username={username} />)} />
          {/* <Route path="/projects" element={<ProjectGallery username={username}/>} />
