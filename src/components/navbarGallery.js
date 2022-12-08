@@ -62,7 +62,7 @@ function ResponsiveAppBar(props) {
     {
       id: 1,
       item: (
-        <Link className="nav-link" to="/login" onClick={deleteCookies}>
+        <Link className="nav-link" to="/login" onClick={() => {props.removeCookies('papaya')}}>
           LogOut
         </Link>
       ),

@@ -90,7 +90,7 @@ function ProjectGallery(props) {
   return (
     <ThemeProvider theme={theme}>
       <div className="container-wrap">
-        <Navbar mode={"investor"} username={props.username} />
+        <Navbar mode={"investor"} username={props.username} removeCookie={props.removeCookie}/>
         <h2 className="project-heading">Projects</h2>
 
         {windowSize.innerWidth > 768 ? (

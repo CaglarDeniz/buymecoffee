@@ -14,31 +14,46 @@ import Signup from "./Signup";
 import InvestorProfile from "./InvestorProfile";
 import {useState} from "react";
 
+import { useCookies } from "react-cookie";
 import {redirectInvestor,redirectDeveloper, redirectNotLoggedIn} from "./Redirect"
 
 
 function App() {
-  const [username, setName] = useState(localStorage.getItem("username") || undefined);
+  const [username, setName] = useState(localStorage.getItem("username") || "");
   const [password, setPassword] = useState("");
-	// const [cookies,setCookie,removeCookie] = useCookies(["papaya"]);
+	const [cookies,setCookie,removeCookie] = useCookies(["papaya"]);
 	
   // console.log(username)
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Routes>
-        <Route path="/projects" element={redirectDeveloper(<ProjectGallery username={username}/>,document.cookie)} />
-        <Route path="/project/:projectId" element={redirectNotLoggedIn(<ProjectDetailView />,document.cookie)} />
-        <Route path="/project/:projectId/edit" element={redirectInvestor(<EditProject username={username}/>,document.cookie)} />
-        <Route path="/investors" element={redirectInvestor(<InvestorGallery username={username}/>,document.cookie)} />
-        <Route path="/investor/:investorId" element={redirectNotLoggedIn(<InvestorDetailView />,document.cookie)} />
-        <Route path="/projectOwner/:projectOwnerId" element={redirectNotLoggedIn(<DeveloperDetailView/>,document.cookie)} />
-        <Route path="/investor/profile/:username" element={redirectNotLoggedIn(<InvestorProfile />,document.cookie)} />
-        <Route path="/projectOwner/profile/:username" element={redirectNotLoggedIn(<UserProfile />,document.cookie)} />
-        <Route path="/investor/profile/:username/edit" element={redirectDeveloper(<EditUserProfile />,document.cookie)} />
-        <Route path="/projectOwner/profile/:username/edit" element={redirectInvestor(<EditUserProfile />,document.cookie)} />
-        <Route path="/login" element={<LogIn password={password} username={username} setPassword={setPassword} setName={setName}/>} />
+        <Route path="/projects" element={redirectDeveloper(<ProjectGallery username={username} removeCookie={removeCookie}/>,cookies)} />
+        <Route path="/project/:projectId" element={redirectNotLoggedIn(<ProjectDetailView />,cookies)} />
+        <Route path="/project/:projectId/edit" element={redirectInvestor(<EditProject username={username}/>,cookies)} />
+        <Route path="/investors" element={redirectInvestor(<InvestorGallery username={username} removeCookie={removeCookie}/>,cookies)} />
+        <Route path="/investor/:investorId" element={redirectNotLoggedIn(<InvestorDetailView />,cookies)} />
+        <Route path="/projectOwner/:projectOwnerId" element={redirectNotLoggedIn(<DeveloperDetailView/>,cookies)} />
+        <Route path="/investor/profile/:username" element={redirectNotLoggedIn(<InvestorProfile />,cookies)} />
+        <Route path="/projectOwner/profile/:username" element={redirectNotLoggedIn(<UserProfile />,cookies)} />
+        <Route path="/investor/profile/:username/edit" element={redirectDeveloper(<EditUserProfile />,cookies)} />
+        <Route path="/projectOwner/profile/:username/edit" element={redirectInvestor(<EditUserProfile />,cookies)} />
+        <Route path="/login" element={<LogIn password={password} username={username} setPassword={setPassword} setName={setName} setCookie={setCookie}/>} />
         <Route path="/signup" element={<Signup />}/>
         <Route path="/submitProject" element={redirectInvestor(<SubmitProject username={username} />)} />
+         {/* <Route path="/projects" element={<ProjectGallery username={username}/>} />
+        <Route path="/project/:projectId" element={<ProjectDetailView />} />
+        <Route path="/project/:projectId/edit" element={<EditProject />} />
+        <Route path="/investors" element={<InvestorGallery username={username}/>} />
+        <Route path="/investor/:investorId" element={<InvestorDetailView />} />
+        <Route path="/projectOwner/:projectOwnerId" element={<DeveloperDetailView/>} />
+        <Route path="/investor/profile/:username" element={<InvestorProfile />} />
+        <Route path="/projectOwner/profile/:username" element={<UserProfile />} />
+        <Route path="/investor/profile/:username/edit" element={<EditUserProfile />} />
+        <Route path="/projectOwner/profile/:username/edit" element={<EditUserProfile />} />
+        <Route path="/login" element={<LogIn password={password} username={username} setPassword={setPassword} setName={setName}/>} />
+        <Route path="/signup" element={<Signup />}/>
+        <Route path="/submitProject" element={<SubmitProject username={username} />} /> */}
+
       </Routes>
     </BrowserRouter>
   );

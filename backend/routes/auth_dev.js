@@ -31,7 +31,7 @@ devRoute.post(async function(req, res) {
 
       const result = await bcrypt.compare(req.body.password, userHash);
       if (result === true) {
-        res.cookie('papaya','1',{sameSite:"lax"}).status(200).json({
+        res.status(200).json({
           message: "Developer credentials valid",
           data: true,
         })
