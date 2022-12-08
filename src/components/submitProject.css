@@ -69,6 +69,11 @@
     height: 40px;
     border: #0077B5 solid 5px;
 }
+
+.preview-pic {
+    margin: 4%;
+}
+
 .submit-field_s{
     padding: 1.5% 4%;
     margin: 5px 4px 15px 4px;
