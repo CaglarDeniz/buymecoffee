@@ -6,6 +6,7 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import "./galleryView.css";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 function DeveloperProjectDetails(props) {
   //TODO:  change projectList to state && use the curIndustry to perform Axios

@@ -24,7 +24,7 @@ function DeveloperDetailViewContent(props) {
             <h5 className="box_dev-text">Email</h5>
             <h5 className='dev-details'>{props.developer.email}</h5>
             <h4 className="box_dev-text">MY PROJECTS</h4>
-            <DeveloperProjectDetails />
+            <DeveloperProjectDetails projectList = {props.developer.projectId}/>
         </div>
 
     );

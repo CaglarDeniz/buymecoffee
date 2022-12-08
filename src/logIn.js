@@ -1,20 +1,20 @@
 import "./login.css";
 import {useNavigate} from 'react-router-dom';
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 function LogIn(props) {
    
     const navigate = useNavigate();
-    const [role, setRole] = useState("");
+    //const [role, setRole] = useState("");
 
     const handleSubmit = (event) => {
         event.preventDefault();
         localStorage.setItem("username", props.username);
         axios.defaults.withCredentials = true;
-        if(role === "developer"){
+        localStorage.setItem("role", props.role);
+        if(props.role === "developer"){
             axios.post(`http://localhost:8080/api/auth_developer/`, {username: props.username, password:props.password},{withCredentials:true}).then( res => {
-								console.log(res);
 								console.log(res);
                 console.log(res.data.data);
                 if(res.data.data === true){
@@ -27,7 +27,7 @@ function LogIn(props) {
                 console.log(rejected);
             });
         }
-        if (role === "investor"){
+        if (props.role === "investor"){
             axios.post(`http://localhost:8080/api/auth_investor/`, {username: props.username, password:props.password},{withCredentials:true}).then( res => {
                 console.log(res.data.data);
                 if(res.data.data === true){
@@ -43,12 +43,12 @@ function LogIn(props) {
 
     const handleDevClick = (event) => {
         event.preventDefault();
-        setRole("developer");
+        props.setRole("developer");
     }
 
     const handleInvClick = (event) => {
         event.preventDefault();
-        setRole("investor");
+        props.setRole("investor");
     }
 
     useEffect( () => {
@@ -63,11 +63,11 @@ function LogIn(props) {
             }
             return null;
         });
-        const element = document.getElementById(role);
+        const element = document.getElementById(props.role);
         if(element){
             element.classList.add("toggle_case");
         }
-    }, [role]);
+    }, [props.role]);
 
     return (
         <div className="container-wrap">
@@ -93,4 +93,4 @@ function LogIn(props) {
     );
 }
 
-export default LogIn
+export default LogIn;
