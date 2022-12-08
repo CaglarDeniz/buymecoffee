@@ -40,7 +40,7 @@ function App() {
         <Route path="/projectOwner/profile/:username/edit" element={redirectInvestor(<EditUserProfile />,cookies)} />
         <Route path="/login" element={<LogIn password={password} username={username} setPassword={setPassword} setName={setName} setCookie={setCookie} role={role} setRole={setRole}/>} />
         <Route path="/signup" element={<Signup />}/>
-        <Route path="/submitProject" element={redirectInvestor(<SubmitProject username={username} />)} />
+        <Route path="/submitProject" element={redirectInvestor(<SubmitProject username={username} />,cookies)} />
          {/* <Route path="/projects" element={<ProjectGallery username={username}/>} />
         <Route path="/project/:projectId" element={<ProjectDetailView />} />
         <Route path="/project/:projectId/edit" element={<EditProject />} />

@@ -30,7 +30,7 @@ function InvestorDetailViewBlueArea(props){
             {startup_Array?.map((startup) => {
             return <h5 key={startup}>{startup}</h5>;
             })}
-            <button className="pitch-coffee" onClick={() => window.location = 'mailto:np.js409@gmail.com'}>Pitch Me Your Coffee</button>
+            <button className="pitch-coffee" onClick={() => window.location = `mailto:${props.investor.email}`}>Pitch Me Your Coffee</button>
         </div>
 
     );

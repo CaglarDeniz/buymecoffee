@@ -11,7 +11,7 @@ import { Link, useLocation } from "react-router-dom";
 import "./navbar.css";
 import Axios from "axios";
 
-import {deleteCookies} from "../Redirect"
+// import {deleteCookies} from "../Redirect"
 
 //TODO: change link path to log in page after clicking log out
 

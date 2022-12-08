@@ -16,8 +16,10 @@ function EditProjectContent(props){
         setIndustry(props.project.industry);
         setAmount(props.project.amount);
         setOwnerId(props.project.ownerId);
+        // set a photo temp variable with previous props.photo and use it in avatar
     }, [props.project.description, props.project.name, props.project.amount, props.project.industry, props.project.ownerId])
 
+    //make post request to upload to get new photo and put put inside it
     const navigate = useNavigate();
     const handleonSubmit = (event) => {
         event.preventDefault();
@@ -27,6 +29,7 @@ function EditProjectContent(props){
                 "amount": amount, 
                 "industry": industry, 
                 "ownerId": ownerId
+                // add photo link here after put completed and use the variable set in post/whatev
         }).then( (res) =>{
                 console.log(res);
                 navigate("/projectOwner/profile/"+props.username);
@@ -36,6 +39,7 @@ function EditProjectContent(props){
     return (
         <div className='proj-greyarea'>
             <form className="project-submitform" onSubmit={handleonSubmit}>
+                {/* Make a avatar for photo preview and then a input file for photo prefilled with what photo is already there */}
                 <label className='submit-label'>Project Name</label>
                 <input className="submit-field" 
                         type="text" 

@@ -16,7 +16,7 @@ function InvestorProfile() {
 
   return (
     <div className="container-wrap">
-      <UserProfileBlueArea name={investor.name} mode={"investor"}/>
+      <UserProfileBlueArea name={investor.name} photoLink={investor.photoLink} mode={"investor"}/>
       <UserProfileWhiteArea username={params.username} person={investor} mode={"investor"}/>
     </div>
   );
