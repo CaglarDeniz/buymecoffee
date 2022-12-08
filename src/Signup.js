@@ -197,7 +197,7 @@ function Signup() {
               value={password || undefined}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <input
+            <textarea
               className="login-input"
               type="text"
               placeholder="Bio"

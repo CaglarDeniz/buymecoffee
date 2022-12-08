@@ -12,6 +12,7 @@ import Axios from "axios";
 function UserProfileWhiteAreaEdit(props) {
   const location = useLocation();
   //TODO: Change this to Axios call
+  console.log(props.person.password)
   const navigate = useNavigate();
   const [username, setUsername] = useState(props.person.username);
   const [email, setEmail] = useState(props.person.email);
@@ -193,6 +194,7 @@ function UserProfileWhiteAreaEdit(props) {
       </ThemeProvider>
       <h5 className="box-text">USERNAME</h5>
       <input
+        className="edit-input"
         type="text"
         placeholder={"Enter New Username"}
         value={username || ""}
@@ -204,6 +206,7 @@ function UserProfileWhiteAreaEdit(props) {
       />
       <h5 className="box-text">EMAIL</h5>
       <input
+        className="edit-input"
         type="text"
         placeholder="Enter New Email"
         value={email || ""}
@@ -211,6 +214,7 @@ function UserProfileWhiteAreaEdit(props) {
       />
       <h5 className="box-text">PASSWORD</h5>
       <input
+        className="edit-input"
         type="text"
         placeholder="Enter New Password"
         value={password || ""}
@@ -218,13 +222,15 @@ function UserProfileWhiteAreaEdit(props) {
       />
       <h5 className="box-text">INDUSTRY</h5>
       <input
+        className="edit-input"
         type="text"
         placeholder="Enter New Industry"
         value={industry || ""}
         onChange={(e) => setIndustry(e.target.value)}
       />
       <h5 className="box-text">BIO</h5>
-      <input
+      <textarea
+        className="edit-input bio-input"
         type="text"
         placeholder="Enter New Bio"
         value={bio || ""}
@@ -235,6 +241,7 @@ function UserProfileWhiteAreaEdit(props) {
           <h5 className="box-text">OLD STARTUPS</h5>
 
           <input
+            className="edit-input"
             type="text"
             placeholder="StartUp1, StartUp2, ..."
             value={oldStartUp || ""}

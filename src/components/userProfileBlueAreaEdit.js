@@ -22,24 +22,27 @@ function UserProfileBlueAreaEdit(props) {
           />
         </Link>
         <Avatar
-          className="preview-pic"
           alt="Profile Picture"
           src={
-            props.tempPhoto === "" ? props.photoLink : URL.createObjectURL(props.tempPhoto)
+            props.tempPhoto === ""
+              ? props.photoLink
+              : URL.createObjectURL(props.tempPhoto)
           }
-          sx={{ width: 150, height: 150 }}
+          sx={{ width: 150, height: 150, margin: "2% auto" }}
         />
         <input
           type="file"
-          id="file"
-          onChange={(e) => props.setTempPhoto(e.target.files[0])}>
-        </input>
+          className="choose-image"
+          onChange={(e) => props.setTempPhoto(e.target.files[0])}
+        ></input>
         <h5 className="box-text">NAME</h5>
         <input
-          className="edit-input" type="text" placeholder="FirstName LastName" value=
-          {props.name || ""}
-          onChange={(e) => props.setName(e.target.value)}>
-        </input>
+          className="edit-input"
+          type="text"
+          placeholder="FirstName LastName"
+          value={props.name || ""}
+          onChange={(e) => props.setName(e.target.value)}
+        ></input>
       </div>
     </div>
   );

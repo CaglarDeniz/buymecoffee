@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 import Axios from "axios";
 import React from "react";
 import { useState } from "react";
+import "./components/userProfile.css";
 
 function EditUserProfile(props) {
   let params = useParams();
