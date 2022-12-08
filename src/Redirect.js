@@ -9,7 +9,7 @@ export function redirectInvestor(component,cookies){
 		return <Navigate to="/login"/>
 	}
 
-	else if(cookies['papaya']==0){// is investor, not see other investor pages
+	else if(cookies['papaya']===0){// is investor, not see other investor pages
 		console.log("Going to projects");
 		return <Navigate to="/projects" />
 	}
@@ -25,7 +25,7 @@ export function redirectDeveloper(component,cookies){
 		return <Navigate to="/login"/>
 	}
 
-	else if(cookies['papaya']==1){// is developer, not see other project pages
+	else if(cookies['papaya']===1){// is developer, not see other project pages
 		console.log("Going to investors");
 		return <Navigate to="/investors" />
 	}
