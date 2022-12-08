@@ -21,51 +21,130 @@ function UserProfileWhiteAreaEdit(props) {
   const [changeMade, setChangeMade] = useState(false);
   const [oldStartUp, setOldStartUp] = useState(props.person.oldStartups);
   const updateDB = () => {
-    let backTo;
-
-    if(location.pathname.includes("/projectOwner/profile")){
-      backTo = `/projectOwner/profile/${username}`
-      Axios.put(`http://localhost:8080/api/developer/${props.person.username}`, {
-        name: props.person.name,
-        email:email,
-        password: password,
-        username:username,
-        industry: industry,
-        bio: bio,
-        projectId: props.person.projectId,
-        photoLink: props.person.photoLink,
-        cookieString: props.person.cookieString,
-        cookieExpDate: props.person.cookieExpDate
-      }).then((res)=>{
-        console.log(res)
-        navigate(backTo)
-      }).catch((err)=>{
-        console.log(err)
-      })
+    if (location.pathname.includes("/projectOwner/profile")) {
+      if (props.photoLink !== "") {
+        Axios.put(
+          `http://localhost:8080/api/developer/${props.person.username}`,
+          {
+            name: props.name,
+            email: email,
+            password: password,
+            username: username,
+            industry: industry,
+            bio: bio,
+            projectId: props.person.projectId,
+            photoLink: props.person.photoLink,
+            cookieString: props.person.cookieString,
+            cookieExpDate: props.person.cookieExpDate,
+          }
+        )
+          .then((res) => {
+            console.log(res);
+            navigate(-1);
+          })
+          .catch((err) => {
+            console.log("Update went wrong", err);
+          });
+      } else {
+        let formData = new FormData();
+        formData.append("photo", props.tempPhoto);
+        console.log("here is the temp", props.tempPhoto);
+        Axios.post(`http://localhost:8080/upload/`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+          .then((res) => {
+            console.log("obtained photo", res.data.data);
+            Axios.put(
+              `http://localhost:8080/api/developer/${props.person.username}`,
+              {
+                name: props.name,
+                email: email,
+                password: password,
+                username: username,
+                industry: industry,
+                bio: bio,
+                projectId: props.person.projectId,
+                photoLink: res.data.data,
+                cookieString: props.person.cookieString,
+                cookieExpDate: props.person.cookieExpDate,
+              }
+            )
+              .then((res) => {
+                console.log(res);
+                navigate(-1);
+              })
+              .catch((err) => {
+                console.log("Update went wrong", err);
+              });
+          })
+          .catch((err) => {
+            console.log("photo upload went wrong.", err);
+          });
+      }
     } else {
-      backTo = `/investor/profile/${username}`
-      Axios.put(`http://localhost:8080/api/investor/${props.person._id}`, {
-        name: props.person.name,
-        email:email,
-        password: password,
-        username:username,
-        industry: industry,
-        bio: bio,
-        oldStartups: props.person.oldStartups,
-        amount: props.person.amount,
-        photoLink: props.person.photoLink,
-        cookieString: props.person.cookieString,
-        cookieExpDate: props.person.cookieExpDate
-      }).then((res)=>{
-        console.log(res)
-        navigate(backTo)
-      }).catch((err)=>{
-        console.log(err)
-      })
-
-    }
-
-    ; //TODO: change this to the correct param value
+      if (props.photoLink !== "") {
+        Axios.put(`http://localhost:8080/api/investor/${props.person._id}`, {
+          name: props.name,
+          email: email,
+          password: password,
+          username: username,
+          industry: industry,
+          bio: bio,
+          oldStartups: props.person.oldStartups,
+          amount: props.person.amount,
+          photoLink: props.person.photoLink,
+          cookieString: props.person.cookieString,
+          cookieExpDate: props.person.cookieExpDate,
+        })
+          .then((res) => {
+            console.log(res);
+            navigate(-1);
+          })
+          .catch((err) => {
+            console.log("Update went wrong", err);
+          });
+      } else {
+        let formData = new FormData();
+        formData.append("photo", props.tempPhoto);
+        console.log("here is the temp", props.tempPhoto);
+        Axios.post(`http://localhost:8080/upload/`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+          .then((res) => {
+            console.log("obtained photo", res.data.data);
+            Axios.put(
+              `http://localhost:8080/api/investor/${props.person._id}`,
+              {
+                name: props.name,
+                email: email,
+                password: password,
+                username: username,
+                industry: industry,
+                bio: bio,
+                oldStartups: props.person.oldStartups,
+                amount: props.person.amount,
+                photoLink: res.data.data,
+                cookieString: props.person.cookieString,
+                cookieExpDate: props.person.cookieExpDate,
+              }
+            )
+              .then((res) => {
+                console.log(res);
+                navigate(-1);
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          })
+          .catch((err) => {
+            console.log("photo upload went wrong.", err);
+          });
+      }
+    } //TODO: change this to the correct param value
   };
   useEffect(() => {
     setUsername(props.person.username);
@@ -115,8 +194,8 @@ function UserProfileWhiteAreaEdit(props) {
       <h5 className="box-text">USERNAME</h5>
       <input
         type="text"
-        placeholder={'Enter New Username'}
-        value={username ||''}
+        placeholder={"Enter New Username"}
+        value={username || ""}
         onChange={(e) => {
           e.preventDefault();
           setUsername(e.target.value);
@@ -127,45 +206,45 @@ function UserProfileWhiteAreaEdit(props) {
       <input
         type="text"
         placeholder="Enter New Email"
-        value={email ||''}
+        value={email || ""}
         onChange={(e) => setEmail(e.target.value)}
       />
       <h5 className="box-text">PASSWORD</h5>
       <input
         type="text"
         placeholder="Enter New Password"
-        value={password ||''}
+        value={password || ""}
         onChange={(e) => setPassword(e.target.value)}
       />
       <h5 className="box-text">INDUSTRY</h5>
       <input
         type="text"
         placeholder="Enter New Industry"
-        value={industry ||''}
+        value={industry || ""}
         onChange={(e) => setIndustry(e.target.value)}
       />
       <h5 className="box-text">BIO</h5>
       <input
         type="text"
         placeholder="Enter New Bio"
-        value={bio ||''}
+        value={bio || ""}
         onChange={(e) => setBio(e.target.value)}
       />
-      {location.pathname.includes( "/investor/profile") ? (
+      {location.pathname.includes("/investor/profile") ? (
         <>
           <h5 className="box-text">OLD STARTUPS</h5>
 
           <input
             type="text"
             placeholder="StartUp1, StartUp2, ..."
-            value={oldStartUp ||''}
+            value={oldStartUp || ""}
             onChange={(e) => setOldStartUp([e.target.value])}
           />
         </>
       ) : (
         <>
           <h4 className="box-text">MY PROJECTS</h4>
-          <MyProjectsEdit projectList={props.person.projectId}/>
+          <MyProjectsEdit projectList={props.person.projectId} />
         </>
       )}
     </div>

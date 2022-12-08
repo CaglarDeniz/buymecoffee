@@ -3,23 +3,15 @@ import { Link } from "react-router-dom";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { useNavigate } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
-import { useState } from "react";
 
 function UserProfileBlueAreaEdit(props) {
   const navigate = useNavigate();
-  const [tempPhoto, setTempPhoto] = useState("");
-  console.log(tempPhoto)
   const goBack = () => {
     // TODO: alert(`You will lose all the unsave changes`);
-    let backTo =
-      props.mode === "investor"
-        ? `/investor/profile/${props.username}/edit`
-        : `/projectOwner/profile/${props.username}/edit`;
-
-    navigate(backTo);
+    navigate(-1);
   };
   return (
-    <div className="blue-area">
+    <div className="blue-area-edit">
       <ArrowBackIosNewIcon className="back-icon" onClick={goBack} />
       <div className="flex-area">
         <Link to={props.mode === "investor" ? `/projects` : `investors`}>
@@ -32,15 +24,22 @@ function UserProfileBlueAreaEdit(props) {
         <Avatar
           className="preview-pic"
           alt="Profile Picture"
-          src={props.photoLink ? props.photoLink : ""}
+          src={
+            props.tempPhoto === "" ? props.photoLink : URL.createObjectURL(props.tempPhoto)
+          }
           sx={{ width: 150, height: 150 }}
         />
-                  <input
-              type="file"
-              id="file"
-              onChange={(e) => setTempPhoto(e.target.files[0])}
-            ></input>
-        <h3>{props.name}</h3>
+        <input
+          type="file"
+          id="file"
+          onChange={(e) => props.setTempPhoto(e.target.files[0])}>
+        </input>
+        <h5 className="box-text">NAME</h5>
+        <input
+          className="edit-input" type="text" placeholder="FirstName LastName" value=
+          {props.name || ""}
+          onChange={(e) => props.setName(e.target.value)}>
+        </input>
       </div>
     </div>
   );
