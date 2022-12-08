@@ -1,7 +1,7 @@
 import './projectDetailView.css';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 
 function ProjectDetailViewBlueArea(props) {
     let projectOwner_id = props.project.ownerId;
@@ -9,11 +9,16 @@ function ProjectDetailViewBlueArea(props) {
     const [developerName, setDeveloper] = useState("");
     const [developerEmail, setEmail] = useState("");
 
-    axios.get("http://localhost:8080/api/developer/single_developer/"+props.project.ownerId).then( (res) => {
-        //console.log(res.data.data.name);
-        setDeveloper(res.data.data.name);
-        setEmail(res.data.data.email);
-    });
+    useEffect( () => {
+        axios.get("http://localhost:8080/api/developer/single_developer/"+props.project.ownerId).then( (res) => {
+            //console.log(res.data.data.name);
+            setDeveloper(res.data.data.name);
+            setEmail(res.data.data.email);
+        }).catch( (err) =>{
+            console.log(err);
+        });
+    }, [setDeveloper, setEmail, props.project.ownerId]);
+
 
     //console.log(developerName);
     return (
