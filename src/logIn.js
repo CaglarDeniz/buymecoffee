@@ -15,8 +15,8 @@ function LogIn(props) {
         localStorage.setItem("role", props.role);
         if(props.role === "developer"){
             axios.post(`http://localhost:8080/api/auth_developer/`, {username: props.username, password:props.password},{withCredentials:true}).then( res => {
-								console.log(res);
-                console.log(res.data.data);
+								//console.log(res);
+               // console.log(res.data.data);
                 if(res.data.data === true){
                     props.setCookie("papaya",1,{sameSite:"lax"})
                     console.log("#########################")
@@ -29,7 +29,7 @@ function LogIn(props) {
         }
         if (props.role === "investor"){
             axios.post(`http://localhost:8080/api/auth_investor/`, {username: props.username, password:props.password},{withCredentials:true}).then( res => {
-                console.log(res.data.data);
+                //console.log(res.data.data);
                 if(res.data.data === true){
                     props.setCookie("papaya",0,{sameSite:"lax"})
                     navigate("/projects");
