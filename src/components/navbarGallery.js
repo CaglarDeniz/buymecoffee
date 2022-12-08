@@ -17,55 +17,46 @@ import Axios from "axios";
 
 function ResponsiveAppBar(props) {
   const location = useLocation();
+  const investorLinks = [`/investor/profile/${props.username}`, "/login"];
+  const projectOwnerLinks = [
+    `/projectOwner/profile/${props.username}`,
+    "/login",
+  ];
   const [photoLink, setPhotoLink] = React.useState(
     "https://banner2.cleanpng.com/20180921/fli/kisspng-clip-art-computer-icons-user-profile-portable-netw-5ba4ba1895c2d4.2769715015375222006134.jpg"
   );
   React.useEffect(() => {
-    if(location.pathname.includes("/investor")){
+    if (location.pathname.includes("/investor")) {
       Axios.get(`http://localhost:8080/api/developer/${props.username}`)
-      .then((res) => {
-        console.log('photos',res.data.data);
-        setPhotoLink(res.data.data.photoLink);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+        .then((res) => {
+          console.log("photos", res.data.data);
+          setPhotoLink(res.data.data.photoLink);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     } else {
-      Axios.get(`http://localhost:8080/api/investor/single_investor/${props.username}`)
-      .then((res) => {
-        console.log('photos investor',res.data.data[0].photoLink);
-        setPhotoLink(res.data.data[0].photoLink);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      Axios.get(
+        `http://localhost:8080/api/investor/single_investor/${props.username}`
+      )
+        .then((res) => {
+          console.log("photos investor", res.data.data[0].photoLink);
+          setPhotoLink(res.data.data[0].photoLink);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
-    
-  }, [props.username,location.pathname]);
+  }, [props.username, location.pathname]);
 
   const settings = [
     {
       id: 0,
-      item: (
-        <Link
-          className="nav-link"
-          to={
-            props.mode === "investor"
-              ? `/investor/profile/${props.username}`
-              : `/projectOwner/profile/${props.username}`
-          }
-        >
-          Profile
-        </Link>
-      ),
+      item: "Profile",
     },
     {
       id: 1,
-      item: (
-        <Link className="nav-link" to="/login" onClick={() => {props.removeCookies('papaya')}}>
-          LogOut
-        </Link>
-      ),
+      item: "LogOut",
     },
   ];
   // const [isInvestor, setIsInvestor] = React.useState(true);
@@ -114,11 +105,24 @@ function ResponsiveAppBar(props) {
         >
           {settings.map((setting) => {
             return (
-              <MenuItem key={setting.id} onClick={handleCloseUserMenu}>
-                <Typography key={setting.id} textAlign="center">
-                  {setting.item}
-                </Typography>
-              </MenuItem>
+              <Link
+                key={setting.id}
+                className="nav-link"
+                to={
+                  props.mode === "investor"
+                    ? investorLinks[setting.id]
+                    : projectOwnerLinks[setting.id]
+                }
+                onClick={() => {
+                  if (setting.id === 1) props.removeCookies("papaya");
+                }}
+              >
+                <MenuItem key={setting.id} onClick={handleCloseUserMenu}>
+                  <Typography key={setting.id} textAlign="center">
+                    {setting.item}
+                  </Typography>
+                </MenuItem>
+              </Link>
             );
           })}
         </Menu>

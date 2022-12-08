@@ -7,8 +7,7 @@ function UserProfileBlueArea(props) {
   const navigate = useNavigate();
   console.log(props.photoLink);
   const goBack = () => {
-    let goTo = props.mode === "investor" ? "/projects" : "/investors";
-    navigate(goTo); //TODO: change this to the correct param
+    navigate(-1); //TODO: change this to the correct param
   };
   return (
     <div className="blue-area">
