@@ -10,7 +10,6 @@ import Axios from "axios";
 
 function GalleryView(props) {
   const [projectList, setProjectList] = React.useState([]);
-  console.log(projectList)
   React.useEffect(()=>{
     let industry = props.curIndustry === 'none' ? {}:{industry:props.curIndustry}
     if(props.mode !== 'investor') {
@@ -43,7 +42,7 @@ function GalleryView(props) {
     }).catch((err)=>{console.log(err)})
   }
   },[props.mode])
-  const returnCard = (projectName, projectId) => {
+  const returnCard = (projectName, projectId, projectPhotoLink) => {
     let card = (
       <Grid item xs={6} sm={4} md={3} key={projectId}>
         <Link className="link" to={props.mode === 'investor' ? `/investor/${projectId}`:`/project/${projectId}`}>
@@ -58,8 +57,8 @@ function GalleryView(props) {
             <CardMedia
               component="img"
               height="140"
-              image={projectList.photoLink}
-              alt="project cover photo"
+              image={projectPhotoLink}
+              alt="cover photo"
             />
             <CardContent>
               <Typography
@@ -85,7 +84,7 @@ function GalleryView(props) {
   return (
     <Grid container rowSpacing={3} columnSpacing={{ xs: 3, sm: 3, md: 4 }}>
       {projectList.map((project) => {
-        return returnCard(project.name, project._id);
+        return returnCard(project.name, project._id, project.photoLink);
       })}
     </Grid>
   );
