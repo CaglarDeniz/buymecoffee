@@ -21,25 +21,16 @@ function SubmitProjectContent(props){
                 alert("Name and Industry of the Project needs to be mentioned");
                 return;
         }
-        //console.log(industry);
-        let formData = new FormData()
-        formData.append("photo", tempPhoto);
-        console.log("temporary project photo", tempPhoto);
-        axios.post(`http://localhost:8080/upload/`, formData, {
-                headers:{
-                        "Content-Type": "multipart/form-data",
-                },
-        }).then( (res) => {
-                console.log("try to check post", res);
+        if(tempPhoto === ""){
                 axios.get("http://localhost:8080/api/developer/"+props.username).then( (res) =>{
                         //console.log(res.data.data._id);
                         //setOwnerId(res.data.data._id);
                         axios.post("http://localhost:8080/api/project", {
-                              "name": name, 
-                              "industry": industry,
-                              "description": description,
-                              "amount": amount,
-                              "ownerId": res.data.data._id
+                                "name": name, 
+                                "industry": industry,
+                                "description": description,
+                                "amount": amount,
+                                "ownerId": res.data.data._id
                         }).then ( (res) =>{
                                 //console.log(res.data);
                                 alert('Project has been successfully created! ');
@@ -49,22 +40,53 @@ function SubmitProjectContent(props){
                                 console.log("post request no work for project")
                         });
                 }).catch( () =>{
-                        console.log("getting owner id no work")
+                                console.log("getting owner id no work")
                 });
-        }).catch( (err) => {
-                console.log(err);
-        })
-     
+        }else{
+                let formData = new FormData()
+                formData.append("photo", tempPhoto);
+                console.log("temporary project photo", tempPhoto);
+                axios.post(`http://localhost:8080/upload/`, formData, {
+                        headers:{
+                                "Content-Type": "multipart/form-data",
+                        },
+                }).then( (res) => {
+                        console.log("try to check post", res);
+                        axios.get("http://localhost:8080/api/developer/"+props.username).then( (res) =>{
+                                //console.log(res.data.data._id);
+                                //setOwnerId(res.data.data._id);
+                                axios.post("http://localhost:8080/api/project", {
+                                      "name": name, 
+                                      "industry": industry,
+                                      "description": description,
+                                      "amount": amount,
+                                      "ownerId": res.data.data._id
+                                }).then ( (res) =>{
+                                        //console.log(res.data);
+                                        alert('Project has been successfully created! ');
+                                         //make post request for project with this
+                                        navigate("/projectOwner/profile/"+props.username);
+                                }).catch( () => {
+                                        console.log("post request no work for project")
+                                });
+                        }).catch( () =>{
+                                console.log("getting owner id no work")
+                        });
+                }).catch( (err) => {
+                        console.log(err);
+                });
+        }
     }
 
     return (
         <div className='proj-greyarea'>
             <form className="project-submitform" onSubmit={handleonSubmit}>
-                <Avatar className="preview-pic" alt="Profile Picture"
+                <Avatar className="preview-pic-projectt" alt="Project Picture"
                 src={tempPhoto ? URL.createObjectURL(tempPhoto) : ""}
                 sx={{ width: 150, height: 150 }}
                 />
-                <input type="file" id="file"
+
+                <input className="choose-image-project" type="file" id="file"
                 onChange={(e) => setTempPhoto(e.target.files[0])}
                 ></input>
                 <label className='submit-label'>Project Name</label>

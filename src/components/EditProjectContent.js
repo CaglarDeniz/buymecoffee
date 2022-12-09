@@ -2,6 +2,7 @@ import './submitProject.css';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import axios from 'axios';
+import Avatar from "@mui/material/Avatar";
 
 function EditProjectContent(props){
     const [name, setName] = useState(" ");
@@ -10,6 +11,7 @@ function EditProjectContent(props){
     const [amount, setAmount] = useState(0);
     const [photolink, setPhotoLink] = useState(" ");
     const [ownerId, setOwnerId] = useState(" ");
+    const [tempPhoto, setTempPhoto] = useState("");
     useEffect(() => {
         setName(props.project.name);
         setDescription(props.project.description);
@@ -40,6 +42,14 @@ function EditProjectContent(props){
         <div className='proj-greyarea'>
             <form className="project-submitform" onSubmit={handleonSubmit}>
                 {/* Make a avatar for photo preview and then a input file for photo prefilled with what photo is already there */}
+                {/* Copy from submitProjectContent and put same classes so styled same way */}
+                <Avatar className="preview-pic-projectt" alt="Project Picture"
+                src={tempPhoto ? URL.createObjectURL(tempPhoto) : ""} // change empty string to existing photo (props.project.photoLink)
+                sx={{ width: 150, height: 150 ,margin: "2% auto" }}
+                />
+                <input className="choose-image-project" type="file" id="file"
+                onChange={(e) => setTempPhoto(e.target.files[0])} // add value to be props.photolink
+                ></input>
                 <label className='submit-label'>Project Name</label>
                 <input className="submit-field" 
                         type="text" 

@@ -70,8 +70,15 @@
     border: #1976d2 solid 5px;
 }
 
-.preview-pic {
-    margin: 4%;
+
+.preview-pic-project {
+    margin: 1.5% auto -0.5%;
+}
+
+.choose-image-project{
+    position: relative;
+    left: 3%;
+    font-family: 'Roboto Mono', monospace;
 }
 
 .submit-field_s{
