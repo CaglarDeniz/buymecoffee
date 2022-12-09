@@ -22,7 +22,7 @@ function ProjectDetailViewBlueArea(props) {
 
     //console.log(developerName);
     return (
-        <div className="blue-area">
+        <div className="blue_proj-area">
             <h5 className="box_d-text">Project Name</h5>
             <h5 className='proj-details'>{props.project.name}</h5>
             <h5 className="box_d-text">Project Description</h5>
