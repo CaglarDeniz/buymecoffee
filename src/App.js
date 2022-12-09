@@ -15,14 +15,14 @@ import InvestorProfile from "./InvestorProfile";
 import {useState} from "react";
 
 import { useCookies } from "react-cookie";
-import {redirectInvestor,redirectDeveloper, redirectNotLoggedIn} from "./Redirect"
+// import {redirectInvestor,redirectDeveloper, redirectNotLoggedIn} from "./Redirect"
 
 
 function App() {
   const [username, setName] = useState(localStorage.getItem("username") || "");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState(localStorage.getItem("role") || undefined);
-	const [cookies,setCookie,removeCookie] = useCookies(["papaya"]);
+	// const [cookies,setCookie,removeCookie] = useCookies(["papaya"]);
 	
   // console.log(username)
   return (
@@ -53,7 +53,7 @@ function App() {
         <Route path="/projectOwner/profile/:username/edit" element={<EditUserProfile />} />
         <Route path="/login" element={<LogIn password={password} username={username} setPassword={setPassword} setName={setName} role={role} setRole={setRole}/>} />
         <Route path="/signup" element={<Signup />}/>
-        <Route path="/submitProject" element={<SubmitProject username={username} />} />
+        {/* <Route path="/submitProject" element={<SubmitProject username={username} />} /> */}
       </Routes>
     </BrowserRouter>
   );
