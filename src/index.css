@@ -1,8 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;600;700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans&display=swap');
 body {
   margin: 0;
-  font-family: 'Roboto Mono', monospace !important;
+  font-family: 'Open Sans', sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -13,7 +12,7 @@ code {
 }
 
 .userlogin-navbar{
-  background-color:#0077B5;
+  background-color:#1976d2;
   display: flex;
   justify-content: center;
   padding: 1% 0;

@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #0077B5;
+    background-color: #1976d2;
     color: white;
     margin: 3%;
     border-radius: 12px;
@@ -11,9 +11,10 @@
 }
 
 .MuiTypography-root {
-    font-family: 'Roboto Mono', monospace !important;
-    font-weight: 800 !important;
+    font-family: 'Open Sans', sans-serif !important;
+    font-weight: 600 !important;
     text-align: center;
+    word-spacing: 5px;
 }
 
 .MuiCard-root,
@@ -50,7 +51,7 @@
 }
 
 .blue-text {
-    color: #9BDAF3 !important;
+    color: #90caf9 !important;
 }
 
 .sort-text {
@@ -99,6 +100,7 @@
 }
 
 .project-heading {
+    font-weight: 800;
     margin-top: 2.5%;
     text-align: center;
 }

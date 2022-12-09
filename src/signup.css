@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    font-family: 'Roboto Mono', monospace;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 800;
     font-style: bold;
     text-align: center;
@@ -11,7 +11,7 @@
 }
 
 .login-input{
-    font-family: 'Roboto Mono', monospace;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 800;
     font-style: bold;
     margin: 2% auto
@@ -34,5 +34,5 @@
 .choose-image-signup{
     position: relative;
     left: 3%;
-    font-family: 'Roboto Mono', monospace;
+    font-family: 'Montserrat', sans-serif;
 }

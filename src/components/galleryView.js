@@ -9,7 +9,6 @@ import { Link } from "react-router-dom";
 import Axios from "axios";
 
 function GalleryView(props) {
-  //TODO:  change projectList to state && use the curIndustry to perform Axios
   const [projectList, setProjectList] = React.useState([]);
   console.log(projectList)
   React.useEffect(()=>{
@@ -67,7 +66,7 @@ function GalleryView(props) {
                 gutterBottom
                 variant="h5"
                 component="div"
-                fontSize={12}
+                fontSize={14}
               >
                 {projectName.toUpperCase()}
               </Typography>

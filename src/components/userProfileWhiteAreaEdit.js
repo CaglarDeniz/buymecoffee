@@ -164,12 +164,12 @@ function UserProfileWhiteAreaEdit(props) {
       primary: {
         main: "#313335",
         grey: "#CACCCE",
-        blue: "#0077B5",
+        blue: "#1976d2",
         white: "#ffffff",
       },
     },
     typography: {
-      fontFamily: ["Roboto Mono", "monospace"].join(","),
+      fontFamily: ["Montserrat", "sans-serif"].join(","),
     },
   });
   return (
