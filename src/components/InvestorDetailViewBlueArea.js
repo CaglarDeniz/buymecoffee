@@ -15,7 +15,7 @@ function InvestorDetailViewBlueArea(props){
     }, [props.investor.oldStartups]);
 
     return (
-        <div className="blue-area">
+        <div className="blue_inv-area">
             <h5 className="box_i-text">Industry</h5>
             {industry_Array?.map((indus) => {
             return <h5 key={indus}>{indus}</h5>;
