@@ -9,8 +9,10 @@ export function redirectInvestor(component,cookies){
 		return <Navigate to="/login"/>
 	}
 
-	else if(cookies['papaya'] === 0){// is investor, not see other investor pages
+	else if(cookies['papaya'] === '0'){// is investor, not see other investor pages
 		console.log("Going to projects");
+		// console.log(typeof cookies['papaya'])
+		// console.log(typeof 0)
 		return <Navigate to="/projects" />
 	}
 	else {
@@ -25,7 +27,9 @@ export function redirectDeveloper(component,cookies){
 		return <Navigate to="/login"/>
 	}
 
-	else if(cookies['papaya']=== 1){// is developer, not see other project pages
+	else if(cookies['papaya']=== '1'){// is developer, not see other project pages
+		// console.log(typeof cookies['papaya'])
+		// console.log(typeof 1)
 		console.log("Going to investors");
 		return <Navigate to="/investors" />
 	}
