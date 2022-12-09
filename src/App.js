@@ -7,14 +7,14 @@ import ProjectDetailView from "./projectDetailView";
 import InvestorDetailView from "./InvestorDetailView";
 import EditProject from "./EditProject";
 import EditUserProfile from "./EditUserProfile";
-import SubmitProject from "./SubmitProject";
+// import SubmitProject from "./SubmitProject";
 import DeveloperDetailView from "./DeveloperDetailView";
 import LogIn from "./logIn";
 import Signup from "./Signup";
 import InvestorProfile from "./InvestorProfile";
 import {useState} from "react";
 
-import { useCookies } from "react-cookie";
+// import { useCookies } from "react-cookie";
 // import {redirectInvestor,redirectDeveloper, redirectNotLoggedIn} from "./Redirect"
 
 
