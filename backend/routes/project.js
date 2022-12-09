@@ -47,7 +47,9 @@ projectRoute.post(async function (req, res) {
                   industry: req.body.industry,
                   description: req.body.description,
                   ownerId: req.body.ownerId,
-                  amount: 'amount' in req.body ? req.body.amount : null},
+                  amount: 'amount' in req.body ? req.body.amount : null,
+                  photoLink: req.body.photoLink?req.body.photoLink :"https://img.freepik.com/free-vector/coffee-love-foam-with-beans-cartoon-icon-illustration_138676-2575.jpg?w=740&t=st=1670615410~exp=1670616010~hmac=238006d75b6fcd5600b9af4603f8f3a3726432a9d88f3a0ae5f400755e6a0cf5"
+                },
                  async function (err, result) {
                   if (err){
                     res.status(500).json({
@@ -111,7 +113,8 @@ projectRoute.post(async function (req, res) {
             }
             prev_results = await Proj.findById(req.params.id)
             await Proj.findByIdAndUpdate(req.params.id, 
-             {name:req.body.name?req.body.name:prev_results.name, description:req.body.description?req.body.description:prev_results.description, industry:req.body.industry?req.body.industry:prev_results.industry,ownerId:req.body.ownerId, amount: req.body.amount?req.body.amount:prev_results.amount}, {new:true}, async function(err, result){
+             {name:req.body.name?req.body.name:prev_results.name, description:req.body.description?req.body.description:prev_results.description, industry:req.body.industry?req.body.industry:prev_results.industry,ownerId:req.body.ownerId, amount: req.body.amount?req.body.amount:prev_results.amount, photoLink: req.body.photoLink?req.body.photoLink :prev_results.photoLink
+            }, {new:true}, async function(err, result){
                 if(err){
                   res.status(500).json({message:"Couldn't get project to database due to error"+err.message});
                 }
