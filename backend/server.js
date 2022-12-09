@@ -55,7 +55,7 @@ var allowCrossDomain = function (req, res, next) {
 app.use(allowCrossDomain);
 
 
-app.use(cookiesMiddleware());
+// app.use(cookiesMiddleware());
 
 // serve images from the images directory
 app.use('/images',express.static(__dirname + '/images'));

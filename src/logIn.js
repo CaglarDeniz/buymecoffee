@@ -18,7 +18,7 @@ function LogIn(props) {
 								//console.log(res);
                // console.log(res.data.data);
                 if(res.data.data === true){
-                    props.setCookie("papaya",1,{sameSite:"lax"})
+                    // props.setCookie("papaya",1,{sameSite:"lax"})
                     console.log("#########################")
                     navigate("/investors");
                 }
@@ -31,7 +31,7 @@ function LogIn(props) {
             axios.post(`http://localhost:8080/api/auth_investor/`, {username: props.username, password:props.password},{withCredentials:true}).then( res => {
                 //console.log(res.data.data);
                 if(res.data.data === true){
-                    props.setCookie("papaya",0,{sameSite:"lax"})
+                    // props.setCookie("papaya",0,{sameSite:"lax"})
                     navigate("/projects");
                 }
             }).catch( function(rejected){
