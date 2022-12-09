@@ -7,7 +7,7 @@ import ProjectDetailView from "./projectDetailView";
 import InvestorDetailView from "./InvestorDetailView";
 import EditProject from "./EditProject";
 import EditUserProfile from "./EditUserProfile";
-// import SubmitProject from "./SubmitProject";
+import SubmitProject from "./SubmitProject";
 import DeveloperDetailView from "./DeveloperDetailView";
 import LogIn from "./logIn";
 import Signup from "./Signup";
@@ -53,7 +53,7 @@ function App() {
         <Route path="/projectOwner/profile/:username/edit" element={<EditUserProfile />} />
         <Route path="/login" element={<LogIn password={password} username={username} setPassword={setPassword} setName={setName} role={role} setRole={setRole}/>} />
         <Route path="/signup" element={<Signup />}/>
-        {/* <Route path="/submitProject" element={<SubmitProject username={username} />} /> */}
+        <Route path="/submitProject" element={<SubmitProject username={username} />} />
       </Routes>
     </BrowserRouter>
   );
