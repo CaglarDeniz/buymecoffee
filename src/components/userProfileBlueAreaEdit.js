@@ -12,7 +12,7 @@ function UserProfileBlueAreaEdit(props) {
   };
   return (
     <div className="blue-area-edit">
-      <ArrowBackIosNewIcon className="back-icon" onClick={goBack} />
+      <ArrowBackIosNewIcon className="back-icon-edit" onClick={goBack} />
       <div className="flex-area">
         <Link to={props.mode === "investor" ? `/projects` : `investors`}>
           <img

@@ -29,7 +29,7 @@ function UserProfileBlueArea(props) {
           sx={{ width: 150, height: 150 }}
         />
 
-        <h3>{props.name}</h3>
+        <h3 className="h3-name">{props.name}</h3>
       </div>
     </div>
   );

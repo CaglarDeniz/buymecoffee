@@ -32,36 +32,44 @@ function MyProjectsEdit(props) {
   }, [props.projectList]);
   const returnCard = (projectName, projectId) => {
     let card = (
-      <Grid item xs={6} sm={6} md={6} key={projectId}>
-        <Card
-          sx={{
-            maxWidth: 345,
-            height: "100%",
-            ":hover": {
-              boxShadow: 10,
-            },
-          }}
-        >
-          <CardMedia
-            component="img"
-            height="140"
-            image="/static/images/cards/contemplative-reptile.jpg"
-            alt="project cover photo"
-          />
-
-          <Link className="link" to={`/project/${projectId}/edit`}>
-            <EditIcon className="edit-project" />
-          </Link>
-          <CardContent
+      <Grid item xs={12} sm={6} md={6} key={projectId}>
+        <div className=" user-link">
+          <Card
             sx={{
-              height: 15,
+              width: "100%",
+              maxWidth: 345,
+              height: "100%",
+              ":hover": {
+                boxShadow: 10,
+              },
             }}
           >
-            <Typography gutterBottom variant="h5" component="div" fontSize={12}>
-              {projectName.toUpperCase()}
-            </Typography>
-          </CardContent>
-        </Card>
+            <CardMedia
+              component="img"
+              height="140"
+              image="/static/images/cards/contemplative-reptile.jpg"
+              alt="project cover photo"
+            />
+
+            <Link className="link" to={`/project/${projectId}/edit`}>
+              <EditIcon className="edit-project" />
+            </Link>
+            <CardContent
+              sx={{
+                height: 15,
+              }}
+            >
+              <Typography
+                gutterBottom
+                variant="h5"
+                component="div"
+                fontSize={12}
+              >
+                {projectName.toUpperCase()}
+              </Typography>
+            </CardContent>
+          </Card>
+        </div>
       </Grid>
     );
     return card;
