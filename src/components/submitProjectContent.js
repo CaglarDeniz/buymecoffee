@@ -52,7 +52,7 @@ function SubmitProjectContent(props){
                         },
                 }).then( (res) => {
                         console.log("try to check post", res);
-                        axios.get("http://localhost:8080/api/developer/"+props.username).then( (res) =>{
+                        axios.get("http://localhost:8080/api/developer/"+props.username).then( (response) =>{
                                 //console.log(res.data.data._id);
                                 //setOwnerId(res.data.data._id);
                                 axios.post("http://localhost:8080/api/project", {
@@ -60,7 +60,8 @@ function SubmitProjectContent(props){
                                       "industry": industry,
                                       "description": description,
                                       "amount": amount,
-                                      "ownerId": res.data.data._id
+                                      "ownerId": response.data.data._id,
+                                      "photoLink": res.data.data
                                 }).then ( (res) =>{
                                         //console.log(res.data);
                                         alert('Project has been successfully created! ');
