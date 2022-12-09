@@ -5,11 +5,12 @@ import { Link } from "react-router-dom";
 
 function AddProjects(props) {
     return (
-        <Grid item xs={6} sm={6} md={3} key={props.id}>
-        <Link className="link" to={`/submitProject`}>
+        <Grid item xs={12} sm={6} md={6} key={props.id}>
+        <Link className="link user-link" to={`/submitProject`}>
           <Card 
             sx={{
               minWidth: props.projectList?.length === 0 ? 165.825 : "",
+              width:"100%",
               maxWidth: 345,
               minHeight: 198,
               height: "100%",

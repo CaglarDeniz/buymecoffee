@@ -26,3 +26,13 @@
 .preview-pic {
     margin: 4%;
 }
+
+.preview-pic-login{
+    margin: 1.5% auto -0.5%;
+}
+
+.choose-image-signup{
+    position: relative;
+    left: 3%;
+    font-family: 'Roboto Mono', monospace;
+}

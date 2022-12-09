@@ -52,6 +52,23 @@ function Signup() {
     }
     let next = "/login";
     if (role === "Project Owner") {
+      if (tempPhoto === "") {
+        Axios.post(`http://localhost:8080/api/developer/`, {
+          name: firstName + " " + LastName,
+          email: email,
+          password: password,
+          username: username,
+          industry: industry,
+          bio: bio,}
+        )
+          .then((res) => {
+            console.log(res);
+            navigate(-1);
+          })
+          .catch((err) => {
+            console.log("Update went wrong", err);
+          });
+      } else {
       let formData = new FormData();
       formData.append("photo", tempPhoto);
       console.log("here is the temp", tempPhoto);
@@ -80,7 +97,26 @@ function Signup() {
           console.log(err);
         });
       navigate(next);
-    } else if (role === "Investor") {
+    } }else if (role === "Investor") {
+      if (tempPhoto === "") {
+        Axios.post(`http://localhost:8080/api/investor/`, {
+            name: firstName + " " + LastName,
+            email: email,
+            password: password,
+            username: username,
+            industry: industry,
+            bio: bio,
+            oldStartups: [oldStartUp],
+            amount: amount,}
+        )
+          .then((res) => {
+            console.log(res);
+            navigate(-1);
+          })
+          .catch((err) => {
+            console.log("Update went wrong", err);
+          });
+      } else {
       let formData = new FormData();
       formData.append("photo", tempPhoto);
       console.log("here is the temp", tempPhoto);
@@ -108,6 +144,7 @@ function Signup() {
           console.log(err);
         });
       navigate(next);
+      }
     } else {
       alert("Please select your role before signing up.");
     }
@@ -146,7 +183,7 @@ function Signup() {
       ) : (
         <>
           <Avatar
-            className="preview-pic"
+            className="preview-pic-login"
             alt="Profile Picture"
             src={tempPhoto ? URL.createObjectURL(tempPhoto) : ""}
             sx={{ width: 150, height: 150 }}
@@ -157,6 +194,7 @@ function Signup() {
             encType="multipart/form-data"
           >
             <input
+            className="choose-image-signup"
               type="file"
               id="file"
               onChange={(e) => setTempPhoto(e.target.files[0])}
@@ -198,6 +236,7 @@ function Signup() {
               onChange={(e) => setPassword(e.target.value)}
             />
             <textarea
+              rows="8" cols="80" 
               className="login-input"
               type="text"
               placeholder="Bio"

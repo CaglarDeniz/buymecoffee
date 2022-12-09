@@ -13,28 +13,34 @@ function MyProjects(props) {
   //TODO:  change projectList to state && use the curIndustry to perform Axios
   const emptyProject = [11, 12, 13, 14];
   const [projectInfo, setProjectInfo] = React.useState([]);
+  console.log("projectInfo", projectInfo);
   React.useEffect(() => {
     if (props.projectList?.length > 0) {
       const arrayOfPromises = props.projectList?.map((projectId) => {
         return Axios.get(`http://localhost:8080/api/project/${projectId}`);
       });
       let obj = Promise.all(arrayOfPromises);
-      obj.then((res) => {
-        let tempArr = res?.map((item) => {
-          return item.data.data[0];
+      obj
+        .then((res) => {
+          let tempArr = res?.map((item) => {
+            return item.data.data[0];
+          });
+          setProjectInfo(tempArr);
+        })
+        .catch((err) => {
+          console.log(err);
         });
-        setProjectInfo(tempArr);
-      }).catch((err)=>{console.log(err)});
     } else {
       setProjectInfo([]);
     }
   }, [props.projectList]);
   const returnCard = (projectName, projectId) => {
     let card = (
-      <Grid item xs={6} sm={6} md={3} key={projectId}>
-        <Link className="link" to={`/project/${projectId}`}>
+      <Grid item xs={12} sm={6} md={6} key={projectId}>
+        <Link className="link user-link" to={`/project/${projectId}`}>
           <Card
             sx={{
+              width:"100%",
               maxWidth: 345,
               height: "100%",
               ":hover": {
@@ -45,13 +51,10 @@ function MyProjects(props) {
             <CardMedia
               component="img"
               height="140"
-              image="/static/images/cards/contemplative-reptile.jpg"
+              image={projectInfo.photoLink}
               alt="project cover photo"
             />
 
-            {/* <Link className="link" to={`/project/${projectId}/edit`}>
-            <EditIcon className="edit-project"/>
-            </Link> */}
             <CardContent
               sx={{
                 height: 15,
@@ -83,7 +86,7 @@ function MyProjects(props) {
         container
         alignItems="stretch"
         rowSpacing={3}
-        columnSpacing={{ xs: 3, sm: 4, md: 4 }}
+        columnSpacing={{ xs: 3, sm: 4, md: 5 }}
       >
         {projectInfo?.map((proj) => {
           return returnCard(proj.name, proj._id);

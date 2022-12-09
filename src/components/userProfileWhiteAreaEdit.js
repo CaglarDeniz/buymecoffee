@@ -23,7 +23,7 @@ function UserProfileWhiteAreaEdit(props) {
   const [oldStartUp, setOldStartUp] = useState(props.person.oldStartups);
   const updateDB = () => {
     if (location.pathname.includes("/projectOwner/profile")) {
-      if (props.photoLink !== "") {
+      if (props.tempPhoto === "") {
         Axios.put(
           `http://localhost:8080/api/developer/${props.person.username}`,
           {
@@ -85,7 +85,7 @@ function UserProfileWhiteAreaEdit(props) {
           });
       }
     } else {
-      if (props.photoLink !== "") {
+      if (props.tempPhoto === "") {
         Axios.put(`http://localhost:8080/api/investor/${props.person._id}`, {
           name: props.name,
           email: email,
@@ -230,6 +230,7 @@ function UserProfileWhiteAreaEdit(props) {
       />
       <h5 className="box-text">BIO</h5>
       <textarea
+        rows="8" cols="80" 
         className="edit-input bio-input"
         type="text"
         placeholder="Enter New Bio"

@@ -1,8 +1,8 @@
-.MuiCardContent-root{
+.MuiCardContent-root {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #0077B5 ;
+    background-color: #0077B5;
     color: white;
     margin: 3%;
     border-radius: 12px;
@@ -10,27 +10,36 @@
     position: relative;
 }
 
-.MuiTypography-root{
+.MuiTypography-root {
     font-family: 'Roboto Mono', monospace !important;
     font-weight: 800 !important;
     text-align: center;
 }
 
-.MuiCard-root, .MuiPaper-root {
+.MuiCard-root,
+.MuiPaper-root {
     background-color: #CACCCE !important;
     border-radius: 12px !important;
     position: relative;
 }
 
-.link{
+.link {
     text-decoration: none;
+}
+
+.user-link {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 .grid-container {
     padding: 0% 7% 5%;
 }
 
-.filter-container{
+.filter-container {
     margin: 2.5% 5%;
 }
 
@@ -40,20 +49,23 @@
     width: auto;
 }
 
-.blue-text{
-    color: #9BDAF3  !important;
+.blue-text {
+    color: #9BDAF3 !important;
 }
 
-.sort-text{
+.sort-text {
     font-size: 1rem;
 }
 
-.my-projects-grid-container{
+.my-projects-grid-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin: 0 5% 4%;
 }
 
 
-.edit-project{
+.edit-project {
     border: 2px solid #313335;
     border-radius: 8px;
     position: absolute;
@@ -73,7 +85,7 @@
     border-radius: 8px;
 }
 
-.filter-container-small{
+.filter-container-small {
     margin: 7% auto;
     display: flex;
     align-items: center;
@@ -81,9 +93,9 @@
     flex-direction: column;
 }
 
-.sort-text-small{
+.sort-text-small {
     font-size: 14px;
-    margin:  0 0 3%;
+    margin: 0 0 3%;
 }
 
 .project-heading {
@@ -92,7 +104,7 @@
 }
 
 
-.arrow-container{
+.arrow-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
