@@ -12,32 +12,65 @@ function EditProjectContent(props){
     const [photolink, setPhotoLink] = useState(" ");
     const [ownerId, setOwnerId] = useState(" ");
     const [tempPhoto, setTempPhoto] = useState("");
+
     useEffect(() => {
         setName(props.project.name);
         setDescription(props.project.description);
         setIndustry(props.project.industry);
         setAmount(props.project.amount);
         setOwnerId(props.project.ownerId);
+        // setTempPhoto(props.project.photoLink);
         // set a photo temp variable with previous props.photo and use it in avatar
     }, [props.project.description, props.project.name, props.project.amount, props.project.industry, props.project.ownerId])
 
     //make post request to upload to get new photo and put put inside it
     const navigate = useNavigate();
-    const handleonSubmit = (event) => {
+    const handleonSubmit = (event) => {    
         event.preventDefault();
-        axios.put("http://localhost:8080/api/project/"+props.project._id, {
-                "name":name,
-                "description":description,
-                "amount": amount, 
-                "industry": industry, 
-                "ownerId": ownerId
-                // add photo link here after put completed and use the variable set in post/whatev
-        }).then( (res) =>{
-                console.log(res);
-                navigate("/projectOwner/profile/"+props.username);
-        }); 
+        if (tempPhoto === "") {
+                axios.put("http://localhost:8080/api/project/"+props.project._id, {
+                        "name":name,
+                        "description":description,
+                        "amount": amount, 
+                        "industry": industry, 
+                        "ownerId": ownerId,
+                        // add photo link here after put completed and use the variable set in post/whatev
+                }).then( (response) =>{
+                        console.log(response);
+                        navigate("/projectOwner/profile/"+props.username);
+                }).catch ( (err) => {
+                        console.log("Put request for project did not work"+err.message);
+                }); 
+        }else{
+                let formData = new FormData()
+                formData.append("photo", tempPhoto);
+                console.log("temporary project photo", tempPhoto);
+                axios.post(`http://localhost:8080/upload/`, formData, {
+                        headers:{
+                                "Content-Type": "multipart/form-data",
+                        },
+                }).then( (res) => {
+                        axios.put("http://localhost:8080/api/project/"+props.project._id, {
+                                "name":name,
+                                "description":description,
+                                "amount": amount, 
+                                "industry": industry, 
+                                "ownerId": ownerId,
+                                "photoLink": res.data.data
+                                // add photo link here after put completed and use the variable set in post/whatev
+                        }).then( (response) =>{
+                                console.log(response);
+                                navigate("/projectOwner/profile/"+props.username);
+                        }).catch ( (err) => {
+                                console.log("Put request for project did not work"+err.message);
+                        }); 
+                }).catch( (err) => {
+                        console.log("photo update did not work");
+                });
+        }
     }
-
+    console.log(tempPhoto);
+    console.log(props.project.photoLink);
     return (
         <div className='proj-greyarea'>
             <form className="project-submitform" onSubmit={handleonSubmit}>

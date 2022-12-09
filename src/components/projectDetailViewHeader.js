@@ -12,7 +12,7 @@ function ProjectDetailHeader(props) {
             navigate("/projects");
         }
         if(props.role === "developer"){
-            // console.log(props.username);
+            console.log(props.username);
             navigate("/projectOwner/profile/"+props.username);
         }
          //TODO: change this to the correct param
@@ -40,7 +40,7 @@ function ProjectDetailHeader(props) {
             </Link>
             <img   // add project picture here
                 className="project-pic"
-                src="https://i.pinimg.com/736x/af/66/74/af6674a0eff59ecde8edec24b6033b85.jpg"
+                src = {props.photo}
                 alt="UserProfilePicture"
             />
             <h3>{props.name}</h3>
