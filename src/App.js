@@ -16,6 +16,7 @@ import {useState} from "react";
 
 import { useCookies } from "react-cookie";
 import {redirectInvestor,redirectDeveloper, redirectNotLoggedIn} from "./Redirect"
+import About from "./About";
 
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
         <Route path="/projectOwner/profile/:username/edit" element={redirectInvestor(<EditUserProfile />,cookies)} />
         <Route path="/login" element={<LogIn password={password} username={username} setPassword={setPassword} setName={setName} setCookie={setCookie} role={role} setRole={setRole}/>} />
         <Route path="/signup" element={<Signup />}/>
+        <Route path="/" element={<About/>}/>
         <Route path="/submitProject" element={redirectInvestor(<SubmitProject username={username} />,cookies)} />
          {/* <Route path="/projects" element={<ProjectGallery username={username}/>} />
         <Route path="/project/:projectId" element={<ProjectDetailView role={role} />} />

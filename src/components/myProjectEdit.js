@@ -30,9 +30,9 @@ function MyProjectsEdit(props) {
       setProjectInfo([]);
     }
   }, [props.projectList]);
-  const returnCard = (projectName, projectId) => {
+  const returnCard = (projectName, projectId, photoLink) => {
     let card = (
-      <Grid  className="my-project-small-grid" item xs={12} sm={6} md={6} key={projectId}>
+      <Grid  className="my-project-small-grid" item xs={12} sm={6} md={3} key={projectId}>
         <div className=" user-link">
           <Card
             sx={{
@@ -47,7 +47,7 @@ function MyProjectsEdit(props) {
             <CardMedia
               component="img"
               height="140"
-              image="/static/images/cards/contemplative-reptile.jpg"
+              image={photoLink}
               alt="project cover photo"
             />
 
@@ -81,7 +81,7 @@ function MyProjectsEdit(props) {
   };
 
   return (
-    <div className="c">
+    <div className="my-project-wrap">
       <Grid
         container
         alignItems="stretch"
@@ -89,7 +89,7 @@ function MyProjectsEdit(props) {
         columnSpacing={{ xs: 3, sm: 4, md: 4 }}
       >
         {projectInfo?.map((proj) => {
-          return returnCard(proj.name, proj._id);
+          return returnCard(proj.name, proj._id, proj.photoLink);
         })}
 
         {projectInfo?.length < 4

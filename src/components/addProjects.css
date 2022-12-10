@@ -1,3 +1,6 @@
+.add-project{
+    width: 100%;
+}
 @media screen and (max-width: 600px) {
     .add-extra-margin {
         margin-bottom: 10% !important;

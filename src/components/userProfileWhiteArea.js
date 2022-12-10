@@ -20,11 +20,11 @@ function UserProfileWhiteArea(props) {
           <EditIcon className="edit-user" />
         </Link>
         <h5 className="box-text">Username</h5>
-        <h5>{props.person.username}</h5>
+        <h5 className="user-text">{props.person.username}</h5>
         <h5 className="box-text">Email</h5>
-        <h5>{props.person.email}</h5>
+        <h5 className="user-text">{props.person.email}</h5>
         <h5 className="box-text">Password</h5>
-        <h5>************</h5>
+        <h5 className="user-text">************</h5>
         {location.pathname.includes("/investor/profile") && (
           <h5 className="box-text">Industry</h5>
         )}
@@ -33,7 +33,7 @@ function UserProfileWhiteArea(props) {
             return <h5 key={indus}>{indus}</h5>;
           })}
         <h5 className="box-text">Bio</h5>
-        <h5>{props.person.bio}</h5>
+        <h5 className="user-text">{props.person.bio}</h5>
         {props.mode === "investor" && (
           <>
             <h5 className="box-text">Old StartUps</h5>

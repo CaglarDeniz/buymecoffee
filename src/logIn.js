@@ -74,7 +74,7 @@ function LogIn(props) {
             <div className="grey-area">
                 <img className="bmcflog-logo"
                 src={require("./components/img/BuyMeCoffeeBlue.png")}
-                alt="BuyMeCoffeeLogo"/>
+                alt="BuyMeCoffeeLogo" onClick={()=>{navigate("/")}}/>
              
                 <h3 className="login-header">Login to BuyMeCoffee</h3>
                 <form className="login-form" onSubmit={handleSubmit}>

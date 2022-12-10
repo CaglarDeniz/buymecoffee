@@ -10,7 +10,6 @@ import AddProjects from "./addProjects";
 import Axios from "axios";
 
 function MyProjects(props) {
-  //TODO:  change projectList to state && use the curIndustry to perform Axios
   const emptyProject = [11, 12, 13, 14];
   const [projectInfo, setProjectInfo] = React.useState([]);
   console.log("projectInfo", projectInfo);
@@ -34,9 +33,15 @@ function MyProjects(props) {
       setProjectInfo([]);
     }
   }, [props.projectList]);
-  const returnCard = (projectName, projectId) => {
+  const returnCard = (projectName, projectId, photoLink) => {
     let card = (
-      <Grid item xs={12} sm={6} md={6} key={projectId} className="project-add-margin">
+      <Grid
+        item
+        xs={12}
+        sm={6}
+        md={3}
+        key={projectId}
+      >
         <Link className="link user-link" to={`/project/${projectId}`}>
           <Card
             sx={{
@@ -51,7 +56,7 @@ function MyProjects(props) {
             <CardMedia
               component="img"
               height="140"
-              image={projectInfo.photoLink}
+              image={photoLink}
               alt="project cover photo"
             />
 
@@ -70,7 +75,9 @@ function MyProjects(props) {
               </Typography>
             </CardContent>
           </Card>
+
         </Link>
+
       </Grid>
     );
     return card;
@@ -81,15 +88,14 @@ function MyProjects(props) {
     return card;
   };
   return (
-    <div className="my-projects-grid-container">
+    <div class='my-project-wrap'>
       <Grid
         container
-        alignItems="stretch"
-        rowSpacing={3}
-        columnSpacing={{ xs: 3, sm: 4, md: 5 }}
+        rowSpacing={4}
+        columnSpacing={{ xs: 3, sm: 4, md: 4 }}
       >
         {projectInfo?.map((proj) => {
-          return returnCard(proj.name, proj._id);
+          return returnCard(proj.name, proj._id, proj.photoLink);
         })}
 
         {projectInfo?.length < 4

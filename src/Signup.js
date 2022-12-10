@@ -155,7 +155,7 @@ function Signup() {
       <img
         className="bmcflog-logo"
         src={require("./components/img/BuyMeCoffeeBlue.png")}
-        alt="BuyMeCoffeeLogo"
+        alt="BuyMeCoffeeLogo" onClick={()=>{navigate("/")}}
       />
 
       <h3 className="login-header">Sign up</h3>

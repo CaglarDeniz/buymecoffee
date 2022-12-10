@@ -114,7 +114,11 @@ function ResponsiveAppBar(props) {
                     : projectOwnerLinks[setting.id]
                 }
                 onClick={() => {
-                  if (setting.id === 1) props.removeCookies("papaya");
+                  if (setting.id === 1) props.removeCookie(['papaya'],{path:'/'});
+                  if (setting.id === 1) props.removeCookie(['papaya'],{path:'/buymecoffee/'});
+                  if (setting.id === 1) props.removeCookie(['papaya'],{path:'/buymecoffee/login'});
+                  if (setting.id === 1) props.removeCookie(['papaya'],{path:'/login'});
+                  if (setting.id === 1) props.removeCookie(['papaya'],{path:'/buymecoffee'});
                 }}
               >
                 <MenuItem key={setting.id} onClick={handleCloseUserMenu}>
