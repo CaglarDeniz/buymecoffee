@@ -11,7 +11,7 @@ function LogIn(props) {
         props.setName("");
         props.setPassword("");
         props.setRole("");
-    }, [props.setName, props.setPassword, props.setRole]);
+    }, [props]);
 
     const handleSubmit = (event) => {
         event.preventDefault();

@@ -24,7 +24,7 @@ function DeveloperDetailView(props){
   
     return (
         <div className="container-wrap">
-            <DeveloperDetailViewHeader name={curr_Developer.name} role={props.role}/>
+            <DeveloperDetailViewHeader name={curr_Developer.name} role={props.role} photolink={curr_Developer.photoLink}/>
             <DeveloperDetailViewContent id={curr_Developer._id} developer={curr_Developer}/>
         </div>
     );

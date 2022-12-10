@@ -24,7 +24,7 @@ function InvestorDetailView(props) {
    //const tempInvestor = {name: "Kevin O'Leary", email: "kevin@leary.com", industry: ["Technology", "Creative"], bio: "ENTREPRENEUR IN THE FIELD OF TECHNOLOGY", amount: 1000000, oldStartups: ["Startup1","Startup2", "Startup3"], photolink:""}
     return (
         <div className="investdet-wrap">
-            <InvestorDetailHeader name={curr_Investor.name} />
+            <InvestorDetailHeader name={curr_Investor.name} photolink={curr_Investor.photoLink} />
             <InvestorDetailViewBlueArea id= {curr_Investor._id} investor={curr_Investor} /> 
         </div>
     );

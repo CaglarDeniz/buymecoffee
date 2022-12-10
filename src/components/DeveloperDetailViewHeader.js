@@ -35,7 +35,7 @@ function DeveloperDetailViewHeader(props){
             </Link>
             <img
                 className="developer-pic"
-                src="https://i.pinimg.com/736x/af/66/74/af6674a0eff59ecde8edec24b6033b85.jpg"
+                src= {props.photolink}
                 alt="DeveloperProfilePicture"
             />
             <h3 className="developer-name">{props.name}</h3>
