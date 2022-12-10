@@ -52,7 +52,7 @@
     padding: 1% 2%;
     border-radius: 15px;
     color: #313335;
-    margin-bottom: 4%;
+    margin-bottom: 2%;
 }
 
 .white-area {
@@ -133,6 +133,14 @@ h5 {
     background-color: #1976d2 !important;
 }
 
+.my-project-small-grid{
+    margin: 2% 7%;
+}
+
+.my-project-wrap{
+    margin: 0 12%;
+}
+
 @media screen and (max-width: 768px) {
     .blue-area {
         border-radius: 0;
@@ -210,5 +218,4 @@ h5 {
         font-size: 1.5rem !important;
     }
 
-    /* * { border: 1px solid red !important; } */
 }
