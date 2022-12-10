@@ -35,6 +35,8 @@
     padding: 3% 5%; 
     border-radius: 15px;
     text-align: center;
+    font-weight: 800;
+    font-size: 16px;
 }
 
 .blue_inv-area{
@@ -57,24 +59,34 @@
     font-size: medium;
     padding: 0.75%  4%;
     background: #FFFFFF;
-    margin: 15px auto;
+    margin: 5% 2% 10% 2%;
     border: 3px solid #CACCCE;
     border-radius: 10px;
 }
 
 /* details of the invest - text */
 .invest-details {
-    margin: 8px auto;
-    font-size: medium;
-    padding: 2% 18%; 
+    padding: 3% 18%; 
+    margin: 4% 2%;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.invest-list-details{
+    font-weight: 500;
+    font-size: 16px;
+    margin: 2% 2%;
 }
 
 /* details of the project - box text */
 .box_i-text {
     /* width: 110px; */
     text-align: center;
-    padding: 0.5% 0.5%;
-    font-size: medium ;
+    padding: 1% 0.5%;
+    margin: 2% 2%;
+    font-size: 16px ;
+    font-style: bold;
+    font-weight: 500;
     border-radius: 15px;
     background-color: white;
     border: 3px #CACCCE solid;
@@ -90,7 +102,7 @@
     position: absolute;
     padding: 1%;
     margin-left: -80%;
-    margin-top: 2%;
+    margin-top: 4%;
     background-color: #CACCCE;
     border-radius: 8px;
 }
@@ -100,3 +112,27 @@
     color: white
 }
 
+@media screen and (max-width: 768px) {
+    .white-area {
+        border-radius: 0px 0px 0px 0px;
+    }
+    .investor-name{
+        font-weight: 700;
+        font-size: 13px;
+    }
+
+    .box_i-text{
+        font-size: 13px ;
+        font-weight: 400;
+    }
+
+    .invest-details{
+        font-weight: 400;
+        font-size: 13px;
+    }
+    
+    .invest-list-details{
+        font-weight: 400;
+        font-size: 13px;
+    }
+}
