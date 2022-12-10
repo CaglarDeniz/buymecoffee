@@ -272,7 +272,7 @@ function Signup() {
         </>
       )}
       <h5 className="goto-signup">
-        Already Signed Up? <Link to="/login">LogIn here</Link>
+        Already Signed Up? <Link to="/login" id="loginto-link">LogIn here</Link>
       </h5>
     </div>
   );

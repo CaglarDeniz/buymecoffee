@@ -36,3 +36,11 @@
     left: 3%;
     font-family: 'Montserrat', sans-serif;
 }
+
+#loginto-link{
+    color: #1967d2;
+}
+
+#loginto-link:visited {
+    color:#1967d2;
+}
