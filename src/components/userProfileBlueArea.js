@@ -26,7 +26,7 @@ function UserProfileBlueArea(props) {
           className="preview-pic"
           alt="Profile Picture"
           src={props.photoLink ? props.photoLink : ""}
-          sx={{ width: 150, height: 150 }}
+          sx={{ width: 150, height: 150, marginBottom:'3%', marginTop:'2%' }}
         />
 
         <h3 className="h3-name">{props.name}</h3>
