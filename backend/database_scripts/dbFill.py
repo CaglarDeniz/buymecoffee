@@ -396,16 +396,16 @@ def main(argv):
     ]
 
     oldStartUpsNames = [
-        "Start up1",
-        "Start up2",
-        "Start up3",
-        "Start up4",
-        "Start up5",
-        "Start up6",
-        "Start up7",
-        "Start up8",
-        "Start up9",
-        "Start up10"
+        "Innovative Sol",
+        "DigiTechX",
+        "TechStorm",
+        "CloudyWays",
+        "Automata",
+        "DataPop",
+        "Swiftology",
+        "InnoLaunch",
+        "CyberCore",
+        "SenseTech"
     ]
 
     projectNames = [
@@ -422,7 +422,8 @@ def main(argv):
         "Dominoes",
         "Dunkin",
         "Starbucks",
-        "Boeing"
+        "Boeing",
+        "Other"
     ]
 
     firstNames = [name.capitalize() for name in firstNames]
