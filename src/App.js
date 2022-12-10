@@ -22,7 +22,7 @@ import About from "./About";
 function App() {
   const [username, setName] = useState(localStorage.getItem("username") || "");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState(localStorage.getItem("role") || undefined);
+  const [role, setRole] = useState(localStorage.getItem("role") || "");
 	const [cookies,setCookie,removeCookie] = useCookies(["papaya"]);
 	
   // console.log(username)

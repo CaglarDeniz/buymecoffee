@@ -7,6 +7,11 @@ function LogIn(props) {
    
     const navigate = useNavigate();
     //const [role, setRole] = useState("");
+    useEffect ( () => {
+        props.setName("");
+        props.setPassword("");
+        props.setRole("");
+    }, [props.setName, props.setPassword, props.setRole]);
 
     const handleSubmit = (event) => {
         event.preventDefault();
