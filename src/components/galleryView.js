@@ -67,7 +67,7 @@ function GalleryView(props) {
                 component="div"
                 fontSize={14}
               >
-                {projectName.toUpperCase()}
+                {projectName}
               </Typography>
               {/* <Typography variant="body2" color="text.secondary">
           Lizards are a widespread group of squamate reptiles, with over 6,000

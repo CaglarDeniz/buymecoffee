@@ -6,7 +6,7 @@ export function Card(props) {
   return (
     <Button
       id={props.industryName}
-      className="button"
+      className="button-filter"
       onClick={() => {
         props.setCurIndustry(props.industryName);
       }}
