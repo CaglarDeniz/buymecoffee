@@ -30,14 +30,16 @@ function UserProfileBlueAreaEdit(props) {
           }
           sx={{ width: 150, height: 150, margin: "2% auto" }}
         />
+        <div className="choose-image-container">
         <input
           type="file"
           className="choose-image"
           onChange={(e) => props.setTempPhoto(e.target.files[0])}
         ></input>
-        <h5 className="box-text">NAME</h5>
+        </div>
+        <h5 className="box-text">Name</h5>
         <input
-          className="edit-input"
+          className="edit-input edit-name"
           type="text"
           placeholder="FirstName LastName"
           value={props.name || ""}

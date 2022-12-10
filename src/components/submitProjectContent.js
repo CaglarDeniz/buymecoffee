@@ -82,7 +82,7 @@ function SubmitProjectContent(props){
     return (
         <div className='proj-greyarea'>
             <form className="project-submitform" onSubmit={handleonSubmit}>
-                <Avatar className="preview-pic-projectt" alt="Project Picture"
+                <Avatar className="preview-pic-project" alt="Project Picture"
                 src={tempPhoto ? URL.createObjectURL(tempPhoto) : ""}
                 sx={{ width: 150, height: 150 }}
                 />
@@ -120,12 +120,7 @@ function SubmitProjectContent(props){
                         <option value="Software">Software</option>
                         <option value="Chemical">Chemical</option>
                 </select>
-                {/* <label className='submit-label'>Photo</label>
-                <input className="submit-field" 
-                        type="text" 
-                        placeholder="Project Photo" 
-                        value={photolink} 
-                        onChange={(e) => setPhotoLink(e.target.value)}/> */}
+               
                 <label className='submit-label'>Investment Amount Required</label>
                 <input className="submit-field" 
                         type="text" 

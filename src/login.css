@@ -70,6 +70,14 @@
     text-decoration: none;
 }
 
+#signup-link{
+    color: #1967d2;
+}
+
+#signup-link:visited{
+    color: #1967d2;
+}
+
 .toggle_case, .login-button:active, .login-button:focus{
     background-color: white !important;
     border: #1976d2 solid 4px !important;
