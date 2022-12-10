@@ -28,8 +28,8 @@
     text-decoration: none;
 }
 
+
 .user-link {
-    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -112,6 +112,15 @@
     justify-content: center;
 }
 
-.c{
-    margin: 0 5% !important;
+/* .c{
+    margin: 0 10% !important;
+} */
+
+.card-wrap{
+    margin: 0 5%;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    width: 50%;
 }
+
