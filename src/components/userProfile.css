@@ -16,14 +16,15 @@
 .container-wrap {
     margin: 0% auto 5%;
 }
-.choose-image{
+
+.choose-image {
     position: relative;
     left: 3%;
     font-family: 'Montserrat', sans-serif;
     color: white;
 }
 
-.edit-input{
+.edit-input {
     padding: 0.5%;
     border-radius: 10px;
     font-family: 'Montserrat', sans-serif;
@@ -48,9 +49,10 @@
 .h3-name {
     background-color: #D9D9D9;
     width: max-content;
-    padding: 3% 10%;
+    padding: 1% 2%;
     border-radius: 15px;
     color: #313335;
+    margin-bottom: 4%;
 }
 
 .white-area {
@@ -63,7 +65,7 @@
 
 h5 {
     margin: 8px 15%;
-    font-weight:500;
+    font-weight: 500;
     font-size: 16px;
 }
 
@@ -75,7 +77,7 @@ h5 {
     background-color: #313335;
     border: 3px #CACCCE solid;
     color: white;
-    margin: 1.25% 0;
+    margin: 1.25% auto;
 }
 
 .edit-user {
@@ -99,6 +101,7 @@ h5 {
     background-color: #CACCCE;
     border-radius: 8px;
 }
+
 .back-icon-edit {
     position: absolute;
     padding: 1%;
@@ -108,16 +111,104 @@ h5 {
     border-radius: 8px;
 }
 
-.back-icon:hover, .back-icon-edit:hover{
+.back-icon:hover,
+.back-icon-edit:hover {
     background-color: #313335;
     color: white;
 }
-.oldStartUp-container{
+
+.oldStartUp-container {
     display: flex;
     align-items: space-between;
-    justify-content: space-between;;
+    justify-content: space-between;
+    ;
 }
-.startup-name{
+
+.startup-name {
     margin: 0 15%;
     width: 175px;
+}
+
+.button {
+    background-color: #1976d2 !important;
+}
+
+@media screen and (max-width: 768px) {
+    .blue-area {
+        border-radius: 0;
+    }
+
+    .blue-area-edit {
+        border-radius: 0;
+    }
+
+    textarea {
+        height: 12em;
+        width: 30em;
+    }
+
+    .box-text {
+        margin: 3% auto;
+    }
+
+    .button {
+        margin-top: 3% !important;
+        background-color: #1976d2 !important;
+    }
+
+    .edit-name {
+        margin-bottom: 1%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    textarea {
+        height: 10em;
+        width: 18em;
+    }
+
+    .box-text {
+        margin: 5% auto;
+        font-size: 14px;
+    }
+
+    .button {
+        margin: 7% auto !important;
+        position: relative !important;
+        order: 1;
+        font-size: 14px !important;
+        left: 0px;
+    }
+
+    .edit-name {
+        margin-bottom: 5%;
+    }
+    .choose-image-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .choose-image {
+        font-size: 10px;
+        width: 70%;
+        align-self: center;
+    }
+
+    .last-item-mobile {
+        margin-bottom: 7%;
+    }
+
+    .back-icon-edit {
+        margin-top: 5% !important;
+    }
+
+    .edit-user{
+        margin-right: 8%;
+        margin-top: 5%;
+        font-size: 1.5rem !important;
+    }
+
+    /* * { border: 1px solid red !important; } */
 }

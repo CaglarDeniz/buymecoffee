@@ -11,7 +11,6 @@ import Axios from "axios";
 
 function UserProfileWhiteAreaEdit(props) {
   const location = useLocation();
-  //TODO: Change this to Axios call
   console.log(props.person.password)
   const navigate = useNavigate();
   const [username, setUsername] = useState(props.person.username);
@@ -189,10 +188,10 @@ function UserProfileWhiteAreaEdit(props) {
             right: "5%",
           }}
         >
-          SUBMIT
+          Submit
         </Button>
       </ThemeProvider>
-      <h5 className="box-text">USERNAME</h5>
+      <h5 className="box-text">Username</h5>
       <input
         className="edit-input"
         type="text"
@@ -204,7 +203,7 @@ function UserProfileWhiteAreaEdit(props) {
           setChangeMade(true);
         }}
       />
-      <h5 className="box-text">EMAIL</h5>
+      <h5 className="box-text">Email</h5>
       <input
         className="edit-input"
         type="text"
@@ -212,7 +211,7 @@ function UserProfileWhiteAreaEdit(props) {
         value={email || ""}
         onChange={(e) => setEmail(e.target.value)}
       />
-      <h5 className="box-text">PASSWORD</h5>
+      <h5 className="box-text">Password</h5>
       <input
         className="edit-input"
         type="text"
@@ -220,7 +219,7 @@ function UserProfileWhiteAreaEdit(props) {
         value={password || ""}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <h5 className="box-text">INDUSTRY</h5>
+      <h5 className="box-text">Industry</h5>
       <input
         className="edit-input"
         type="text"
@@ -228,18 +227,18 @@ function UserProfileWhiteAreaEdit(props) {
         value={industry || ""}
         onChange={(e) => setIndustry(e.target.value)}
       />
-      <h5 className="box-text">BIO</h5>
+      <h5 className="box-text">Bio</h5>
       <textarea
         rows="8" cols="80" 
-        className="edit-input bio-input"
+        className="edit-input bio-input profile-bio"
         type="text"
         placeholder="Enter New Bio"
         value={bio || ""}
         onChange={(e) => setBio(e.target.value)}
       />
-      {location.pathname.includes("/investor/profile") ? (
+      {location.pathname.includes("/investor/profile") && (
         <>
-          <h5 className="box-text">OLD STARTUPS</h5>
+          <h5 className="box-text">Old StartUps</h5>
 
           <input
             className="edit-input"
@@ -249,10 +248,11 @@ function UserProfileWhiteAreaEdit(props) {
             onChange={(e) => setOldStartUp([e.target.value])}
           />
         </>
-      ) : (
+      )}
+      {location.pathname.includes("/projectOwner/profile") && (
         <>
-          <h4 className="box-text">MY PROJECTS</h4>
-          <MyProjectsEdit projectList={props.person.projectId} />
+          <h5 className="box-text my-project-small">My Projects</h5>
+          <MyProjectsEdit className="my-project-small-grid" projectList={props.person.projectId} />
         </>
       )}
     </div>

@@ -32,7 +32,7 @@ function MyProjectsEdit(props) {
   }, [props.projectList]);
   const returnCard = (projectName, projectId) => {
     let card = (
-      <Grid item xs={12} sm={6} md={6} key={projectId}>
+      <Grid  className="my-project-small-grid" item xs={12} sm={6} md={6} key={projectId}>
         <div className=" user-link">
           <Card
             sx={{
@@ -81,7 +81,7 @@ function MyProjectsEdit(props) {
   };
 
   return (
-    <div className="my-projects-grid-container">
+    <div className="c">
       <Grid
         container
         alignItems="stretch"
