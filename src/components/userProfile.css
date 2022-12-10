@@ -28,6 +28,7 @@
     padding: 0.5%;
     border-radius: 10px;
     font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
 }
 
 
@@ -52,6 +53,7 @@
     padding: 1% 2%;
     border-radius: 15px;
     color: #313335;
+    margin-top: 0;
     margin-bottom: 2%;
 }
 
@@ -60,16 +62,16 @@
     flex-direction: column;
     align-items: center;
     position: relative;
-
 }
 
-h5 {
+.user-text {
     margin: 8px 15%;
     font-weight: 500;
     font-size: 16px;
 }
 
 .box-text {
+
     width: 110px;
     text-align: center;
     padding: 0.5% 0.25%;
@@ -93,15 +95,7 @@ h5 {
     font-size: 2.5rem !important;
 }
 
-.back-icon {
-    position: absolute;
-    padding: 1%;
-    margin-left: -80%;
-    margin-top: 2%;
-    background-color: #CACCCE;
-    border-radius: 8px;
-}
-
+.back-icon,
 .back-icon-edit {
     position: absolute;
     padding: 1%;
@@ -133,11 +127,11 @@ h5 {
     background-color: #1976d2 !important;
 }
 
-.my-project-small-grid{
+.my-project-small-grid {
     margin: 2% 7%;
 }
 
-.my-project-wrap{
+.my-project-wrap {
     margin: 0 12%;
 }
 
@@ -181,7 +175,7 @@ h5 {
     }
 
     .button {
-        margin: 7% auto !important;
+        margin: 0% auto 5% !important;
         position: relative !important;
         order: 1;
         font-size: 14px !important;
@@ -191,7 +185,8 @@ h5 {
     .edit-name {
         margin-bottom: 5%;
     }
-    .choose-image-container{
+
+    .choose-image-container {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -212,7 +207,7 @@ h5 {
         margin-top: 5% !important;
     }
 
-    .edit-user{
+    .edit-user {
         margin-right: 8%;
         margin-top: 5%;
         font-size: 1.5rem !important;
