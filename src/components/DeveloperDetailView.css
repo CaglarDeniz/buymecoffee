@@ -2,7 +2,7 @@
     border-radius: 0 0 300px 300px;
     margin-bottom: 2%;
     position: relative;
-    background-color: #0077b5;
+    background-color: #1967d2;
 
 }
 
@@ -30,7 +30,8 @@
 }
 
 .developer-name{
-
+    font-weight: 800;
+    font-size: large;
     color: white;
     padding: 3% 5%; 
     border-radius: 15px;
@@ -49,14 +50,17 @@
 .dev-details {
     margin: 8px auto;
     font-size: medium;
-    padding: 2% 18%; 
+    padding: 2% 18%;
+    font-weight: 500;
+    font-size: 16px; 
 }
 
 .box_dev-text {
     /* width: 110px; */
+    font-weight: 500;
+    font-size: 16px;
     text-align: center;
-    padding: 0.5% 0.5%;
-    font-size: medium ;
+    padding: 1% 2%;
     border-radius: 15px;
     background-color: #313335;;
     border: 3px #CACCCE solid;
@@ -67,7 +71,7 @@
     position: absolute;
     padding: 1%;
     margin-left: 10%;
-    margin-top: 2%;
+    margin-top: 5%;
     background-color: #CACCCE;
     border-radius: 8px;
     color: black;
@@ -76,4 +80,22 @@
 .backdev-icon:hover{
     background-color: white;
     color:black;
+}
+
+@media screen and (max-width: 768px) {
+    .devheader-area{
+        border-radius: 0px 0px 0px 0px;
+    }
+    .developer-name {
+        font-weight: 700;
+        font-size: medium;
+    }
+    .box_dev-text {
+        font-size: 13px;
+        font-weight: 400;
+    }
+    .dev-details {
+        font-size: 13px;
+        font-weight: 400;
+    }
 }

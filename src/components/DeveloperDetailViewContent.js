@@ -8,7 +8,7 @@ function DeveloperDetailViewContent(props) {
         <div className="devwhite-area">
             <h5 className="box_dev-text">Industry</h5>
             {props.developer.industry?.map((indus) => {
-            return <h5 key={indus}>{indus}</h5>;
+            return <h5 className='dev-details' key={indus}>{indus}</h5>;
             })}
             <h5 className="box_dev-text">Bio</h5>
             <h5 className='dev-details'>{props.developer.bio}</h5>

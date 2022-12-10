@@ -38,7 +38,7 @@ function DeveloperDetailViewHeader(props){
                 src="https://i.pinimg.com/736x/af/66/74/af6674a0eff59ecde8edec24b6033b85.jpg"
                 alt="DeveloperProfilePicture"
             />
-            <h3 className="develepor-name">{props.name}</h3>
+            <h3 className="developer-name">{props.name}</h3>
             </div>
         </div>
     );

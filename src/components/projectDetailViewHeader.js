@@ -43,7 +43,7 @@ function ProjectDetailHeader(props) {
                 src = {props.photo}
                 alt="UserProfilePicture"
             />
-            <h3>{props.name}</h3>
+            <h3 className="proj-name">{props.name}</h3>
             </div>
         </div>
     );
