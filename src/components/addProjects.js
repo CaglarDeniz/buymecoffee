@@ -2,10 +2,11 @@ import AddIcon from "@mui/icons-material/Add";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import { Link } from "react-router-dom";
+import "./addProjects.css";
 
 function AddProjects(props) {
     return (
-        <Grid item xs={12} sm={6} md={6} key={props.id}>
+        <Grid className="add-extra-margin" item xs={12} sm={6} md={6} key={props.id}>
         <Link className="link user-link" to={`/submitProject`}>
           <Card 
             sx={{

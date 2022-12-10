@@ -36,11 +36,11 @@ function MyProjects(props) {
   }, [props.projectList]);
   const returnCard = (projectName, projectId) => {
     let card = (
-      <Grid item xs={12} sm={6} md={6} key={projectId}>
+      <Grid item xs={12} sm={6} md={6} key={projectId} className="project-add-margin">
         <Link className="link user-link" to={`/project/${projectId}`}>
           <Card
             sx={{
-              width:"100%",
+              width: "100%",
               maxWidth: 345,
               height: "100%",
               ":hover": {
