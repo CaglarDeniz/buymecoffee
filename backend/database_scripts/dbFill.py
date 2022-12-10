@@ -559,7 +559,7 @@ def main(argv):
 
         # Pick a random first name and last name
 
-        name = sample(projectNames,1)[0] + sample(["x",".","+"],1)[0] + sample(projectNames,1)[0]
+        name = sample(projectNames,1)[0] + " " + sample(["x",".","+"],1)[0] + " " +sample(projectNames,1)[0]
         industry = sample(industryNames,1)[0]
 
         response = openai.Completion.create(
