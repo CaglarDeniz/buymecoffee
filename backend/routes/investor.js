@@ -80,7 +80,7 @@ investorRoute.post(async function (req, res) {
               bio: 'bio' in req.body ? req.body.bio : "",
               oldStartups: 'oldStartups' in req.body ? req.body.oldStartups : [],
               amount: 'amount' in req.body ? req.body.amount : null,
-              photoLink:'photoLink' in req.body ? req.body.photoLink : "https://drive.google.com/file/d/1hW1CYKPolAG7qu92eTXAxaJRjd7JdRjI/view?usp=sharing"},
+              photoLink:'photoLink' in req.body ? req.body.photoLink : "https://gitlab.com/CaglarDeniz/buymecoffee/-/raw/main/Assets/2.png"},
              async function (err, result) {
               if (err){
                 res.status(500).json({

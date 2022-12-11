@@ -94,7 +94,7 @@ devRoute.post(async function(req, res) {
           industry: [],
           bio: 'bio' in req.body ? req.body.bio : "",
           projectId: 'projectId' in req.body ? req.body.projectId : [],
-          photoLink: 'photoLink' in req.body ? req.body.photoLink : "https://drive.google.com/file/d/1VeWQQZYmjOWkabidE6bi2ohBDtY51CCX/view?usp=sharing",
+          photoLink: 'photoLink' in req.body ? req.body.photoLink : "https://gitlab.com/CaglarDeniz/buymecoffee/-/raw/main/Assets/3.png"
         })
 
         // console.log(newDev);
