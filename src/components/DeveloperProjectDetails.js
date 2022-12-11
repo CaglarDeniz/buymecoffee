@@ -7,6 +7,7 @@ import Typography from "@mui/material/Typography";
 import "./galleryView.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import BackendURL from "../BackendURL";
 
 function DeveloperProjectDetails(props) {
   //TODO:  change projectList to state && use the curIndustry to perform Axios
@@ -23,7 +24,7 @@ function DeveloperProjectDetails(props) {
     if(props.projectList?.length > 0){
       const promisesArray = props.projectList?.map
       ( (projectId) => {
-        return axios.get(`http://localhost:8080/api/project/${projectId}`);
+        return axios.get(BackendURL + `/api/project/${projectId}`);
       });
       let obj = Promise.all(promisesArray);
       obj.then((res) => {

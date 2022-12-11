@@ -67,7 +67,7 @@ app.use('/api/',bodyParser.urlencoded({
 app.use('/api/',bodyParser.json());
 
 const upload = multer({storage: storage});
-const baseImageUrl = "http://localhost:8080/images/"
+const baseImageUrl = "https://buymecoffeebackend-ywe6xuafda-uc.a.run.app/images/"
 
 app.post('/upload',upload.single('photo'), (req,res) => {
 	console.log(req.file);

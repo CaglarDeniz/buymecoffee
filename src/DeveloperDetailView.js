@@ -3,13 +3,14 @@ import DeveloperDetailViewHeader from './components/DeveloperDetailViewHeader.js
 import DeveloperDetailViewContent from "./components/DeveloperDetailViewContent.js";
 import './components/DeveloperDetailView.css';
 import axios from 'axios';
+import BackendURL from './BackendURL';
 import {useState, useEffect} from 'react';
 
 function DeveloperDetailView(props){
     let params = useParams();
     const [curr_Developer, setDeveloper] = useState([]);
     
-    let DeveloperEndpoint = 'http://localhost:8080/api/developer/single_developer/';
+    let DeveloperEndpoint = BackendURL + '/api/developer/single_developer/';
     //const tempDeveloper = {name: "Elon Musk", email: "elon@musk.com", industry: ["Technology"], bio: "Developer in field of Tech", projectId: [1234, 122, 2], photolink:"", cookieString: "", cookieExpDate: new Date()}
     useEffect ( () => {
         axios.get(DeveloperEndpoint+params.projectOwnerId).then( (res) => {

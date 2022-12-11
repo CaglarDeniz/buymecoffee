@@ -2,9 +2,10 @@ import "./login.css";
 import {useNavigate} from 'react-router-dom';
 import { useEffect } from "react";
 import {Link} from 'react-router-dom';
+import BackendURL from "./BackendURL";
 import axios from 'axios';
 function LogIn(props) {
-   
+
     const navigate = useNavigate();
     //const [role, setRole] = useState("");
     // useEffect ( () => {
@@ -19,7 +20,7 @@ function LogIn(props) {
         axios.defaults.withCredentials = true;
         localStorage.setItem("role", props.role);
         if(props.role === "developer"){
-            axios.post(`http://localhost:8080/api/auth_developer/`, {username: props.username, password:props.password},{withCredentials:true}).then( res => {
+            axios.post(BackendURL + '/api/auth_developer/', {username: props.username, password:props.password},{withCredentials:true}).then( res => {
 								//console.log(res);
                // console.log(res.data.data);
                 if(res.data.data === true){
@@ -33,7 +34,7 @@ function LogIn(props) {
             });
         }
         if (props.role === "investor"){
-            axios.post(`http://localhost:8080/api/auth_investor/`, {username: props.username, password:props.password},{withCredentials:true}).then( res => {
+            axios.post(BackendURL + '/api/auth_investor/', {username: props.username, password:props.password},{withCredentials:true}).then( res => {
                 //console.log(res.data.data);
                 if(res.data.data === true){
                     props.setCookie("papaya",0,{sameSite:"lax"})
