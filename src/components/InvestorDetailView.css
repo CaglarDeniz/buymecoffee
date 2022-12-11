@@ -7,7 +7,7 @@
 }
 
 .investdet-wrap{
-    background-color: #1967d2;
+    background-color: #1976d2;
     position: relative;
 }
 
@@ -29,7 +29,7 @@
 }
 
 .investor-name{
-    background-color: #1967d2;
+    background-color: #1976d2;
     color: white;
     padding: 3% 5%; 
     border-radius: 15px;
@@ -45,7 +45,7 @@
     justify-content: space-between;
     position: relative;
     color: white;
-    background-color: #1967d2;
+    background-color: #1976d2;
     margin: 0;
 }
 
@@ -107,7 +107,7 @@
 }
 
 .back2-icon:hover{
-    background-color: #1967d2;
+    background-color: #1976d2;
     color: white
 }
 
