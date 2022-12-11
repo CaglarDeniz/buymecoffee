@@ -1,0 +1,28 @@
+.dark-container{
+    text-align: center;
+    color: black;
+}
+
+.container-flex{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.tag-line{
+    font-style: italic;
+}
+
+.feature-pic{
+    width: 80%;
+}
+
+@media screen and (max-width: 500px) {
+    .container-flex{
+        flex-direction: column;
+        row-gap: 20px;
+        margin: 20px auto;
+    }
+
+
+}

@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 function LogIn(props) {
-   
+
     const navigate = useNavigate();
     //const [role, setRole] = useState("");
     // useEffect ( () => {
