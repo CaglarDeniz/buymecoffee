@@ -7,8 +7,8 @@ function AboutPageWhiteBg() {
 
   return (
     <div className="white-container">
-      <h2>Every coffee can lead to an investment opportunity.</h2>
-      <h2>Sign Up to BuyMeCoffee Now</h2>
+      <h2 className="tag-line-con">Every coffee can lead to an investment opportunity.</h2>
+      <h2 className="tag-line-con">Sign Up to BuyMeCoffee Now</h2>
       <div className="button-container">
       <Button className="buttons" variant="contained"     onClick={() => {
             navigate("/login");
