@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router';
 import './submitProject.css';
 import axios from 'axios';
 import Avatar from "@mui/material/Avatar";
+import BackendURL from '../BackendURL';
 
 function SubmitProjectContent(props){
     const [name, setName] = useState("");
@@ -22,10 +23,10 @@ function SubmitProjectContent(props){
                 return;
         }
         if(tempPhoto === ""){
-                axios.get("http://localhost:8080/api/developer/"+props.username).then( (res) =>{
+                axios.get(BackendURL + "/api/developer/"+props.username).then( (res) =>{
                         //console.log(res.data.data._id);
                         //setOwnerId(res.data.data._id);
-                        axios.post("http://localhost:8080/api/project", {
+                        axios.post(BackendURL + "/api/project", {
                                 "name": name, 
                                 "industry": industry,
                                 "description": description,
@@ -46,16 +47,16 @@ function SubmitProjectContent(props){
                 let formData = new FormData()
                 formData.append("photo", tempPhoto);
                 console.log("temporary project photo", tempPhoto);
-                axios.post(`http://localhost:8080/upload/`, formData, {
+                axios.post(BackendURL + '/upload/', formData, {
                         headers:{
                                 "Content-Type": "multipart/form-data",
                         },
                 }).then( (res) => {
                         console.log("try to check post", res);
-                        axios.get("http://localhost:8080/api/developer/"+props.username).then( (response) =>{
+                        axios.get(BackendURL + "/api/developer/"+props.username).then( (response) =>{
                                 //console.log(res.data.data._id);
                                 //setOwnerId(res.data.data._id);
-                                axios.post("http://localhost:8080/api/project", {
+                                axios.post(BackendURL + "/api/project", {
                                       "name": name, 
                                       "industry": industry,
                                       "description": description,

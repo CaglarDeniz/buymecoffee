@@ -4,6 +4,7 @@ import ProjectDetailViewBlueArea from "./components/projectDetailViewBlueArea";
 import './components/projectDetailView.css';
 import axios from  'axios';
 import {useState, useEffect} from 'react';
+import BackendURL from './BackendURL';
 
 function ProjectDetailView(props) {
     let params = useParams();
@@ -11,7 +12,7 @@ function ProjectDetailView(props) {
     const [curr_Project,setProject] = useState({});
 
     //const tempProject = {name:'Facebook x Tesla', description:'FACEBOOK X TESLA is a Project that combines tesla\'s advances in techware with facebook\'s current strategies to be able to enable more technology accessibility to those around.', ownerId:12, photoLink:"", amount:500000 , industry: "Technology", cookieString:'', cookieExpDate: new Date() }
-    let projectEndpoint = 'http://localhost:8080/api/project/';
+    let projectEndpoint = BackendURL + '/api/project/';
     useEffect ( () => {
         axios.get(projectEndpoint+params.projectId).then( (res) =>{
             //console.log(res);

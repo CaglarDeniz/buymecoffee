@@ -10,6 +10,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { Link, useLocation } from "react-router-dom";
 import "./navbar.css";
 import Axios from "axios";
+import BackendURL from "../BackendURL";
 
 // import {deleteCookies} from "../Redirect"
 
@@ -27,7 +28,7 @@ function ResponsiveAppBar(props) {
   );
   React.useEffect(() => {
     if (location.pathname.includes("/investor")) {
-      Axios.get(`http://localhost:8080/api/developer/${props.username}`)
+      Axios.get(BackendURL + '/api/developer/${props.username}')
         .then((res) => {
           console.log("photos", res.data.data);
           setPhotoLink(res.data.data.photoLink);
@@ -37,7 +38,7 @@ function ResponsiveAppBar(props) {
         });
     } else {
       Axios.get(
-        `http://localhost:8080/api/investor/single_investor/${props.username}`
+        BackendURL + '/api/investor/single_investor/${props.username}'
       )
         .then((res) => {
           console.log("photos investor", res.data.data[0].photoLink);

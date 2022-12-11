@@ -6,6 +6,7 @@ import Axios from "axios";
 import React from "react";
 import { useState } from "react";
 import "./components/userProfile.css";
+import BackendURL from "./BackendURL";
 
 function EditUserProfile(props) {
   let params = useParams();
@@ -18,7 +19,7 @@ function EditUserProfile(props) {
     if (location.pathname.includes("/investor/profile")) {
       setMode("investor");
       Axios.get(
-        `http://localhost:8080/api/investor/single_investor/${params.username}`
+        BackendURL + '/api/investor/single_investor/${params.username}'
       )
         .then((res) => {
           console.log(res.data.data[0]);
@@ -29,7 +30,7 @@ function EditUserProfile(props) {
         });
     } else {
       setMode("projectOwner");
-      Axios.get(`http://localhost:8080/api/developer/${params.username}`)
+      Axios.get( BackendURL + '/api/developer/${params.username}')
         .then((res) => {
           console.log(res.data.data);
           setInvestor(res.data.data);

@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import axios from 'axios';
 import Avatar from "@mui/material/Avatar";
+import BackendURL from '../BackendURL';
 
 function EditProjectContent(props){
     const [name, setName] = useState(" ");
@@ -28,7 +29,7 @@ function EditProjectContent(props){
     const handleonSubmit = (event) => {    
         event.preventDefault();
         if (tempPhoto === "") {
-                axios.put("http://localhost:8080/api/project/"+props.project._id, {
+                axios.put(BackendURL + "/api/project/"+props.project._id, {
                         "name":name,
                         "description":description,
                         "amount": amount, 
@@ -45,12 +46,12 @@ function EditProjectContent(props){
                 let formData = new FormData()
                 formData.append("photo", tempPhoto);
                 console.log("temporary project photo", tempPhoto);
-                axios.post(`http://localhost:8080/upload/`, formData, {
+                axios.post(BackendURL + '/upload/', formData, {
                         headers:{
                                 "Content-Type": "multipart/form-data",
                         },
                 }).then( (res) => {
-                        axios.put("http://localhost:8080/api/project/"+props.project._id, {
+                        axios.put(BackendURL + "/api/project/"+props.project._id, {
                                 "name":name,
                                 "description":description,
                                 "amount": amount, 

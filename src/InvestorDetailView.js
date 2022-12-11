@@ -4,13 +4,14 @@ import './components/InvestorDetailView.css';
 import InvestorDetailViewBlueArea from "./components/InvestorDetailViewBlueArea";
 import axios from 'axios';
 import {useEffect, useState} from 'react';
+import BackendURL from "./BackendURL";
 
 function InvestorDetailView(props) {
     let params = useParams();
     //console.log("params", params);
     const [curr_Investor, setInvestor] = useState({});
 
-    let investorEndpoint = 'http://localhost:8080/api/investor/'
+    let investorEndpoint = BackendURL + '/api/investor/';
 
     useEffect (() => {
         axios.get(investorEndpoint+params.investorId).then( (res) =>{

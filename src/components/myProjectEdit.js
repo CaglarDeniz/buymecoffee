@@ -8,6 +8,7 @@ import "./galleryView.css";
 import { Link } from "react-router-dom";
 import EditIcon from "@mui/icons-material/Edit";
 import AddProjects from "./addProjects";
+import BackendURL from "../BackendURL";
 import Axios from "axios";
 
 function MyProjectsEdit(props) {
@@ -17,7 +18,7 @@ function MyProjectsEdit(props) {
   React.useEffect(() => {
     if (props.projectList?.length > 0) {
       const arrayOfPromises = props.projectList?.map((projectId) => {
-        return Axios.get(`http://localhost:8080/api/project/${projectId}`);
+        return Axios.get(BackendURL + '/api/project/${projectId}');
       });
       let obj = Promise.all(arrayOfPromises);
       obj.then((res) => {

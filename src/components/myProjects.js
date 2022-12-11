@@ -8,6 +8,7 @@ import "./galleryView.css";
 import { Link } from "react-router-dom";
 import AddProjects from "./addProjects";
 import Axios from "axios";
+import BackendURL from "../BackendURL";
 
 function MyProjects(props) {
   const emptyProject = [11, 12, 13, 14];
@@ -16,7 +17,7 @@ function MyProjects(props) {
   React.useEffect(() => {
     if (props.projectList?.length > 0) {
       const arrayOfPromises = props.projectList?.map((projectId) => {
-        return Axios.get(`http://localhost:8080/api/project/${projectId}`);
+        return Axios.get(BackendURL + '/api/project/${projectId}');
       });
       let obj = Promise.all(arrayOfPromises);
       obj

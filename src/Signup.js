@@ -4,6 +4,7 @@ import { useState } from "react";
 import SelectAutoWidth from "./components/selectButton";
 import Axios from "axios";
 import Avatar from "@mui/material/Avatar";
+import BackendURL from "./BackendURL";
 
 function Signup() {
   const navigate = useNavigate();
@@ -53,7 +54,7 @@ function Signup() {
     let next = "/login";
     if (role === "Project Owner") {
       if (tempPhoto === "") {
-        Axios.post(`http://localhost:8080/api/developer/`, {
+        Axios.post(BackendURL + '/api/developer/', {
           name: firstName + " " + LastName,
           email: email,
           password: password,
@@ -72,7 +73,7 @@ function Signup() {
       let formData = new FormData();
       formData.append("photo", tempPhoto);
       console.log("here is the temp", tempPhoto);
-      Axios.post(`http://localhost:8080/upload/`, formData, {
+      Axios.post(BackendURL + '/upload/', formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -81,7 +82,7 @@ function Signup() {
           console.log("second post", res);
           // setPhotoLink(res.data.data);
           // console.log("image photo link", res.data);
-          Axios.post(`http://localhost:8080/api/developer/`, {
+          Axios.post(BackendURL + '/api/developer/', {
             name: firstName + " " + LastName,
             email: email,
             password: password,
@@ -99,7 +100,7 @@ function Signup() {
       navigate(next);
     } }else if (role === "Investor") {
       if (tempPhoto === "") {
-        Axios.post(`http://localhost:8080/api/investor/`, {
+        Axios.post(BackendURL + '/api/investor/', {
             name: firstName + " " + LastName,
             email: email,
             password: password,
@@ -120,13 +121,13 @@ function Signup() {
       let formData = new FormData();
       formData.append("photo", tempPhoto);
       console.log("here is the temp", tempPhoto);
-      Axios.post(`http://localhost:8080/upload/`, formData, {
+      Axios.post(BackendURL + '/upload/', formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       })
         .then((res) => {
-          Axios.post(`http://localhost:8080/api/investor/`, {
+          Axios.post(BackendURL + '/api/investor/', {
             name: firstName + " " + LastName,
             email: email,
             password: password,

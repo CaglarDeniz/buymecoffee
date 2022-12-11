@@ -7,19 +7,20 @@ import Typography from "@mui/material/Typography";
 import "./galleryView.css";
 import { Link } from "react-router-dom";
 import Axios from "axios";
+import BackendURL from "../BackendURL";
 
 function GalleryView(props) {
   const [projectList, setProjectList] = React.useState([]);
   React.useEffect(()=>{
     let industry = props.curIndustry === 'none' ? {}:{industry:props.curIndustry}
     if(props.mode !== 'investor') {
-    let url = `http://localhost:8080/api/project?where=${JSON.stringify(industry)}`
+    let url = BackendURL + '/api/project?where=${JSON.stringify(industry)}'
     Axios.get(url).then((res)=>{
       // console.log(res.data.data)
       setProjectList(res.data.data)
     }).catch((err)=>{console.log(err)})}
     else {
-      let url = `http://localhost:8080/api/investor?where=${JSON.stringify(industry)}`
+      let url =  BackendURL + '/api/investor?where=${JSON.stringify(industry)}'
       Axios.get(url).then((res)=>{
         // console.log(res.data.data)
         setProjectList(res.data.data)
@@ -29,13 +30,13 @@ function GalleryView(props) {
 
   React.useEffect(()=>{
     if(props.mode !== 'investor') {
-    let url = `http://localhost:8080/api/project`
+    let url = BackendURL + '/api/project'
     Axios.get(url).then((res)=>{
       // console.log(res.data.data)
       setProjectList(res.data.data)
     }).catch((err)=>{console.log(err)})
   } else {
-    let url = `http://localhost:8080/api/investor`
+    let url = BackendURL + '/api/investor'
     Axios.get(url).then((res)=>{
       // console.log(res.data.data)
       setProjectList(res.data.data)

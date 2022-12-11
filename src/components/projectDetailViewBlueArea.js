@@ -2,6 +2,7 @@ import './projectDetailView.css';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import {useState, useEffect} from 'react';
+import BackendURL from '../BackendURL';
 
 function ProjectDetailViewBlueArea(props) {
     let projectOwner_id = props.project.ownerId;
@@ -10,7 +11,7 @@ function ProjectDetailViewBlueArea(props) {
     const [developerEmail, setEmail] = useState("");
 
     useEffect( () => {
-        axios.get("http://localhost:8080/api/developer/single_developer/"+props.project.ownerId).then( (res) => {
+        axios.get(BackendURL + "/api/developer/single_developer/"+props.project.ownerId).then( (res) => {
             //console.log(res.data.data.name);
             setDeveloper(res.data.data.name);
             setEmail(res.data.data.email);
