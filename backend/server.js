@@ -67,7 +67,7 @@ app.use('/api/',bodyParser.urlencoded({
 app.use('/api/',bodyParser.json());
 
 const upload = multer({storage: storage});
-const baseImageUrl = "http://localhost:8080/images/"
+const baseImageUrl = "https://caglardeniz.gitlab.io/images/"
 
 app.post('/upload',upload.single('photo'), (req,res) => {
 	console.log(req.file);
