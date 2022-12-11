@@ -124,14 +124,14 @@
     }
     .box_d-text {
         font-size: small;
-        margin: 1% 0%;
-        padding: 1% 18%; 
+        margin: 2% 0%;
+        padding: 2% 0.25%; 
     }
     .proj-details {
         font-size: 12px;
         font-weight: 300;
         margin: 2% 0%;
-        padding: 2% 18%; 
+        padding: 2% 15%; 
     }
 
     .buy-coffee {
