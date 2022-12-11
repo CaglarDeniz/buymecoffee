@@ -14,7 +14,7 @@ function GalleryView(props) {
   React.useEffect(()=>{
     let industry = props.curIndustry === 'none' ? {}:{industry:props.curIndustry}
     if(props.mode !== 'investor') {
-    let url = BackendURL + '/api/project?where=${JSON.stringify(industry)}'
+    let url = BackendURL + `/api/project?where=${JSON.stringify(industry)}`
     Axios.get(url).then((res)=>{
       // console.log(res.data.data)
       setProjectList(res.data.data)
