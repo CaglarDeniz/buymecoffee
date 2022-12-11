@@ -28,7 +28,7 @@ function ResponsiveAppBar(props) {
   );
   React.useEffect(() => {
     if (location.pathname.includes("/investor")) {
-      Axios.get(BackendURL + '/api/developer/${props.username}')
+      Axios.get(BackendURL + `/api/developer/${props.username}`)
         .then((res) => {
           console.log("photos", res.data.data);
           setPhotoLink(res.data.data.photoLink);
@@ -38,7 +38,7 @@ function ResponsiveAppBar(props) {
         });
     } else {
       Axios.get(
-        BackendURL + '/api/investor/single_investor/${props.username}'
+        BackendURL + `/api/investor/single_investor/${props.username}`
       )
         .then((res) => {
           console.log("photos investor", res.data.data[0].photoLink);

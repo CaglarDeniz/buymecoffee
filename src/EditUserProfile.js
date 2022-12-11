@@ -19,7 +19,7 @@ function EditUserProfile(props) {
     if (location.pathname.includes("/investor/profile")) {
       setMode("investor");
       Axios.get(
-        BackendURL + '/api/investor/single_investor/${params.username}'
+        BackendURL + `/api/investor/single_investor/${params.username}`
       )
         .then((res) => {
           console.log(res.data.data[0]);
@@ -30,7 +30,7 @@ function EditUserProfile(props) {
         });
     } else {
       setMode("projectOwner");
-      Axios.get( BackendURL + '/api/developer/${params.username}')
+      Axios.get( BackendURL + `/api/developer/${params.username}`)
         .then((res) => {
           console.log(res.data.data);
           setInvestor(res.data.data);

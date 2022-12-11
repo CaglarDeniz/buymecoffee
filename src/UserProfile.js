@@ -8,7 +8,8 @@ function UserProfile() {
   let params = useParams();
   const [user, setUser] = React.useState("");
   React.useEffect(()=>{
-    Axios.get(BackendURL + '/api/developer/${params.username}').then((res)=>{
+		console.log(params);
+    Axios.get(BackendURL + `/api/developer/${params.username}`).then((res)=>{
       console.log(res.data.data)
       setUser(res.data.data)
     }).catch((err)=>{console.log(err)})

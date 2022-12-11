@@ -18,7 +18,7 @@ function MyProjectsEdit(props) {
   React.useEffect(() => {
     if (props.projectList?.length > 0) {
       const arrayOfPromises = props.projectList?.map((projectId) => {
-        return Axios.get(BackendURL + '/api/project/${projectId}');
+        return Axios.get(BackendURL + `/api/project/${projectId}`);
       });
       let obj = Promise.all(arrayOfPromises);
       obj.then((res) => {

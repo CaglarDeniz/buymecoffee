@@ -9,7 +9,7 @@ function InvestorProfile() {
   let params = useParams();
   const [investor, setInvestor] = React.useState("");
   React.useEffect(()=>{
-    Axios.get(BackendURL + '/api/investor/single_investor/${params.username}').then((res)=>{
+    Axios.get(BackendURL + `/api/investor/single_investor/${params.username}`).then((res)=>{
       console.log(res.data.data[0])
       setInvestor(res.data.data[0])
     }).catch((err)=>{console.log(err)})

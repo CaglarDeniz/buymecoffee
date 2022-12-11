@@ -25,7 +25,7 @@ function UserProfileWhiteAreaEdit(props) {
     if (location.pathname.includes("/projectOwner/profile")) {
       if (props.tempPhoto === "") {
         Axios.put(
-          BackendURL + '/api/developer/${props.person.username}',
+          BackendURL + `/api/developer/${props.person.username}`,
           {
             name: props.name,
             email: email,
@@ -58,7 +58,7 @@ function UserProfileWhiteAreaEdit(props) {
           .then((res) => {
             console.log("obtained photo", res.data.data);
             Axios.put(
-              BackendURL + '/api/developer/${props.person.username}',
+              BackendURL + `/api/developer/${props.person.username}`,
               {
                 name: props.name,
                 email: email,
@@ -86,7 +86,7 @@ function UserProfileWhiteAreaEdit(props) {
       }
     } else {
       if (props.tempPhoto === "") {
-        Axios.put(BackendURL + '/api/investor/${props.person._id}', {
+        Axios.put(BackendURL + `/api/investor/${props.person._id}`, {
           name: props.name,
           email: email,
           password: password,
@@ -118,7 +118,7 @@ function UserProfileWhiteAreaEdit(props) {
           .then((res) => {
             console.log("obtained photo", res.data.data);
             Axios.put(
-              BackendURL + '/api/investor/${props.person._id}',
+              BackendURL + `/api/investor/${props.person._id}`,
               {
                 name: props.name,
                 email: email,
