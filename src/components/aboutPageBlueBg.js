@@ -11,7 +11,7 @@ function AboutPageBlueBg() {
       className="blue-container"
       style={{ backgroundImage: `url(${require("./img/aboutPageEnd.png")})` }}
     >
-<div className="container-wrap">
+<div className="container-wrap-blue">
         <div className="row-1">
           Update Investors about New Innovative Projects <br></br><br></br>
           <CircleNotificationsIcon className='icon' />
@@ -26,7 +26,7 @@ function AboutPageBlueBg() {
         </div>
       </div>
 
-      <div className="container-wrap">
+      <div className="container-wrap-blue">
         <div className="row-1">
           Discover Experienced Investors to Connect with<br></br><br></br>
           <HandshakeIcon className='icon'/>

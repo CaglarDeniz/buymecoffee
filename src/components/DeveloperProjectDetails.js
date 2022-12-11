@@ -24,7 +24,7 @@ function DeveloperProjectDetails(props) {
     if(props.projectList?.length > 0){
       const promisesArray = props.projectList?.map
       ( (projectId) => {
-        return axios.get(BackendURL + '/api/project/${projectId}');
+        return axios.get(BackendURL + `/api/project/${projectId}`);
       });
       let obj = Promise.all(promisesArray);
       obj.then((res) => {
