@@ -91,8 +91,8 @@ function InvestorGallery(props) {
   return (
     <ThemeProvider theme={theme}>
       <div className="container-wrap">
-        <Navbar mode={"projectOwner"} username={props.username}  removeCookie={props.removeCookie} />
-        <h2 className="project-heading">INVESTORS</h2>
+        <Navbar mode={"projectOwner"} username={props.username}  removeCookie={props.removeCookie} setName={props.setName} setPassword={props.setPassword} setRole={props.setRole} />
+        <h2 className="project-heading">Investors</h2>
         {windowSize.innerWidth > 768 ? (
           <ScrollingMenu
             setCurIndustry={setCurIndustry}

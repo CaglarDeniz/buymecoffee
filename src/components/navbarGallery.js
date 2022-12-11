@@ -119,6 +119,14 @@ function ResponsiveAppBar(props) {
                   if (setting.id === 1) props.removeCookie(['papaya'],{path:'/buymecoffee/login'});
                   if (setting.id === 1) props.removeCookie(['papaya'],{path:'/login'});
                   if (setting.id === 1) props.removeCookie(['papaya'],{path:'/buymecoffee'});
+
+               
+                    props.setName("");
+                    props.setPassword("");
+                    props.setRole("");
+                    localStorage.setItem("username", "");
+                    localStorage.setItem("role", "");
+       
                 }}
               >
                 <MenuItem key={setting.id} onClick={handleCloseUserMenu}>

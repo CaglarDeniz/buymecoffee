@@ -7,11 +7,11 @@ function LogIn(props) {
    
     const navigate = useNavigate();
     //const [role, setRole] = useState("");
-    useEffect ( () => {
-        props.setName("");
-        props.setPassword("");
-        props.setRole("");
-    }, [props]);
+    // useEffect ( () => {
+    //     props.setName("");
+    //     props.setPassword("");
+    //     props.setRole("");
+    // }, [props.setName, props.setPassword, props.setRole]);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -88,7 +88,7 @@ function LogIn(props) {
                     <button id="investor" className="login-button" type="button" onClick={handleInvClick}>Login as Investor</button>
                     </div>
                     <input className="login-input" type="text" placeholder="Enter Username" value={props.username} onChange={(e) => props.setName(e.target.value)}/>
-                    <input className="login-input" type="text" placeholder="Enter password" value={props.password} onChange={(e) => props.setPassword(e.target.value)}/>
+                    <input className="login-input" type="password" placeholder="Enter password" value={props.password} onChange={(e) => props.setPassword(e.target.value)}/>
                     <button className="submit-button" type="Submit">Login</button>
                 </form>
                 <h5 className="goto-signup">Not a User yet? <Link to="/signup" id="signup-link">SignUp here</Link></h5> 
