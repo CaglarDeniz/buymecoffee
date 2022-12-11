@@ -66,8 +66,8 @@
 
 /* details of the project - text */
 .proj-details {
-    margin: 4% 0%;
-    padding: 2% 18%; 
+    margin: 1% 0%;
+    padding: 0.5% 18%; 
     text-decoration: none;
     text-emphasis: none;
     font-weight: 500;
@@ -102,15 +102,14 @@
 }
 
 .devproj-details {
-    margin: 3% 0% 3% 0%;
- 
+    margin: 1% 2%;
     color: white;
     font-weight: 500;
     font-size: 16px;
 } 
 
 #developer-proj {
-    margin: 4% 0%;
+    margin: 2% 0%;
 }
 
 #developer-proj:visited {

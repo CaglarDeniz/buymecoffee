@@ -65,8 +65,8 @@
 
 /* details of the invest - text */
 .invest-details {
-    padding: 3% 18%; 
-    margin: 4% 2%;
+    padding: 0.5% 18%; 
+    margin: 1% 2%;
     font-weight: 500;
     font-size: 16px;
 }
@@ -74,15 +74,15 @@
 .invest-list-details{
     font-weight: 500;
     font-size: 16px;
-    margin: 2% 2%;
+    margin: 1% 2%;
 }
 
 /* details of the project - box text */
 .box_i-text {
     /* width: 110px; */
     text-align: center;
-    padding: 1% 0.5%;
-    margin: 2% 2%;
+    padding: 0.5% 0.5%;
+    margin: 0.5% 2%;
     font-size: 16px ;
     font-style: bold;
     font-weight: 500;
