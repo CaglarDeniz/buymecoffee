@@ -89,7 +89,7 @@ function MyProjects(props) {
     return card;
   };
   return (
-    <div class='my-project-wrap'>
+    <div className='my-project-wrap'>
       <Grid
         container
         rowSpacing={4}
