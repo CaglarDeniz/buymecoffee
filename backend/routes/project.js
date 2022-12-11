@@ -48,7 +48,7 @@ projectRoute.post(async function (req, res) {
                   description: req.body.description,
                   ownerId: req.body.ownerId,
                   amount: 'amount' in req.body ? req.body.amount : null,
-                  photoLink: req.body.photoLink?req.body.photoLink :"https://gitlab.com/CaglarDeniz/buymecoffee/-/raw/main/Assets/3.png"
+                  photoLink: req.body.photoLink?req.body.photoLink :"https://gitlab.com/CaglarDeniz/buymecoffee/-/raw/main/Assets/1.png"
                 },
                  async function (err, result) {
                   if (err){
