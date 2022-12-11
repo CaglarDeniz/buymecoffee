@@ -29,10 +29,10 @@ function App() {
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Routes>
-        <Route path="/projects" element={redirectDeveloper(<ProjectGallery username={username} removeCookie={removeCookie}/>,cookies)} />
+        <Route path="/projects" element={redirectDeveloper(<ProjectGallery username={username} removeCookie={removeCookie} setRole={setRole} setName={setName} setPassword={setPassword}/>,cookies)} />
         <Route path="/project/:projectId" element={redirectNotLoggedIn(<ProjectDetailView role={role} username={username} />,cookies)} />
         <Route path="/project/:projectId/edit" element={redirectInvestor(<EditProject username={username}/>,cookies)} />
-        <Route path="/investors" element={redirectInvestor(<InvestorGallery username={username} removeCookie={removeCookie}/>,cookies)} />
+        <Route path="/investors" element={redirectInvestor(<InvestorGallery username={username} removeCookie={removeCookie} setRole={setRole} setName={setName} setPassword={setPassword}/>,cookies)} />
         <Route path="/investor/:investorId" element={redirectInvestor(<InvestorDetailView />,cookies)} />
         <Route path="/projectOwner/:projectOwnerId" element={redirectNotLoggedIn(<DeveloperDetailView role={role}/>,cookies)} />
         <Route path="/investor/profile/:username" element={redirectDeveloper(<InvestorProfile />,cookies)} />

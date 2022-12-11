@@ -11,8 +11,8 @@
     text-align: center;
 }
 .bmcflog-logo {
-    width: 180px;
-    height: 80px;
+    width: 150px;
+    height: 150px;
     /* padding: 10% 0.5%; */
     display: block;
 }
@@ -58,7 +58,9 @@
     font-style: bold;
     text-align: center;
     font-size: larger;
-    /* background-color: white; */
+    background-color: #CACCCE;
+    border-radius: 15px 15px 15px 15px;
+    padding: 2% 3%;
 }
 
 .goto-signup{

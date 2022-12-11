@@ -34,7 +34,7 @@ function ProjectDetailHeader(props) {
             <Link to={back_url}>
                 <img
                 className="bmcfblue-logo"
-                src={require("./img/BuyMeCoffeeBlue.png")}
+                src={require("./img/BuyMeCoffeeNew.png")}
                 alt="BuyMeCoffeeLogo"
                 />
             </Link>

@@ -18,7 +18,7 @@ function InvestorDetailHeader(props){
             <Link to="/investors">
                 <img
                 className="bmcfblue-logo"
-                src={require("./img/BuyMeCoffeeBlue.png")}
+                src={require("./img/BuyMeCoffeeNew.png")}
                 alt="BuyMeCoffeeLogo"
                 />
             </Link>
