@@ -91,7 +91,7 @@ function ProjectGallery(props) {
     <ThemeProvider theme={theme}>
       <div className="container-wrap">
         <Navbar mode={"investor"} username={props.username} removeCookie={props.removeCookie}/>
-        <h2 className="project-heading">Projects</h2>
+        <h2 className="project-heading">PROJECTS</h2>
 
         {windowSize.innerWidth > 768 ? (
           <ScrollingMenu
