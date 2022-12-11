@@ -392,7 +392,8 @@ def main(argv):
         "construction",
         "aerospace",
         "software",
-        "chemical"
+        "chemical",
+        "other"
     ]
 
     oldStartUpsNames = [
@@ -422,8 +423,7 @@ def main(argv):
         "Dominoes",
         "Dunkin",
         "Starbucks",
-        "Boeing",
-        "Other"
+        "Boeing"
     ]
 
     firstNames = [name.capitalize() for name in firstNames]
@@ -454,7 +454,7 @@ def main(argv):
 
         # Pick a random first name and last name
         ind_i= ((i+2)%len(industryNames))
-        industryList = industryNames[ind_i:ind_i+3]
+        industryList = industryNames
 
         response = openai.Completion.create(
             model="text-davinci-003",
@@ -549,6 +549,7 @@ def main(argv):
 
 
     shuffle(projectNames)
+    projIndustry = industryNames*4
 
     res_ = requests.get(f"http://{baseurl}:{str(port)}/api/developer", headers=headers)
         # print(type(res_.json()))
@@ -560,11 +561,11 @@ def main(argv):
         # Pick a random first name and last name
 
         name = sample(projectNames,1)[0] + " " + sample(["x",".","+"],1)[0] + " " +sample(projectNames,1)[0]
-        industry = sample(industryNames,1)[0]
+        # industry = sample(industryNames,1)[0]
 
         response = openai.Completion.create(
             model="text-davinci-003",
-            prompt=f"Write an explanation for the revolutionary startup idea named {name}. {name} is a startup in the {industry} industry",
+            prompt=f"Write an explanation for the revolutionary startup idea named {name}. {name} is a startup in the {projIndustry[i]} industry",
             temperature=0.7,
             max_tokens=256,
             top_p=1,
@@ -574,7 +575,7 @@ def main(argv):
 
         body = {
                 "name": name,
-                "industry" : industry,
+                "industry" : projIndustry[i],
                 "ownerId": listOfIds[i],
                 "amount" : randint(1000,1000000),
                 "description": name + " " + (response['choices'][0]['text'].lstrip(".")).lstrip().split(' ', 1)[1]
