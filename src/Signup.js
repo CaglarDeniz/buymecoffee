@@ -154,7 +154,7 @@ function Signup() {
     <div className="sign-up-container">
       <img
         className="bmcflog-logo"
-        src={require("./components/img/BuyMeCoffeeBlue.png")}
+        src={require("./components/img/BuyMeCoffeeNew.png")}
         alt="BuyMeCoffeeLogo" onClick={()=>{navigate("/")}}
       />
 

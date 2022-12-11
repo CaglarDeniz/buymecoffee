@@ -78,7 +78,7 @@ function LogIn(props) {
         <div className="container-wrap">
             <div className="grey-area">
                 <img className="bmcflog-logo"
-                src={require("./components/img/BuyMeCoffeeBlue.png")}
+                src={require("./components/img/BuyMeCoffeeNew.png")}
                 alt="BuyMeCoffeeLogo" onClick={()=>{navigate("/")}}/>
              
                 <h3 className="login-header">Login to BuyMeCoffee</h3>
