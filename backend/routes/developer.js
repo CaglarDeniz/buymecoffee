@@ -94,7 +94,7 @@ devRoute.post(async function(req, res) {
           industry: [],
           bio: 'bio' in req.body ? req.body.bio : "",
           projectId: 'projectId' in req.body ? req.body.projectId : [],
-          photoLink: 'photoLink' in req.body ? req.body.photoLink : "https://cdn2.iconfinder.com/data/icons/audio-16/96/user_avatar_profile_login_button_account_member-512.png",
+          photoLink: 'photoLink' in req.body ? req.body.photoLink : "https://drive.google.com/file/d/1VeWQQZYmjOWkabidE6bi2ohBDtY51CCX/view?usp=sharing",
         })
 
         // console.log(newDev);

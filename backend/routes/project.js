@@ -48,7 +48,7 @@ projectRoute.post(async function (req, res) {
                   description: req.body.description,
                   ownerId: req.body.ownerId,
                   amount: 'amount' in req.body ? req.body.amount : null,
-                  photoLink: req.body.photoLink?req.body.photoLink :"https://img.freepik.com/free-vector/coffee-love-foam-with-beans-cartoon-icon-illustration_138676-2575.jpg?w=740&t=st=1670615410~exp=1670616010~hmac=238006d75b6fcd5600b9af4603f8f3a3726432a9d88f3a0ae5f400755e6a0cf5"
+                  photoLink: req.body.photoLink?req.body.photoLink :"https://drive.google.com/file/d/1JgD8cBIiQrz-1sBndaNvsLskQMGBpJXK/view?usp=sharing"
                 },
                  async function (err, result) {
                   if (err){
