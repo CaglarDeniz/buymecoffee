@@ -42,7 +42,7 @@ var port = 8080;
 var allowCrossDomain = function (req, res, next) {
 	const corsWhitelist = [
         'http://localhost:3000',
-        'https://caglardeniz.gitlab.io'
+        'https://ckaewla2.gitlab.io'
     ];
 	if (corsWhitelist.indexOf(req.headers.origin) !== -1) {
     res.header("Access-Control-Allow-Origin", req.headers.origin);
