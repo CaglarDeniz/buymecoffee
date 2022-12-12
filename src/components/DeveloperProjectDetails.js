@@ -38,7 +38,7 @@ function DeveloperProjectDetails(props) {
     }
   }, [props.projectList]);
 
-  const returnCard = (projectName, projectId) => {
+  const returnCard = (projectName, projectId, photoLink) => {
     let card = (
       <Grid item xs={12} sm={props.projectList? '':gridWidthSmall[props.projectList.length]} md={props.projectList? '':gridWidthMedium[props.projectList.length]}
        key={projectId}>
@@ -59,7 +59,7 @@ function DeveloperProjectDetails(props) {
             <CardMedia
               component="img"
               height="140"
-              image="/static/images/cards/contemplative-reptile.jpg"
+              image={photoLink}
               alt="project cover photo"
             />
 
@@ -100,7 +100,7 @@ function DeveloperProjectDetails(props) {
         columnSpacing={{ xs: 3, sm: 4, md: 4 }}
       >
         {projectInfo.map((project) => {
-          return returnCard(project.name, project._id);
+          return returnCard(project.name, project._id, project.photoLink);
         })}
 {/* 
         {projectList.length < 4
