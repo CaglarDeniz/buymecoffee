@@ -113,7 +113,7 @@ app.post('/upload',async (req, res) => {
       );
 			res.status(200).json({
 				message: "Uploaded the file succesfully " + newFilename ,
-				url: publicURL
+				data: publicURL
 			});
     }).end(req.file.buffer);
   } catch(err){
