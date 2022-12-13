@@ -94,7 +94,7 @@ devRoute.post(async function(req, res) {
           industry: [],
           bio: 'bio' in req.body ? req.body.bio : "",
           projectId: 'projectId' in req.body ? req.body.projectId : [],
-          photoLink: 'photoLink' in req.body ? req.body.photoLink : "https://gitlab.com/CaglarDeniz/buymecoffee/-/raw/main/Assets/3.png"
+          photoLink: 'photoLink' in req.body ? req.body.photoLink : "https://storage.googleapis.com/buymecoffee-storage/3.png"
         })
 
         // console.log(newDev);
