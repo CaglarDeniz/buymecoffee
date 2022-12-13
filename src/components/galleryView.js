@@ -20,7 +20,7 @@ function GalleryView(props) {
       setProjectList(res.data.data)
     }).catch((err)=>{console.log(err)})}
     else {
-      let url =  BackendURL + '/api/investor?where=${JSON.stringify(industry)}'
+      let url =  BackendURL + `/api/investor?where=${JSON.stringify(industry)}`
       Axios.get(url).then((res)=>{
         // console.log(res.data.data)
         setProjectList(res.data.data)

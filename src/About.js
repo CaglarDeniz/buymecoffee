@@ -38,7 +38,7 @@ function About() {
           SignUp
         </Button>
       </div>
-      <video className="video" width="100%" controls>
+      <video className="video" width="100%"  loop="true" autoplay="autoplay" muted>
         <source
           src={require("./components/img/bmcfVideo.mp4")}
           type="video/mp4"
