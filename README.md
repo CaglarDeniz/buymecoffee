@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# BuyMeCoffee: A Social Networking App for Investors and Developers
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
